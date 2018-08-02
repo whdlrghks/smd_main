@@ -1,0 +1,199 @@
+﻿<% include ./includes/header.ejs %>
+  <div class="breadcrumbs">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <ul>
+            <li class="home"> <a title="Go to Home Page" href="/index">홈</a><span>&raquo;</span></li>
+            <li class=""> <a title="Go to MyPage" href="/user/mypage">마이페이지</a><span>&raquo;</span></li>
+            <li><strong>면세점 연동</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Breadcrumbs End -->
+  <!-- Main Container -->
+  <div class="main-container col2-left-layout">
+    <div class="container">
+      <div class="row">
+        <div class="col-main col-sm-9 col-xs-12 col-sm-push-3">
+
+          <div class="shop-inner">
+            <div class="page-title">
+              <h2>면세점 연동</h2>
+              <h6>각각의 인터넷면세점과 연동하여 할인혜택을 누리세요!</h6>
+            </div>
+            <div class="pagination-area "></div>
+
+            <div class="product-grid-area">
+              <ul class="products-grid">
+                <li class="item col-lg-4 col-md-4 col-sm-6 col-xs-6 ">
+                  <div class="product-item">
+                    <div class="item-inner">
+                      <div class="product-thumbnail">
+                        <div class="pr-img-area">
+                           <figure><img class="first-img" src="images/shilla_logo.jpg"></figure>
+                         </div>
+
+                      </div>
+                      <div class="item-info">
+                        <div class="info-inner">
+                          <h4>신라인터넷면세점 <h4>
+                          <div class="item-content">
+                            <h6>연동하신다면 신라인터넷면세점의</h6>
+                            <h6>적립금을 이용할 수 있습니다. <h6>
+                          </div>
+                          <%
+                          if(!SL_check){%>
+                          <button class="button" onclick="window.open('popup/shilla','신라연동','width=430,height=500,location=no,status=no,scrollbars=yes');"><i class="fa fa-user"></i>&nbsp; <span>연동하기</span></button>
+                            <%
+                          }else{%>
+                          <div class="availability in-stock"><span class="label">연동 완료</span></div>
+                          <%}%>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="item col-lg-4 col-md-4 col-sm-6 col-xs-6 ">
+                  <div class="product-item">
+                    <div class="item-inner">
+                      <div class="product-thumbnail">
+                        <div class="pr-img-area">
+                           <figure><img class="first-img" src="images/lotte_logo.jpg"></figure>
+                         </div>
+
+                      </div>
+                      <div class="item-info">
+                        <div class="info-inner">
+                          <h4>롯데인터넷면세점 <h4>
+                          <div class="item-content">
+                            <h6>연동하신다면 롯데인터넷면세점의</h6>
+                            <h6>적립금을 이용할 수 있습니다. <h6>
+                          </div>
+                          <%
+                          if(!LT_check){%>
+                          <button class="button" onclick="window.open('popup/lotte','신라연동','width=430,height=500,location=no,status=no,scrollbars=yes');"><i class="fa fa-user"></i>&nbsp; <span>연동하기</span></button>
+                            <%
+                          }else{%>
+                          <div class="availability in-stock"><span class="label">연동 완료</span></div>
+                          <%}%>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="item col-lg-4 col-md-4 col-sm-6 col-xs-6 ">
+                  <div class="product-item">
+                    <div class="item-inner">
+                      <div class="product-thumbnail">
+                        <div class="pr-img-area">
+                           <figure><img class="first-img" src="images/shinsegae_logo.jpg"></figure>
+                         </div>
+
+                      </div>
+                      <div class="item-info">
+                        <div class="info-inner">
+                          <h4>신세계인터넷면세점 <h4>
+                          <div class="item-content">
+                            <h6>연동하신다면 신세계터넷면세점의</h6>
+                            <h6>적립금을 이용할 수 있습니다. <h6>
+                          </div>
+                          <%
+                          if(!SSG_check){%>
+                          <button class="button" onclick="window.open('popup/shinsegae','신라연동','width=430,height=500,location=no,status=no,scrollbars=yes');"><i class="fa fa-user"></i>&nbsp; <span>연동하기</span></button>
+                            <%
+                          }else{%>
+                          <div class="availability in-stock"><span class="label">연동 완료</span></div>
+                          <%}%>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="pagination-area "></div>
+          </div>
+        </div>
+        <aside class="sidebar col-sm-3 col-xs-12 col-sm-pull-9">
+          <div class="block category-sidebar">
+            <div class="sidebar-title">
+              <h3>Categories</h3>
+            </div>
+            <ul class="product-categories">
+              <li class="cat-item current-cat cat-parent"><a href= "shop_grid.html">Women</a>
+                <ul class="children">
+                  <li class="cat-item cat-parent"><a href="shop_grid.html"><i class="fa fa-angle-right"></i>&nbsp; Accessories</a>
+                    <ul class="children">
+                      <li class="cat-item"><a href="shop_grid.html"><i class="fa fa-angle-right"></i>&nbsp; Dresses</a></li>
+                      <li class="cat-item cat-parent"><a href="shop_grid.html"><i class="fa fa-angle-right"></i>&nbsp; Handbags</a>
+                        <ul style="display: none;" class="children">
+                          <li class="cat-item"><a href="shop_grid.html"><i class="fa fa-angle-right"></i>&nbsp; Beaded Handbags</a></li>
+                          <li class="cat-item"><a href="shop_grid.html"><i class="fa fa-angle-right"></i>&nbsp; Sling bag</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="cat-item cat-parent"><a href="shop_grid.html"><i class="fa fa-angle-right"></i>&nbsp; Handbags</a>
+                    <ul class="children">
+                      <li class="cat-item"><a href="shop_grid.html"><i class="fa fa-angle-right"></i>&nbsp; backpack</a></li>
+                      <li class="cat-item"><a href="shop_grid.html"><i class="fa fa-angle-right"></i>&nbsp; Beaded Handbags</a></li>
+                      <li class="cat-item"><a href="shop_grid.html"><i class="fa fa-angle-right"></i>&nbsp; Fabric Handbags</a></li>
+                      <li class="cat-item"><a href="shop_grid.html"><i class="fa fa-angle-right"></i>&nbsp; Sling bag</a></li>
+                    </ul>
+                  </li>
+                  <li class="cat-item"><a href="shop_grid.html"><i class="fa fa-angle-right"></i>&nbsp; Jewellery</a> </li>
+                  <li class="cat-item"><a href="shop_grid.html"><i class="fa fa-angle-right"></i>&nbsp; Swimwear</a> </li>
+                </ul>
+              </li>
+              <li class="cat-item cat-parent"><a href="shop_grid.html">Men</a>
+                <ul class="children">
+                  <li class="cat-item cat-parent"><a href="shop_grid.html"><i class="fa fa-angle-right"></i>&nbsp; Dresses</a>
+                    <ul class="children">
+                      <li class="cat-item"><a href="shop_grid.html"><i class="fa fa-angle-right"></i>&nbsp; Casual</a></li>
+                      <li class="cat-item"><a href="shop_grid.html"><i class="fa fa-angle-right"></i>&nbsp; Designer</a></li>
+                      <li class="cat-item"><a href="shop_grid.html"><i class="fa fa-angle-right"></i>&nbsp; Evening</a></li>
+                      <li class="cat-item"><a href="shop_grid.html"><i class="fa fa-angle-right"></i>&nbsp; Hoodies</a></li>
+                    </ul>
+                  </li>
+                  <li class="cat-item"><a href="shop_grid.html"><i class="fa fa-angle-right"></i>&nbsp; Jackets</a> </li>
+                  <li class="cat-item"><a href="shop_grid.html"><i class="fa fa-angle-right"></i>&nbsp; Shoes</a> </li>
+                </ul>
+              </li>
+              <li class="cat-item"><a href="shop_grid.html">Electronics</a></li>
+              <li class="cat-item"><a href="shop_grid.html">Furniture</a></li>
+              <li class="cat-item"><a href="shop_grid.html">KItchen</a></li>
+            </ul>
+          </div>
+          <div class="block shop-by-side">
+            <div class="sidebar-bar-title">
+              <h3>마이페이지</h3>
+            </div>
+            <div class="block-content">
+              <div class="layered-Category">
+                <div class="layered-content">
+                  <ul class="check-box-list">
+                    <li>
+                      <label for="jtv2"> <a href="/user/mypage"><span class="button"> 내 계정</span></a> </label>
+                    </li>
+                    <li>
+                      <label for="jtv2"> <a href="/Dutyfree_linkage"><span class="button"> 면세점 연동</span></a> </label>
+                    </li>
+                    <li>
+                      <label for="jtv2"> <a href="/Manage_reserve"><span class="button">적립금 관리</span></a> </label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <!-- Main Container End -->
+  <!-- Footer -->
+  <a href="#" class="totop"> </a> </div>
+<% include ./includes/footer.ejs %>
