@@ -170,13 +170,57 @@ const UTIL = (function() {
         json: true
       },
       function(error, response, body) {
-        
+
         callback(body);
       }
     );
 
   }
+  var getSLproduct_REST = function(prd_id, callback) {
+    var prd_id = prd_id;
 
+    request.post({
+        url: 'http://localhost:5050/api/product/SL',
+        body: {
+          prd_url: prd_id
+        },
+        json: true
+      },
+      function(error, response, body) {
+        callback(body);
+      }
+    );
+  }
+  var getLTproduct_REST = function(prd_id, callback) {
+    var prd_id = prd_id;
+
+    request.post({
+        url: 'http://localhost:5050/api/product/LT',
+        body: {
+          prd_url: prd_id
+        },
+        json: true
+      },
+      function(error, response, body) {
+        callback(body);
+      }
+    );
+  }
+  var getSSGproduct_REST = function(prd_id, callback) {
+    var prd_id = prd_id;
+
+    request.post({
+        url: 'http://localhost:5050/api/product/SSG',
+        body: {
+          prd_url: prd_id
+        },
+        json: true
+      },
+      function(error, response, body) {
+        callback(body);
+      }
+    );
+  }
 
 
 
@@ -185,8 +229,10 @@ const UTIL = (function() {
     getLTreserved: getLTreserved_REST,
     getSSGreserved: getSSGreserved_REST,
     getproductlist: getproductlist_REST,
+    getSLproduct: getSLproduct_REST,
+    getLTproduct: getLTproduct_REST,
+    getSSGproduct: getSSGproduct_REST,
     getproductdetail: getproductdetail_REST
-
   }
 
 })();
