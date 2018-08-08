@@ -2,16 +2,16 @@
 
   File Name: style.css
   Template Name: Modern
-  Created By: justthemevalley 
+  Created By: justthemevalley
 
- 
- 
+
+
  [Table of contents]
- 
-  
+
+
   1. Common styles
   2. Newsletter Popup
-  3. Layout 
+  3. Layout
      3.1. col1 layout
      3.2. col2 layout
      3.3. col3 layout
@@ -23,7 +23,7 @@
 		4.5 Logo
 		4.6 Top Cart
 	5. Home tabs
-	6. Hot deal	
+	6. Hot deal
 	7. Home top banner
 	8. Sale & New label
 	9. product hover
@@ -68,7 +68,7 @@
 	40. Responsive
 
 
-################################################################# */ 
+################################################################# */
 
 /******************************************
 1. Common styles
@@ -270,7 +270,7 @@ small {
 input:focus {
 	outline: none
 }
-/* @font-face kit */ 
+/* @font-face kit */
 @font-face {
 	font-family: "Arimo";
 	src: url("../fonts/arimo/Arimo-Regular-Latin.eot?") format("eot"), url("../fonts/arimo/Arimo-Regular-Latin.woff") format("woff"), url("../fonts/arimo/Arimo-Regular-Latin.ttf") format("truetype"), url("../fonts/arimo/Arimo-Regular-Latin.svg#Arimo") format("svg");
@@ -1732,7 +1732,7 @@ ul#cart-sidebar {
 .pr-button {
 	border: 0 none;
 	left: 50%;
-	margin-left: -66px;
+	margin-left: -20px;
 	position: absolute;
 	top: 30%;
 	padding-left: 2px;
