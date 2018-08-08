@@ -37,35 +37,35 @@
                 <h1><%=product.prd_Name%></h1>
               </div>
               <div class="product-name">
-                <!-- <h4>요약 설명</h4>
+                <h4>요약 설명</h4>
                 <p style="color: red;">피부 표면의 과잉 피지를 줄여주는 오일-프리 토너</p>
                 <p> 스쿠알란, 살구씨 오일, 스위트 아몬드 오일, 아보카도 오일 등 식물성 보습 성분이 피부 본래의 수분 장벽을 강화해주어 진정 및 보습에 도움을 줍니다.</p>
-                <h1></h1> -->
+                <h1></h1>
               </div>
               <div class="price-box">
                 <ul>
                   <li>
-                    <%if(product.prd_SLURL){%>
-                    <p class="old-price" > <strong>신라인터넷면세점 : </strong><span id='sl_origin_price' class="price"> </span>&nbsp; >> <span class="price-label">Special Price</span> </p>
-                    <p class="special-price"> <span class="price-label">Regular Price:</span> <span id='sl_discount_price' class="price"></span> </p>
+                    <%if(product.prd_SLURL&&SL_price!="No price"){%>
+                    <p class="old-price" > <strong>신라인터넷면세점 : </strong><span class="price"> $<%=SL_price%></span>&nbsp; >> <span class="price-label">Special Price</span> </p>
+                    <p class="special-price"> <span class="price-label">Regular Price:</span> <span class="price"> $<%=SL_price%></span> </p>
                     <p class="special-price"><a title="<%=product.prd_SLURL%>" href="<%=product.prd_SLURL%>" >신라인터넷면세점 연결하기</a></p>
                     <%}else{%>
                     <p class="old-price" > <strong>신라인터넷면세점은 해당 상품이 존재하지 않습니다. </strong></p>
                     <%}%>
                   </li>
                   <li>
-                    <%if(product.prd_ProductURL){%>
-                    <p class="old-price" > <strong>롯데인터넷면세점 : </strong><span id='lt_origin_price' class="price"> </span>&nbsp; >> <span class="price-label">Special Price</span> </p>
-                    <p class="special-price"> <span class="price-label">Regular Price:</span> <span id='lt_discount_price' class="price">  </span> </p>
+                    <%if(product.prd_ProductURL&&LT_price!="No price"){%>
+                    <p class="old-price" > <strong>롯데인터넷면세점 : </strong><span class="price"> $<%=LT_price%></span>&nbsp; >> <span class="price-label">Special Price</span> </p>
+                    <p class="special-price"> <span class="price-label">Regular Price:</span> <span class="price"> $<%=LT_price%> </span> </p>
                     <p class="special-price"><a title="<%=product.prd_ProductURL%>" href="<%=product.prd_ProductURL%>" >롯데인터넷면세점 연결하기</a></p>
                     <%}else{%>
                     <p class="old-price" > <strong>롯데인터넷면세점은 해당 상품이 존재하지 않습니다. </strong></p>
                     <%}%>
                   </li>
                   <li>
-                    <%if(product.prd_SSGURL!="42"){%>
-                    <p class="old-price" > <strong>신세계인터넷면세점 : </strong><span id='ssg_origin_price' class="price"></span>&nbsp; >> <span class="price-label">Special Price</span> </p>
-                    <p class="special-price"> <span class="price-label">Regular Price:</span> <span id='ssg_discount_price' class="price">  </span> </p>
+                    <%if(product.prd_SSGURL&&SSG_price!="No price"){%>
+                    <p class="old-price" > <strong>신세계인터넷면세점 : </strong><span class="price"> $<%=SSG_price%></span>&nbsp; >> <span class="price-label">Special Price</span> </p>
+                    <p class="special-price"> <span class="price-label">Regular Price:</span> <span class="price"> $<%=SSG_price%> </span> </p>
                     <p class="special-price"><a title="<%=product.prd_SSGURL%>" href="<%=product.prd_SSGURL%>" >신세계인터넷면세점 연결하기</a></p>
                     <%}else{%>
                     <p class="old-price" > <strong>신세계인터넷면세점은 해당 상품이 존재하지 않습니다. </strong></p>
@@ -76,10 +76,13 @@
               <div class="ratings">
 
                 <p class="availability in-stock pull-left">재고 상태:
-                    <span id='sl_storage'>신라 : 재고 없음</span>
-                    <span id='lt_storage'>롯데 : 재고 없음</span>
-                    <span id='ssg_storage'>신세계 : 재고 없음</span>
-
+                  <%if(SL_storage!="No storage"&&SL_storage!="neg"){%>
+                    <span>신라 : 재고 있음</span>
+                  <%}if(LT_storage!="No storage"&&LT_storage!="neg"){%>
+                    <span>롯데 : 재고 있음</span>
+                  <%}if(SSG_storage!="No storage"&&SSG_storage!="neg"){%>
+                    <span>신세계 : 재고 있음</span>
+                  <%}%>
                   </p>
               </div>
               <div class="product-variation">
@@ -323,7 +326,6 @@
 <!-- flexslider js -->
 <script type="text/javascript" src="js/jquery.flexslider.js"></script>
 
-<script type="text/javascript" src="./js/jquery.oLoader.min.js"></script>
 
 <!-- megamenu js -->
 <script type="text/javascript" src="js/megamenu.js"></script>
@@ -348,200 +350,7 @@
 
 <!--cloud-zoom js -->
 <script type="text/javascript" src="js/cloud-zoom.js"></script>
-<script>
-$(function(){
-  // var SL_URL = "<%=product.prd_SLURL%>";
-  // var body = {
-  //   'SL_URL' : SL_URL
-  // }
-  // if(SL_URL){
-  //   $.ajax({
-  //     type: "POST",
-  //     url: "/product/single/SL",
-  //     async : true,
-  //     data : body,
-  //     dataType : "JSON",
-  //     success: function(json) {
-  //       var sl_origin_price = json[0].split("/")[0];
-  //       var sl_disount_price = json[0].split("/")[0];
-  //       var sl_storage = json[0].split("/")[1];
-  //       if(sl_origin_price!="No price"){
-  //         $('#sl_origin_price').text("$"+sl_origin_price);
-  //         $('#sl_discount_price').text("$"+sl_disount_price);
-  //       }
-  //
-  //         if(sl_storage!="No storage"&&sl_storage!="neg"){
-  //           $('#sl_storage').text("신라 : 재고 있음");
-  //         }
-  //         else{
-  //           $("#sl_storage").css("background-color","red");
-  //           $('#sl_storage').text("신라 : 재고 없음");
-  //         }
-  //       },
-  //       beforeSend: function() {
-  //         $('#sl_origin_price').text("면세점에서 가져오고 있는 중입니다.");
-  //         $('#sl_discount_price').text("면세점에서 가져오고 있는 중입니다.");
-  //         $('#sl_storage').text("면세점에서 가져오고 있는 중입니다.");
-  //       },
-  //       complete: function() {
-  //       },
-  //       error: function(error) {
-  //         console.log(error);
-  //       }
-  //   })
-  // }
-  // var LT_URL = "<%=product.prd_ProductURL%>";
-  // var body = {
-  //   'LT_URL' : LT_URL
-  // }
-  // if(LT_URL){
-  //   $.ajax({
-  //     type: "POST",
-  //     url: "/product/single/LT",
-  //     async : true,
-  //     data : body,
-  //     dataType : "JSON",
-  //     success: function(json) {
-  //       var lt_origin_price = json[0].split("/")[0];
-  //       var lt_disount_price = json[0].split("/")[0];
-  //       var lt_storage = json[0].split("/")[1];
-  //         $('#lt_origin_price').text("$"+lt_origin_price);
-  //         $('#lt_discount_price').text("$"+lt_disount_price);
-  //         if(lt_storage!="No storage"&&lt_storage!="neg"){
-  //           $('#lt_storage').text("롯데 : 재고 있음");
-  //         }
-  //         else{
-  //           $("#lt_storage").css("background-color","red");
-  //           $('#lt_storage').text("롯데 : 재고 없음");
-  //         }
-  //       },
-  //       beforeSend: function() {
-  //         $('#lt_origin_price').text("면세점에서 가져오고 있는 중입니다.");
-  //         $('#lt_discount_price').text("면세점에서 가져오고 있는 중입니다.");
-  //         $('#lt_storage').text("면세점에서 가져오고 있는 중입니다.");
-  //       },
-  //       complete: function() {
-  //       },
-  //       error: function(error) {
-  //         console.log(error);
-  //       }
-  //   })
-  // }
 
-  // var SSG_URL = "<%=product.prd_SSGURL%>";
-  // var body = {
-  //   'SSG_URL' : SSG_URL
-  // }
-  // if(SSG_URL){
-  //   $.ajax({
-  //     type: "POST",
-  //     url: "/product/single/SSG",
-  //     async : true,
-  //     data : body,
-  //     dataType : "JSON",
-  //     success: function(json) {
-  //       var ssg_origin_price = json[0].split("/")[0];
-  //       var ssg_disount_price = json[0].split("/")[0];
-  //       var ssg_storage = json[0].split("/")[1];
-  //         $('#ssg_origin_price').text("$"+ssg_origin_price);
-  //         $('#ssg_discount_price').text("$"+ssg_disount_price);
-  //         if(ssg_storage!="No storage"&&ssg_storage!="neg"){
-  //           $('#ssg_storage').text("신세계 : 재고 있음");
-  //         }
-  //         else{
-  //           $("#ssg_storage").css("background-color","red");
-  //           $('#ssg_storage').text("신세계 : 재고 없음");
-  //         }
-  //       },
-  //       beforeSend: function() {
-  //         $('#ssg_origin_price').text("면세점에서 가져오고 있는 중입니다.");
-  //         $('#ssg_discount_price').text("면세점에서 가져오고 있는 중입니다.");
-  //         $('#ssg_storage').text("면세점에서 가져오고 있는 중입니다.");
-  //       },
-  //       complete: function() {
-  //       },
-  //       error: function(error) {
-  //         console.log(error);
-  //       }
-  //   })
-  // }
-
-  var SL_URL = "<%=product.prd_SLURL%>";
-  var LT_URL = "<%=product.prd_ProductURL%>";
-  var SSG_URL = "<%=product.prd_SSGURL%>";
-  var body_total = {
-    'SL_URL' : SL_URL,
-    'LT_URL' : LT_URL,
-    'SSG_URL' : SSG_URL
-  }
-  $.ajax({
-    type: "POST",
-    url: "/product/single/getinfo",
-    async : true,
-    data : body_total,
-    dataType : "JSON",
-    success: function(json) {
-
-      $('body').oLoader('hide');
-      var sl_origin_price = json[0][0].split("/")[0];
-      var sl_disount_price = json[0][0].split("/")[0];
-      var sl_storage = json[0][0].split("/")[1];
-      if(sl_origin_price!="No price"){
-        $('#sl_origin_price').text("$"+sl_origin_price);
-        $('#sl_discount_price').text("$"+sl_disount_price);
-      }
-
-        if(sl_storage!="No storage"&&sl_storage!="neg"){
-          $('#sl_storage').text("신라 : 재고 있음");
-        }
-        else{
-          $("#sl_storage").css("background-color","red");
-          $('#sl_storage').text("신라 : 재고 없음");
-        }
-      var lt_origin_price = json[1][0].split("/")[0];
-      var lt_disount_price = json[1][0].split("/")[0];
-      var lt_storage = json[1][0].split("/")[1];
-        $('#lt_origin_price').text("$"+lt_origin_price);
-        $('#lt_discount_price').text("$"+lt_disount_price);
-        if(lt_storage!="No storage"&&lt_storage!="neg"){
-          $('#lt_storage').text("롯데 : 재고 있음");
-        }
-        else{
-          $("#lt_storage").css("background-color","red");
-          $('#lt_storage').text("롯데 : 재고 없음");
-        }
-      var ssg_origin_price = json[2][0].split("/")[0];
-      var ssg_disount_price = json[2][0].split("/")[0];
-      var ssg_storage = json[2][0].split("/")[1];
-        $('#ssg_origin_price').text("$"+ssg_origin_price);
-        $('#ssg_discount_price').text("$"+ssg_disount_price);
-        if(ssg_storage!="No storage"&&ssg_storage!="neg"){
-          $('#ssg_storage').text("신세계 : 재고 있음");
-        }
-        else{
-          $("#ssg_storage").css("background-color","red");
-          $('#ssg_storage').text("신세계 : 재고 없음");
-        }
-      },
-      beforeSend: function() {
-        $('body').oLoader({
-          backgroundColor: '#fff',
-          fadeInTime: 500,
-          fadeLevel: 0.9,
-          wholeWindow: true,
-          image: 'images/loading_product.gif',
-          style: 2,
-          imageBgColor: '#fff'
-        });
-      },
-      complete: function() {
-      },
-      error: function(error) {
-        console.log(error);
-      }
-  })
-})
-</script>
 
 </body>
 </html>
