@@ -44,10 +44,12 @@
               </div>
               <div class="price-box">
                 <ul>
+                  <li><p class="old-price"><span class="price2"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;정상가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;회원가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;세면대 최저가!</strong></span></p></li>
                   <li>
                     <%if(product.prd_SLURL){%>
                     <p class="old-price" > <strong>신라인터넷면세점 : </strong><span id='sl_origin_price' class="price"> </span>&nbsp; >> <span class="price-label">Special Price</span> </p>
-                    <p class="special-price"> <span class="price-label">Regular Price:</span> <span id='sl_discount_price' class="price"></span> </p>
+                    <p class="special-price"> <span id='sl_discount_price' class="price"></span> &nbsp;&nbsp;&nbsp;&nbsp; >></p>
+                    <p class="special-price"> <span id='sl_final_price' class="price2"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </span></p>
                     <p class="special-price"><a title="<%=product.prd_SLURL%>" href="<%=product.prd_SLURL%>" target="_blank">신라인터넷면세점 연결하기</a></p>
                     <%}else{%>
                     <p class="old-price" > <strong>신라인터넷면세점은 해당 상품이 존재하지 않습니다. </strong></p>
@@ -56,7 +58,8 @@
                   <li>
                     <%if(product.prd_ProductURL){%>
                     <p class="old-price" > <strong>롯데인터넷면세점 : </strong><span id='lt_origin_price' class="price"> </span>&nbsp; >> <span class="price-label">Special Price</span> </p>
-                    <p class="special-price"> <span class="price-label">Regular Price:</span> <span id='lt_discount_price' class="price">  </span> </p>
+                    <p class="special-price"><span id='lt_discount_price' class="price">  </span>&nbsp;&nbsp;&nbsp;&nbsp; >> </p>
+                    <p class="special-price"> <span id='lt_final_price' class="price2"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></p>
                     <p class="special-price"><a title="<%=product.prd_ProductURL%>" href="<%=product.prd_ProductURL%>" target="_blank">롯데인터넷면세점 연결하기</a></p>
                     <%}else{%>
                     <p class="old-price" > <strong>롯데인터넷면세점은 해당 상품이 존재하지 않습니다. </strong></p>
@@ -65,7 +68,8 @@
                   <li>
                     <%if(product.prd_SSGURL!="42"){%>
                     <p class="old-price" > <strong>신세계인터넷면세점 : </strong><span id='ssg_origin_price' class="price"></span>&nbsp; >> <span class="price-label">Special Price</span> </p>
-                    <p class="special-price"> <span class="price-label">Regular Price:</span> <span id='ssg_discount_price' class="price">  </span> </p>
+                    <p class="special-price"><span id='ssg_discount_price' class="price">  </span>&nbsp;&nbsp;&nbsp;&nbsp; >> </p>
+                    <p class="special-price"><span id='ssg_final_price' class="price2"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></p>
                     <p class="special-price"><a title="<%=product.prd_SSGURL%>" href="<%=product.prd_SSGURL%>" target="_blank" >신세계인터넷면세점 연결하기</a></p>
                     <%}else{%>
                     <p class="old-price" > <strong>신세계인터넷면세점은 해당 상품이 존재하지 않습니다. </strong></p>
@@ -103,35 +107,94 @@
           <div class="row">
             <div class="col-xs-12"><div class="product-tab-inner">
               <ul id="product-detail-tab" class="nav nav-tabs product-tabs">
-                <li class="active"> <a href="#description" data-toggle="tab"> 제품 설명 </a> </li>
-                <li> <a href="#product_tags" data-toggle="tab">기타 정보</a></li>
+                <li class="active"> <a href="#Post" data-toggle="tab"> 전문 포스트 </a> </li>
                 <li> <a href="#reviews" data-toggle="tab">고객 후기</a> </li>
               </ul>
               <div id="productTabContent" class="tab-content">
-                <div class="tab-pane fade in active" id="description">
-                  <div class="std">
-                    <p>스쿠알란, 살구씨 오일, 스위트 아몬드 오일, 아보카도 오일 등 식물성 보습 성분이 피부 본래의 수분 장벽을 강화해주어 진정 및 보습에 도움을 줍니다. </p>
-                    <p>* 이 제품은 케이스가 없습니다.</p>
-                  </div>
-                </div>
-                <div class="tab-pane fade" id="product_tags">
-                  <div class="product-tabs-content-inner clearfix">
-                    <p><strong>용량 또는 중량:</strong>250ML</p>
-                    <p><strong>제품 주요 사항:</strong>모든 피부타입</p>
-                    <p><strong>사용기한 또는 개봉 후 사용기간:</strong>배송되는 제품은 사용기한이 12개월 이상 남아있는 제품부터 순차적으로 배송됩니다.</p>
-                    <p><strong>제조자 및 제조 판매업자:</strong>L'Oreal / L'Oreal Travel Retail</p>
-                    <p><strong>식품의약품 안전청 심사 필 유무:</strong>N</p>
-                    <p><strong>사용할 때 주의사항:</strong></p>
-                    <p>1. 상처가 있는 부위, 습진 및 피부염 등의 이상이 있는 부위에는 사용하지 마시기 바랍니다.</p>
-                    <p>2. 사용 중 피부에 이상이 생긴 경우에는 사용을 중단하시고 피부과 전문의 등에게 상담하시기 바랍니다.</p>
-                    <p>3. 보관 및 취급 시의 주의사항</p>
-                    <p>가. 사용 후에는 반드시 마개를 닫아 두시기 바랍니다.</p>
-                    <p>나. 유아·소아의 손이 닿지 않는 곳에 보관하시기 바랍니다.</p>
-                    <p>다. 고온 또는 저온의 장소 및 직사광선이 닿는 곳에는 보관하지 마시기 바랍니다.</p>
-                    <p>4. 정해진 용도 이외에는 사용하지 마시기 바랍니다.</p>
-                    <p><strong>품질보증기준:</strong>공정거래위원회 고시 품목별 소비자분쟁 해결기준에 따름</p>
-                    <p><strong>소비자 상담관련 전화번호:</strong>02-2230-1428 (신라면세점 서울점 키엘 코너)</p>
-                    <p><strong>원산지:</strong>미국</p>
+                <div class="tab-pane fade in active" id="Post">
+                  <div class="main-container col2-left-layout">
+                    <div class="container">
+                      <div class="row">
+                        <!-- 전문 포스트 부분 python으로 추가해서 보여준다. -->
+                            <div class="product-grid-area">
+                              <ul class="products-grid">
+                                <li class="item col-lg-4 col-md-4 col-sm-6 col-xs-6 " style="width:360px">
+                                  <div align="right" class="product-item"  style ='position: relative; margin-left: 80px;width:50%;'>
+                                    <div class="item-inner"  >
+                                      <div class="product-thumbnail">
+                                        <div class="pr-img-area"> <a id='post_1_url' title="post1" href="" target="_blank">
+                                          <figure>
+                                             <img class="first-img" id='post_1_img' src=""  alt=""></img>
+                                          </figure>
+                                          </a>
+                                        </div>
+                                      </div>
+                                      <div class="item-info" >
+                                        <div class="info-inner">
+                                          <div class="item-title"> <a id='post_1_name' title="post1" href="" target="_blank"></a> </div>
+                                          <div class="item-content">
+                                            <div class="item-price">
+                                              <div class="price-box"> <span id='post_1_msg' class="regular-price"></span> </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                                <li class="item col-lg-4 col-md-4 col-sm-6 col-xs-6 " style="width:360px">
+                                  <div class="product-item"   style ='position: relative; margin-left: 80px;width:50%;'>
+                                    <div class="item-inner">
+                                      <div class="product-thumbnail" >
+                                        <div class="pr-img-area"> <a id='post_2_url' title="post2" href="" target="_blank">
+                                          <figure> <img class="first-img" id='post_2_img' src="" alt=""></img>
+                                       </figure>
+                                          </a>
+                                        </div>
+                                      </div>
+                                      <div class="item-info">
+                                        <div class="info-inner">
+                                          <div class="item-title"> <a id='post_2_name' title="post2" href="" target="_blank" ></a> </div>
+                                          <div class="item-content">
+                                            <div class="item-price">
+                                              <div class="price-box"> <span id='post_2_msg' class="regular-price"></span> </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                                <li class="item col-lg-4 col-md-4 col-sm-6 col-xs-6 " style="width:360px">
+                                  <div class="product-item"   style ='position: relative; margin-left: 80px;width:50%;'>
+                                    <div class="item-inner">
+                                      <div class="product-thumbnail" >
+                                        <div class="pr-img-area"> <a id='post_3_url' title="post3" href="" target="_blank">
+                                          <figure> <img class="first-img" id='post_3_img' src="" alt="">
+                                          </img>
+                                       </figure>
+                                          </a>
+                                        </div>
+                                      </div>
+                                      <div class="item-info" >
+                                        <div class="info-inner">
+                                          <div class="item-title"> <a id='post_3_name' title="post3" href="" target="_blank"></a> </div>
+                                          <div class="item-content">
+                                            <div class="item-price">
+                                              <div class="price-box"> <span id='post_3_msg' class="regular-price"></span> </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div>
+
+
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div id="reviews" class="tab-pane fade">
@@ -469,10 +532,38 @@ $(function(){
   var SL_URL = "<%=product.prd_SLURL%>";
   var LT_URL = "<%=product.prd_ProductURL%>";
   var SSG_URL = "<%=product.prd_SSGURL%>";
-  var body_total = {
+  var name = "<%=username%>";
+
+  if(name !=''){
+    var SL_reserved = "<%=SL_reserved%>";
+    var LT_reserved = "<%=LT_reserved%>";
+    var SSG_reserved = "<%=SSG_reserved%>";
+    if(SL_reserved==undefined||SL_reserved==''){
+      SL_reserved='';
+    }
+    if(LT_reserved==undefined||LT_reserved==''){
+      LT_reserved='';
+    }
+    if(SSG_reserved==undefined||SSG_reserved==''){
+      SSG_reserved='';
+    }
+    var body_total = {
+      'SL_URL' : SL_URL,
+      'LT_URL' : LT_URL,
+      'SSG_URL' : SSG_URL,
+      'SL_reserved' : SL_reserved,
+      'LT_reserved' : LT_reserved,
+      'SSG_reserved' : SSG_reserved,
+      'prd_name' : '<%=product.prd_Name%>'
+    }
+  }
+  else{
+    var body_total = {
     'SL_URL' : SL_URL,
     'LT_URL' : LT_URL,
-    'SSG_URL' : SSG_URL
+    'SSG_URL' : SSG_URL,
+    'prd_name' : '<%=product.prd_Name%>'
+    }
   }
   $.ajax({
     type: "POST",
@@ -483,12 +574,17 @@ $(function(){
     success: function(json) {
 
       $('body').oLoader('hide');
-      var sl_origin_price = json[0][0].split("/")[0];
-      var sl_disount_price = json[0][0].split("/")[0];
-      var sl_storage = json[0][0].split("/")[1];
+      console.log(json[0]);
+      console.log(json[1]);
+      console.log(json[2]);
+      var sl_origin_price = json[0].split("/")[0];
+      var sl_disount_price = json[0].split("/")[0];
+      var sl_final_price = json[0].split("/")[2];
+      var sl_storage = json[0].split("/")[1];
       if(sl_origin_price!="No price"){
         $('#sl_origin_price').text("$"+sl_origin_price);
         $('#sl_discount_price').text("$"+sl_disount_price);
+        $('#sl_final_price').text("$"+sl_final_price);
       }
 
         if(sl_storage!="No storage"&&sl_storage!="neg"){
@@ -498,11 +594,13 @@ $(function(){
           $("#sl_storage").css("background-color","red");
           $('#sl_storage').text("신라 : 재고 없음");
         }
-      var lt_origin_price = json[1][0].split("/")[0];
-      var lt_disount_price = json[1][0].split("/")[0];
-      var lt_storage = json[1][0].split("/")[1];
+      var lt_origin_price = json[1].split("/")[0];
+      var lt_disount_price = json[1].split("/")[0];
+      var lt_final_price = json[1].split("/")[2];
+      var lt_storage = json[1].split("/")[1];
         $('#lt_origin_price').text("$"+lt_origin_price);
         $('#lt_discount_price').text("$"+lt_disount_price);
+        $('#lt_final_price').text("$"+lt_final_price);
         if(lt_storage!="No storage"&&lt_storage!="neg"){
           $('#lt_storage').text("롯데 : 재고 있음");
         }
@@ -510,11 +608,13 @@ $(function(){
           $("#lt_storage").css("background-color","red");
           $('#lt_storage').text("롯데 : 재고 없음");
         }
-      var ssg_origin_price = json[2][0].split("/")[0];
-      var ssg_disount_price = json[2][0].split("/")[0];
-      var ssg_storage = json[2][0].split("/")[1];
+      var ssg_origin_price = json[2].split("/")[0];
+      var ssg_disount_price = json[2].split("/")[0];
+      var ssg_final_price = json[2].split("/")[2];
+      var ssg_storage = json[2].split("/")[1];
         $('#ssg_origin_price').text("$"+ssg_origin_price);
         $('#ssg_discount_price').text("$"+ssg_disount_price);
+        $('#ssg_final_price').text("$"+ssg_final_price);
         if(ssg_storage!="No storage"&&ssg_storage!="neg"){
           $('#ssg_storage').text("신세계 : 재고 있음");
         }
@@ -522,6 +622,41 @@ $(function(){
           $("#ssg_storage").css("background-color","red");
           $('#ssg_storage').text("신세계 : 재고 없음");
         }
+
+      console.log(json[3][0]);
+      var splitdata = json[3][0].split("\'");
+      // console.log(json[3][0][1]);
+      // console.log(json[3][0][2]);
+      var post_1_name = splitdata[3];
+      var post_1_img = splitdata[1];
+      var post_1_msg  = splitdata[5];
+      var post_1_url = splitdata[7];
+      var post_2_name = splitdata[11];
+      var post_2_img = splitdata[9];
+      var post_2_msg  = splitdata[13];
+      var post_2_url = splitdata[15];
+      var post_3_name = splitdata[19];
+      var post_3_img = splitdata[17];
+      var post_3_msg  = splitdata[21];
+      var post_3_url = splitdata[23];
+
+      $("#post_1_url").attr("href", post_1_url);
+      $("#post_1_name").attr("href", post_1_url);
+      $("#post_1_name").text(post_1_name);
+      $("#post_1_msg").text(post_1_msg);
+      $("#post_1_img").attr("src", post_1_img);
+
+      $("#post_2_url").attr("href", post_2_url);
+      $("#post_2_name").attr("href", post_2_url);
+      $("#post_2_name").text(post_2_name);
+      $("#post_2_msg").text(post_2_msg);
+      $("#post_2_img").attr("src", post_2_img);
+
+      $("#post_3_url").attr("href", post_3_url);
+      $("#post_3_name").attr("href", post_3_url);
+      $("#post_3_name").text(post_3_name);
+      $("#post_3_msg").text(post_3_msg);
+      $("#post_3_img").attr("src", post_3_img);
       },
       beforeSend: function() {
         $('body').oLoader({

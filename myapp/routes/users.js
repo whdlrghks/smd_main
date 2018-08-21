@@ -110,7 +110,7 @@ router.get('/password_input_error', function(req, res) {
 
 
 router.get('/mypage', function(req, res) {
-  console.log(req.session);
+
   console.log(req.isAuthenticated());
   if (req.user && req.user.Username) {
     res.render('mypage', {

@@ -6,9 +6,14 @@
       <div class="row">
         <div class="col-xs-12">
           <ul>
-            <li class="home"> <a title="Go to Home Page" href=""><%=depth1%></a><span>&raquo;</span></li>
-            <li class=""> <a title="Go to Home Page" href=""><%=depth2%></a><span>&raquo;</span></li>
-            <li><strong> <%=depth3%></strong></li>
+            <li class="home"> <a title="Go to Home Page" href="/product?depth1=<%=depth1%>"><%=depth1%></a></li>
+            <%if(depth2==''||depth2!=undefined){%>
+            <li class=""> <a title="Go to Home Page" href="/product?depth1=<%=depth1%>&depth2=<%=depth2%>">&raquo; <%=depth2%></a></li>
+              <% if(depth3==''||depth3!=undefined){%>
+                <li><strong>&raquo; <%=depth3%></strong></li>
+              <%}
+            }%>
+
           </ul>
         </div>
       </div>
@@ -22,7 +27,17 @@
         <div class="col-main col-sm-12 col-xs-12">
           <div class="shop-inner">
             <div class="page-title">
-              <h2> <%=depth3%></h2>
+              <%if(depth2==''||depth2!=undefined){
+                if(depth3==''||depth3!=undefined){%>
+                    <h2><%=depth3%></h2>
+                <%}
+                else{%>
+                  <h2><%=depth2%></h2>
+                <%}
+              }
+              else{%>
+                <h2><%=depth1%></h2>
+              <%}%>
             </div>
             <div class="toolbar column">
               <div class="sorter">
@@ -88,20 +103,53 @@
             <div class="pagination-area ">
               <ul>
                 <%
-                for(var j = 0 ; j < totalcount ; j ++){
-
-                  if(j===startpage/16){%>
-                      <li><a class="active" onclick="moveURL(<%=j%>)"><%=j+1%></a></li>
-                    <%
+                if(totalcount > 10){
+                  var page_ten_count = totalcount/10;
+                  var page_ten = Math.floor(startpage/160);
+                  if(page_ten*10+10 > totalcount){
+                    var endpage = totalcount;
                   }
                   else{
+                    var endpage = page_ten*10+10;
+                  }
+                  if(page_ten>=1){
+                    %>
+                      <li><a onclick="moveURL(<%=page_ten*10-10%>)"><i class="fa fa-angle-left"></i></a></li>
+                    <%
+                  }
 
-                  %>
-                      <li><a onclick="moveURL(<%=j%>)"><%=j+1%></a></li>
+                  for( var j = page_ten*10 ; j < endpage ; j++){
+
+                    if(j===startpage/16){%>
+                        <li><a class="active" onclick="moveURL(<%=j%>)"><%=j+1%></a></li>
+                      <%
+                    }
+                    else{
+
+                    %>
+                        <li><a onclick="moveURL(<%=j%>)"><%=j+1%></a></li>
+                    <%
+                  }}%>
+                    <li><a onclick="moveURL(<%=page_ten*10+10%>)"><i class="fa fa-angle-right"></i></a></li>
                   <%
-                }}
+                }
+                else{
+                  for(var j = 0 ; j < totalcount ; j ++){
+
+                    if(j===startpage/16){%>
+                        <li><a class="active" onclick="moveURL(<%=j%>)"><%=j+1%></a></li>
+                      <%
+                    }
+                    else{
+
+                    %>
+                        <li><a onclick="moveURL(<%=j%>)"><%=j+1%></a></li>
+                    <%
+                  }}
+                }
+
                 %>
-                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+
               </ul>
             </div>
           </div>
@@ -172,7 +220,7 @@
   <a href="#" class="totop"> </a> </div>
 
   <script>
-  
+
   function getQuery(paramName, presentURL) {
     var _tempUrl = presentURL;
     //url에서 처음부터 '?'까지 삭제

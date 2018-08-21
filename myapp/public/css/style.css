@@ -5653,14 +5653,25 @@ ul.products-list {
 	padding: 0
 }
 .product-view-area .product-details-area .old-price .price {
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: normal;
 	color: #ccc;
 	margin-left: 10px
 }
+.product-view-area .product-details-area .old-price .price2 {
+	font-size: 20px;
+	font-weight: normal;
+	color: #190707;
+	margin-left: 10px
+}
 .product-view-area .product-details-area .price {
-	font-size: 28px;
+	font-size: 22px;
 	color: #df3737;
+	font-weight: bold
+}
+.product-view-area .product-details-area .price2 {
+	font-size: 26px;
+	color: #ff4000;
 	font-weight: bold
 }
 .cart-plus-minus .qty {

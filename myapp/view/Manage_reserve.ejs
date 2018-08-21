@@ -249,68 +249,96 @@ $(function(){
   var LT_check = <%=lt_reserved%>;
   var SSG_check = <%=SSG_reserved%>;
   var body = {
-    'user_id' : <%=user_id%>
+    'user_id' : <%=user_id%>,
+    'SL_check' : SL_check,
+    'LT_check' : LT_check,
+    'SSG_check' : SSG_check
   }
-  if(SL_check){
-    $.ajax({
-      type: "POST",
-      url: "/getSLreserved",
-      async : true,
-      data : body,
-      dataType : "JSON",
-      success: function(json) {
-          $('#SL_reserved').text(json[0]+"원");
-        },
-        beforeSend: function() {
-          $('#SL_reserved').text("연동중입니다.");
-        },
-        complete: function() {
-        },
-        error: function(error) {
-          console.log(error);
-        }
-    })
-  }
-  if(LT_check){
-    $.ajax({
-      type: "POST",
-      url: "/getLTreserved",
-      async : true,
-      data : body,
-      dataType : "JSON",
-      success: function(json) {
-          $('#LT_reserved').text(json[0]+"원");
-        },
-        beforeSend: function() {
-          $('#LT_reserved').text("연동중입니다.");
-        },
-        complete: function() {
-        },
-        error: function(error) {
-          console.log(error);
-        }
-    })
-  }
-  if(SSG_check){
-    $.ajax({
-      type: "POST",
-      url: "/getSSGreserved",
-      async : true,
-      data : body,
-      dataType : "JSON",
-      success: function(json) {
-          $('#SSG_reserved').text(json[0]+"원");
-        },
-        beforeSend: function() {
-          $('#SSG_reserved').text("연동중입니다.");
-        },
-        complete: function() {
-        },
-        error: function(error) {
-          console.log(error);
-        }
-    })
-  }
+  $.ajax({
+    type: "POST",
+    url: "/getreserved",
+    async : true,
+    data : body,
+    dataType : "JSON",
+    success: function(json) {
+        $('#SL_reserved').text(json[0][0]+"원");
+        $('#LT_reserved').text(json[1][0]+"원");
+        $('#SSG_reserved').text(json[2][0]+"원");
+      },
+      beforeSend: function() {
+        $('#SL_reserved').text("연동중입니다.");
+        $('#LT_reserved').text("연동중입니다.");
+        $('#SSG_reserved').text("연동중입니다.");
+      },
+      complete: function() {
+      },
+      error: function(error) {
+        console.log(error);
+      }
+  })
+
+
+  //
+  // if(SL_check){
+  //   $.ajax({
+  //     type: "POST",
+  //     url: "/getSLreserved",
+  //     async : true,
+  //     data : body,
+  //     dataType : "JSON",
+  //     success: function(json) {
+  //         $('#SL_reserved').text(json[0]+"원");
+  //       },
+  //       beforeSend: function() {
+  //         $('#SL_reserved').text("연동중입니다.");
+  //       },
+  //       complete: function() {
+  //       },
+  //       error: function(error) {
+  //         console.log(error);
+  //       }
+  //   })
+  // }
+  // if(LT_check){
+  //   $.ajax({
+  //     type: "POST",
+  //     url: "/getLTreserved",
+  //     async : true,
+  //     data : body,
+  //     dataType : "JSON",
+  //     success: function(json) {
+  //         $('#LT_reserved').text(json[0]+"원");
+  //       },
+  //       beforeSend: function() {
+  //         $('#LT_reserved').text("연동중입니다.");
+  //       },
+  //       complete: function() {
+  //       },
+  //       error: function(error) {
+  //         console.log(error);
+  //       }
+  //   })
+  // }
+  // if(SSG_check){
+  //   $.ajax({
+  //     type: "POST",
+  //     url: "/getSSGreserved",
+  //     async : true,
+  //     data : body,
+  //     dataType : "JSON",
+  //     success: function(json) {
+  //         $('#SSG_reserved').text(json[0]+"원");
+  //       },
+  //       beforeSend: function() {
+  //         $('#SSG_reserved').text("연동중입니다.");
+  //       },
+  //       complete: function() {
+  //       },
+  //       error: function(error) {
+  //         console.log(error);
+  //       }
+  //   })
+  // }
 })
 
 </script>

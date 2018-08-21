@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var async = require('async');
 var getEvent = require('../app_modules/util/getEvent');
 var getReserved = require('../app_modules/util/reserve');
 var sendrest=require('../app_modules/util/sendrest');
@@ -26,11 +27,15 @@ router.get('/', function(req, res) {
 //신라 이벤트 페이지
 router.get('/reserve_shilla', function(req, res) {
   //신라 이벤트 페이지 csv로 받아오기
+  console.log("GET IN RESERVE _ SHILLA");
   getEvent("shillaPoint", function(eventlist_sl) {
     var u_name;
     if (req.user == undefined) {
       u_name = '';
-      res.redirect('/')
+      res.render('reserve_shilla', {
+        username: u_name,
+        eventlist: eventlist_sl
+      });
     } else {
       u_name = req.user.Username
       res.render('reserve_shilla', {
@@ -49,9 +54,12 @@ router.get('/reserve_lotte', function(req, res) {
     var u_name;
     if (req.user == undefined) {
       u_name = '';
-      res.redirect('/')
+      res.render('reserve_lotte', {
+        username: u_name,
+        eventlist: eventlist_sl
+      });
     } else {
-      u_name = req.user.Username
+      u_name = req.user.Username;
       res.render('reserve_lotte', {
         username: u_name,
         eventlist: eventlist_sl
@@ -68,9 +76,12 @@ router.get('/reserve_shinsegae', function(req, res) {
     var u_name;
     if (req.user == undefined) {
       u_name = '';
-      res.redirect('/')
+      res.render('reserve_shinsegae', {
+        username: u_name,
+        eventlist: eventlist_sl
+      });
     } else {
-      u_name = req.user.Username
+      u_name = req.user.Username;
       res.render('reserve_shinsegae', {
         username: u_name,
         eventlist: eventlist_sl
@@ -118,11 +129,52 @@ router.get('/Manage_reserve', function(req, res){
  }
 })
 
+router.post('/getreserved', function(req,res){
+  var result_list=[];
+  console.log('[SL, LT, SSG] '+req.user.User_id + 'REQUEST GET ALL _RESERVED');
+  async.parallel([
+    function(callback){
+      if(req.body.SL_check){
+        sendrest.getSLreserved(req.user.User_id, function(results){
+          req.session.sl_reserved=results[0];
+          result_list[0] = results[0];
+          callback(null,"finish");
+        })
+      }
+      else callback(null,"finish");
+    },
+    function(callback){
+      if(req.body.LT_check){
+        sendrest.getLTreserved(req.user.User_id, function(results){
+          req.session.lt_reserved=results[0];
+          result_list[1] = results[0];
+          callback(null,"finish");
+        })
+      }
+      else callback(null,"finish");
+    },
+    function(callback){
+      if(req.body.SSG_check){
+        sendrest.getSSGreserved(req.user.User_id, function(results){
+          req.session.ssg_reserved=results[0];
+          result_list[2] = results[0];
+          callback(null,"finish");
+        })
+      }
+      else callback(null,"finish");
+    }
+  ],
+  function(err, finish){
+    if(err) console.log(err);
+    res.json(result_list);
+  }
+)
+})
+
 router.post('/getSLreserved', function(req, res){
 
   console.log('[SL] ' + req.user.User_id + ' REQUEST GET SL_RESERVED ');
   sendrest.getSLreserved(req.user.User_id, function(results){
-
     req.session.sl_reserved=results[0];
     res.json(results);
   })

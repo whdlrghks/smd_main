@@ -27,22 +27,26 @@ app.use(cookieParser());
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(session({
+//   secret: '19q0iojd0129ijrol!',
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: {
+//     maxAge: 1000 * 60 * 60 // 쿠키 유효기간 1시간
+//   },
+//   store:new MySQLStore({
+//     host:'localhost',
+//     port:9000,
+//     user:'root',
+//     password:'1q2w3e',
+//     database:'capstonedb'
+//   })
+// }));
 app.use(session({
-  secret: '19q0iojd0129ijrol!',
+  secret: Date.now() + 'cat',
   resave: false,
-  saveUninitialized: true,
-  cookie: {
-    maxAge: 1000 * 60 * 60 // 쿠키 유효기간 1시간
-  },
-  store:new MySQLStore({
-    host:'localhost',
-    port:9000,
-    user:'root',
-    password:'1q2w3e',
-    database:'capstonedb'
-  })
+  saveUninitialized: true
 }));
-
 app.use(passport.initialize());
 app.use(passport.session());
 

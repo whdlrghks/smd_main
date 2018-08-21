@@ -37,7 +37,8 @@ module.exports = function(app){
               User_id : user.User_id,
               Gender : user.Gender,
               Age : user.Age,
-              Salt : user.Salt
+              Salt : user.Salt,
+              Email : user.Email
             }
             if(user)
             {

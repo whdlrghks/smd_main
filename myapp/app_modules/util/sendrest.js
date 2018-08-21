@@ -32,7 +32,7 @@ const UTIL = (function() {
         } else {
           var SL_id = results[0].Shilla_id,
             SL_pw = results[0].Shilla_pw;
-
+          console.log("SL_ID : ", SL_id , "SL_PW : "+ SL_pw);
           var options_sl = {
             mode: 'text',
             pythonPath: '',
@@ -67,6 +67,7 @@ const UTIL = (function() {
         } else {
           var LT_id = results[0].Lotte_id,
             LT_pw = results[0].Lotte_pw;
+          console.log("LT_id : ", LT_id , "LT_pw : "+ LT_pw);
           var options_lt = {
             mode: 'text',
             pythonPath: '',
@@ -100,6 +101,7 @@ const UTIL = (function() {
         } else {
           var SSG_id = results[0].Shinsegae_id,
             SSG_pw = results[0].Shinsegae_pw;
+          console.log("SSG_id : ", SSG_id , "SSG_pw : "+ SSG_pw);
           var options_ssg = {
             mode: 'text',
             pythonPath: '',
@@ -176,13 +178,14 @@ const UTIL = (function() {
     );
 
   }
-  var getSLproduct_REST = function(prd_id, callback) {
+  var getSLproduct_REST = function(prd_id,SL_reserved, callback) {
     var prd_id = prd_id;
 
     request.post({
         url: 'http://localhost:5050/api/product/SL',
         body: {
-          prd_url: prd_id
+          prd_url: prd_id,
+          SL_reserved : SL_reserved
         },
         json: true
       },
@@ -191,13 +194,14 @@ const UTIL = (function() {
       }
     );
   }
-  var getLTproduct_REST = function(prd_id, callback) {
+  var getLTproduct_REST = function(prd_id,LT_reserved, callback) {
     var prd_id = prd_id;
 
     request.post({
         url: 'http://localhost:5050/api/product/LT',
         body: {
-          prd_url: prd_id
+          prd_url: prd_id,
+          LT_reserved : LT_reserved
         },
         json: true
       },
@@ -206,13 +210,14 @@ const UTIL = (function() {
       }
     );
   }
-  var getSSGproduct_REST = function(prd_id, callback) {
+  var getSSGproduct_REST = function(prd_id,SSG_reserved, callback) {
     var prd_id = prd_id;
 
     request.post({
         url: 'http://localhost:5050/api/product/SSG',
         body: {
-          prd_url: prd_id
+          prd_url: prd_id,
+          SSG_reserved : SSG_reserved
         },
         json: true
       },
@@ -222,6 +227,21 @@ const UTIL = (function() {
     );
   }
 
+  var getPostproduct_REST = function(prd_name, callback) {
+    var prd_name = prd_name;
+
+    request.post({
+        url: 'http://localhost:5050/api/product/post',
+        body: {
+          prd_name: prd_name
+        },
+        json: true
+      },
+      function(error, response, body) {
+        callback(body);
+      }
+    );
+  }
 
 
   return {
@@ -232,7 +252,8 @@ const UTIL = (function() {
     getSLproduct: getSLproduct_REST,
     getLTproduct: getLTproduct_REST,
     getSSGproduct: getSSGproduct_REST,
-    getproductdetail: getproductdetail_REST
+    getproductdetail: getproductdetail_REST,
+    getPostproduct: getPostproduct_REST
   }
 
 })();
