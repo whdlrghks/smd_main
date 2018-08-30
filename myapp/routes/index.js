@@ -141,7 +141,10 @@ router.post('/getreserved', function(req,res){
           callback(null,"finish");
         })
       }
-      else callback(null,"finish");
+      else {
+        result_list[0]="No Auth";
+        callback(null,"finish");
+      }
     },
     function(callback){
       if(req.body.LT_check){
@@ -151,7 +154,10 @@ router.post('/getreserved', function(req,res){
           callback(null,"finish");
         })
       }
-      else callback(null,"finish");
+      else {
+        result_list[1]="No Auth";
+        callback(null,"finish");
+      }
     },
     function(callback){
       if(req.body.SSG_check){
@@ -161,7 +167,10 @@ router.post('/getreserved', function(req,res){
           callback(null,"finish");
         })
       }
-      else callback(null,"finish");
+      else {
+        result_list[2]="No Auth";
+        callback(null,"finish");
+      }
     }
   ],
   function(err, finish){
@@ -170,30 +179,30 @@ router.post('/getreserved', function(req,res){
   }
 )
 })
-
-router.post('/getSLreserved', function(req, res){
-
-  console.log('[SL] ' + req.user.User_id + ' REQUEST GET SL_RESERVED ');
-  sendrest.getSLreserved(req.user.User_id, function(results){
-    req.session.sl_reserved=results[0];
-    res.json(results);
-  })
-})
-
-router.post('/getLTreserved', function(req, res){
-  console.log('[LT] ' + req.user.User_id + ' REQUEST GET LT_RESERVED ');
-  sendrest.getLTreserved(req.user.User_id, function(results){
-    req.session.lt_reserved=results[0];
-    res.json(results);
-  })
-})
-router.post('/getSSGreserved', function(req, res){
-  console.log('[SSG] ' + req.user.User_id + ' REQUEST GET SSG_RESERVED ');
-  sendrest.getSSGreserved(req.user.User_id, function(results){
-    req.session.ssg_reserved=results[0];
-    res.json(results);
-  })
-})
+// 개별로 적립금 금액 가져오기
+// router.post('/getSLreserved', function(req, res){
+//
+//   console.log('[SL] ' + req.user.User_id + ' REQUEST GET SL_RESERVED ');
+//   sendrest.getSLreserved(req.user.User_id, function(results){
+//     req.session.sl_reserved=results[0];
+//     res.json(results);
+//   })
+// })
+//
+// router.post('/getLTreserved', function(req, res){
+//   console.log('[LT] ' + req.user.User_id + ' REQUEST GET LT_RESERVED ');
+//   sendrest.getLTreserved(req.user.User_id, function(results){
+//     req.session.lt_reserved=results[0];
+//     res.json(results);
+//   })
+// })
+// router.post('/getSSGreserved', function(req, res){
+//   console.log('[SSG] ' + req.user.User_id + ' REQUEST GET SSG_RESERVED ');
+//   sendrest.getSSGreserved(req.user.User_id, function(results){
+//     req.session.ssg_reserved=results[0];
+//     res.json(results);
+//   })
+// })
 
 
 
