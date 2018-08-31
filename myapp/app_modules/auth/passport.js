@@ -1,3 +1,4 @@
+
 const knex = require('../db/knex.js');
 // var conn = require('./db')();
 var pbkfd2Password = require("pbkdf2-password");
@@ -56,6 +57,7 @@ module.exports = function(app){
           }
         })
         .catch(function(err) {
+          console.log("error from ken");
           console.log(err);
           return done(false, null);
         });

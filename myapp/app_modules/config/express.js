@@ -19,14 +19,14 @@ module.exports = function(){
     },
     store:new MySQLStore({
       host:'localhost',
-      port:3306,
+      port: 9000,
       user:'root',
-      password:'1234',
+      password:'1q2w3e',
       database:'capstonedb'
     })
   }));
 
-  
+
 
   return app;
 }
