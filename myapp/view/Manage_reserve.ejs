@@ -261,14 +261,29 @@ $(function(){
     data : body,
     dataType : "JSON",
     success: function(json) {
-        $('#SL_reserved').text(json[0][0]+"원");
-        $('#LT_reserved').text(json[1][0]+"원");
-        $('#SSG_reserved').text(json[2][0]+"원");
+      if(SL_check==true){
+        $('#SL_reserved').text(json[0]+"원");
+      }
+      if(LT_check==true){
+        $('#LT_reserved').text(json[1]+"원");
+      }
+        if(SSG_check==true){
+          $('#SSG_reserved').text(json[2]+"원");
+        }
+
       },
       beforeSend: function() {
-        $('#SL_reserved').text("연동중입니다.");
-        $('#LT_reserved').text("연동중입니다.");
-        $('#SSG_reserved').text("연동중입니다.");
+        if(SL_check==true){
+                  $('#SL_reserved').text("연동중입니다.");
+        }
+        if(LT_check==true){
+            $('#LT_reserved').text("연동중입니다.");
+        }
+          if(SSG_check==true){
+          $('#SSG_reserved').text("연동중입니다.");
+          }
+
+
       },
       complete: function() {
       },

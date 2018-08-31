@@ -6,9 +6,14 @@
       <div class="row">
         <div class="col-xs-12">
           <ul>
-            <li class="home"> <a title="Go to Home Page" href="index.html"><%=depth1%></a><span>&raquo;</span></li>
-            <li class=""> <a title="Go to Home Page" href="shop_grid.html"><%=depth2%></a><span>&raquo;</span></li>
-            <li><strong> <%=depth3%></strong></li>
+            <li class="home"> <a title="Go to Home Page" href="/product?depth1=<%=depth1%>"><%=depth1%></a></li>
+            <%if(depth2==''||depth2!=undefined){%>
+            <li class=""> <a title="Go to Home Page" href="/product?depth1=<%=depth1%>&depth2=<%=depth2%>">&raquo; <%=depth2%></a></li>
+              <% if(depth3==''||depth3!=undefined){%>
+                <li><a title="Go to Home Page" href="/product?depth1=<%=depth1%>&depth2=<%=depth2%>&depth3=<%=depth3%>"><strong>&raquo; <%=depth3%></strong></a></li>
+              <%}
+            }%>
+
           </ul>
         </div>
       </div>
@@ -46,7 +51,7 @@
                 <ul>
                   <li><p class="old-price"><span class="price2"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;정상가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;회원가&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;세면대 최저가!</strong></span></p></li>
                   <li>
-                    <%if(product.prd_SLURL){%>
+                    <%if(product.prd_SLURL!="42"){%>
                     <p class="old-price" > <strong>신라인터넷면세점 : </strong><span id='sl_origin_price' class="price"> </span>&nbsp; >> <span class="price-label">Special Price</span> </p>
                     <p class="special-price"> <span id='sl_discount_price' class="price"></span> &nbsp;&nbsp;&nbsp;&nbsp; >></p>
                     <p class="special-price"> <span id='sl_final_price' class="price2"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </span></p>
@@ -56,7 +61,7 @@
                     <%}%>
                   </li>
                   <li>
-                    <%if(product.prd_ProductURL){%>
+                    <%if(product.prd_ProductURL!="42"){%>
                     <p class="old-price" > <strong>롯데인터넷면세점 : </strong><span id='lt_origin_price' class="price"> </span>&nbsp; >> <span class="price-label">Special Price</span> </p>
                     <p class="special-price"><span id='lt_discount_price' class="price">  </span>&nbsp;&nbsp;&nbsp;&nbsp; >> </p>
                     <p class="special-price"> <span id='lt_final_price' class="price2"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></p>
@@ -80,10 +85,15 @@
               <div class="ratings">
 
                 <p class="availability in-stock pull-left">재고 상태:
+                  <%if(product.prd_SLURL!="42"){%>
                     <span id='sl_storage'>신라 : 재고 없음</span>
+                  <%}
+                  if(product.prd_ProductURL!="42"){%>
                     <span id='lt_storage'>롯데 : 재고 없음</span>
+                  <%
+                }if(product.prd_SSGURL!="42"){%>
                     <span id='ssg_storage'>신세계 : 재고 없음</span>
-
+                    <%}%>
                   </p>
               </div>
               <div class="product-variation">
@@ -534,7 +544,7 @@ $(function(){
   var SSG_URL = "<%=product.prd_SSGURL%>";
   var name = "<%=username%>";
 
-  if(name !=''){
+  // if(name){
     var SL_reserved = "<%=SL_reserved%>";
     var LT_reserved = "<%=LT_reserved%>";
     var SSG_reserved = "<%=SSG_reserved%>";
@@ -556,15 +566,8 @@ $(function(){
       'SSG_reserved' : SSG_reserved,
       'prd_name' : '<%=product.prd_Name%>'
     }
-  }
-  else{
-    var body_total = {
-    'SL_URL' : SL_URL,
-    'LT_URL' : LT_URL,
-    'SSG_URL' : SSG_URL,
-    'prd_name' : '<%=product.prd_Name%>'
-    }
-  }
+  // }
+
   $.ajax({
     type: "POST",
     url: "/product/single/getinfo",
@@ -577,68 +580,89 @@ $(function(){
       console.log(json[0]);
       console.log(json[1]);
       console.log(json[2]);
-      var sl_origin_price = json[0].split("/")[0];
-      var sl_disount_price = json[0].split("/")[0];
-      var sl_final_price = json[0].split("/")[2];
-      var sl_storage = json[0].split("/")[1];
-      if(sl_origin_price!="No price"){
-        $('#sl_origin_price').text("$"+sl_origin_price);
-        $('#sl_discount_price').text("$"+sl_disount_price);
-        $('#sl_final_price').text("$"+sl_final_price);
+      if(SL_URL){
+        var sl_origin_price = json[0].split("/")[0];
+        var sl_disount_price = json[0].split("/")[0];
+        var sl_final_price = json[0].split("/")[2];
+        var sl_storage = json[0].split("/")[1];
+        if(sl_origin_price!="No price"){
+          $('#sl_origin_price').text("$"+sl_origin_price);
+          $('#sl_discount_price').text("$"+sl_disount_price);
+          if(name==''){
+            $('#sl_final_price').text("면세점 연동 후 확인해보세요");
+          }
+          else{
+            $('#sl_final_price').text("$"+sl_final_price);
+          }
+        }
+
+          if(sl_storage!="No storage"&&sl_storage!="neg"){
+            $('#sl_storage').text("신라 : 재고 있음");
+          }
+          else{
+            $("#sl_storage").css("background-color","red");
+            $('#sl_storage').text("신라 : 재고 없음");
+          }
+      }
+      if(LT_URL){
+        var lt_origin_price = json[1].split("/")[0];
+        var lt_disount_price = json[1].split("/")[0];
+        var lt_final_price = json[1].split("/")[2];
+        var lt_storage = json[1].split("/")[1];
+          $('#lt_origin_price').text("$"+lt_origin_price);
+          $('#lt_discount_price').text("$"+lt_disount_price);
+          if(name==''){
+              $('#lt_final_price').text("면세점 연동 후 확인해보세요");
+          }
+          else{
+              $('#lt_final_price').text("$"+lt_final_price);
+          }
+
+          if(lt_storage!="No storage"&&lt_storage!="neg"){
+            $('#lt_storage').text("롯데 : 재고 있음");
+          }
+          else{
+            $("#lt_storage").css("background-color","red");
+            $('#lt_storage').text("롯데 : 재고 없음");
+          }
+      }
+      if(SSG_URL){
+        var ssg_origin_price = json[2].split("/")[0];
+        var ssg_disount_price = json[2].split("/")[0];
+        var ssg_final_price = json[2].split("/")[2];
+        var ssg_storage = json[2].split("/")[1];
+          $('#ssg_origin_price').text("$"+ssg_origin_price);
+          $('#ssg_discount_price').text("$"+ssg_disount_price);
+          if(name==''){
+            //글씨 css 변경 필요
+            $('#ssg_final_price').text("면세점 연동 후 확인해보세요");
+          }
+          else{
+            $('#ssg_final_price').text("$"+ssg_final_price);
+          }
+          if(ssg_storage!="No storage"&&ssg_storage!="neg"){
+            $('#ssg_storage').text("신세계 : 재고 있음");
+          }
+          else{
+            $("#ssg_storage").css("background-color","red");
+            $('#ssg_storage').text("신세계 : 재고 없음");
+          }
+
       }
 
-        if(sl_storage!="No storage"&&sl_storage!="neg"){
-          $('#sl_storage').text("신라 : 재고 있음");
-        }
-        else{
-          $("#sl_storage").css("background-color","red");
-          $('#sl_storage').text("신라 : 재고 없음");
-        }
-      var lt_origin_price = json[1].split("/")[0];
-      var lt_disount_price = json[1].split("/")[0];
-      var lt_final_price = json[1].split("/")[2];
-      var lt_storage = json[1].split("/")[1];
-        $('#lt_origin_price').text("$"+lt_origin_price);
-        $('#lt_discount_price').text("$"+lt_disount_price);
-        $('#lt_final_price').text("$"+lt_final_price);
-        if(lt_storage!="No storage"&&lt_storage!="neg"){
-          $('#lt_storage').text("롯데 : 재고 있음");
-        }
-        else{
-          $("#lt_storage").css("background-color","red");
-          $('#lt_storage').text("롯데 : 재고 없음");
-        }
-      var ssg_origin_price = json[2].split("/")[0];
-      var ssg_disount_price = json[2].split("/")[0];
-      var ssg_final_price = json[2].split("/")[2];
-      var ssg_storage = json[2].split("/")[1];
-        $('#ssg_origin_price').text("$"+ssg_origin_price);
-        $('#ssg_discount_price').text("$"+ssg_disount_price);
-        $('#ssg_final_price').text("$"+ssg_final_price);
-        if(ssg_storage!="No storage"&&ssg_storage!="neg"){
-          $('#ssg_storage').text("신세계 : 재고 있음");
-        }
-        else{
-          $("#ssg_storage").css("background-color","red");
-          $('#ssg_storage').text("신세계 : 재고 없음");
-        }
-
-      console.log(json[3][0]);
-      var splitdata = json[3][0].split("\'");
-      // console.log(json[3][0][1]);
-      // console.log(json[3][0][2]);
-      var post_1_name = splitdata[3];
+      var splitdata = json[3][0].split("<IK@SMD>");
+      var post_1_name = splitdata[2];
       var post_1_img = splitdata[1];
-      var post_1_msg  = splitdata[5];
-      var post_1_url = splitdata[7];
-      var post_2_name = splitdata[11];
-      var post_2_img = splitdata[9];
-      var post_2_msg  = splitdata[13];
-      var post_2_url = splitdata[15];
-      var post_3_name = splitdata[19];
-      var post_3_img = splitdata[17];
-      var post_3_msg  = splitdata[21];
-      var post_3_url = splitdata[23];
+      var post_1_msg  = splitdata[3];
+      var post_1_url = splitdata[4];
+      var post_2_name = splitdata[6];
+      var post_2_img = splitdata[5];
+      var post_2_msg  = splitdata[7];
+      var post_2_url = splitdata[8];
+      var post_3_name = splitdata[10];
+      var post_3_img = splitdata[9];
+      var post_3_msg  = splitdata[11];
+      var post_3_url = splitdata[12];
 
       $("#post_1_url").attr("href", post_1_url);
       $("#post_1_name").attr("href", post_1_url);
