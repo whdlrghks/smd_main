@@ -3,13 +3,13 @@ var router = express.Router();
 var async = require('async');
 var getEvent = require('../app_modules/util/getEvent');
 var getReserved = require('../app_modules/util/reserve');
-var sendrest=require('../app_modules/util/sendrest');
+var sendrest = require('../app_modules/util/sendrest');
 const request = require('request');
 /* GET home page. */
 router.get('/', function(req, res) {
   //로그인 되어있는지 안되어있는지 구분하기 위한 값
   var u_name;
-  console.log("req.user is "+req.user);
+  console.log("req.user is " + req.user);
   if (req.user == undefined) {
     u_name = '';
     res.render('index', {
@@ -92,92 +92,90 @@ router.get('/reserve_shinsegae', function(req, res) {
 });
 router.get('/Dutyfree_linkage', function(req, res) {
   var u_name;
-  console.log(req.session);
-  if (req.user == undefined) {
+  if (req.user != undefined) {
+    getReserved(req, res, function(list) {
+      u_name = req.user.Username;
+      res.render('Dutyfree_linkage', {
+        username: u_name,
+        SL_check: list[0],
+        LT_check: list[1],
+        SSG_check: list[2]
+      })
+
+    })
+  } else {
     u_name = '';
     res.redirect('/')
-  } else {
-    u_name = req.user.Username
-    res.render('Dutyfree_linkage', {
-      username: u_name,
-      SL_check: req.session.sl_reserved,
-      LT_check: req.session.lt_reserved,
-      SSG_check: req.session.ssg_reserved
-    });
   }
 
 });
 
-router.get('/Manage_reserve', function(req, res){
+router.get('/Manage_reserve', function(req, res) {
+  var u_name;
   if (req.user != undefined) {
-    getReserved(req,res,function(list){
-        var u_name;
-          u_name = '';
-          res.render('Manage_reserve', {
-            username: u_name,
-            lt_reserved: list[0],
-            SL_reserved: list[1],
-            SSG_reserved: list[2],
-            user_id : req.user.User_id
-          })
+    getReserved(req, res, function(list) {
+      u_name = req.user.Username;
+      res.render('Manage_reserve', {
+        username: u_name,
+        lt_reserved: list[0],
+        SL_reserved: list[1],
+        SSG_reserved: list[2],
+        user_id: req.user.User_id
+      })
 
     })
+  } else {
+    u_name = '';
+    res.redirect('/')
   }
-  else {
-   u_name = '';
-   res.redirect('/')
- }
 })
 
-router.post('/getreserved', function(req,res){
-  var result_list=[];
-  console.log('[SL, LT, SSG] '+req.user.User_id + 'REQUEST GET ALL _RESERVED');
+router.post('/getreserved', function(req, res) {
+  var result_list = [];
+  console.log('[SL, LT, SSG] ' + req.user.User_id + 'REQUEST GET ALL _RESERVED');
   async.parallel([
-    function(callback){
-      if(req.body.SL_check){
-        sendrest.getSLreserved(req.user.User_id, function(results){
-          req.session.sl_reserved=results[0];
-          result_list[0] = results[0];
-          callback(null,"finish");
-        })
+      function(callback) {
+        if (req.body.SL_check) {
+          sendrest.getSLreserved(req.user.User_id, function(results) {
+            req.session.sl_reserved = results[0];
+            result_list[0] = results[0];
+            callback(null, "finish");
+          })
+        } else {
+          result_list[0] = "No Auth";
+          callback(null, "finish");
+        }
+      },
+      function(callback) {
+        if (req.body.LT_check) {
+          sendrest.getLTreserved(req.user.User_id, function(results) {
+            req.session.lt_reserved = results[0];
+            result_list[1] = results[0];
+            callback(null, "finish");
+          })
+        } else {
+          result_list[1] = "No Auth";
+          callback(null, "finish");
+        }
+      },
+      function(callback) {
+        if (req.body.SSG_check) {
+          sendrest.getSSGreserved(req.user.User_id, function(results) {
+            req.session.ssg_reserved = results[0];
+            result_list[2] = results[0];
+            callback(null, "finish");
+          })
+        } else {
+          result_list[2] = "No Auth";
+          callback(null, "finish");
+        }
       }
-      else {
-        result_list[0]="No Auth";
-        callback(null,"finish");
-      }
-    },
-    function(callback){
-      if(req.body.LT_check){
-        sendrest.getLTreserved(req.user.User_id, function(results){
-          req.session.lt_reserved=results[0];
-          result_list[1] = results[0];
-          callback(null,"finish");
-        })
-      }
-      else {
-        result_list[1]="No Auth";
-        callback(null,"finish");
-      }
-    },
-    function(callback){
-      if(req.body.SSG_check){
-        sendrest.getSSGreserved(req.user.User_id, function(results){
-          req.session.ssg_reserved=results[0];
-          result_list[2] = results[0];
-          callback(null,"finish");
-        })
-      }
-      else {
-        result_list[2]="No Auth";
-        callback(null,"finish");
-      }
+    ],
+    function(err, finish) {
+      if (err) console.log(err);
+      res.json(result_list);
     }
-  ],
-  function(err, finish){
-    if(err) console.log(err);
-    res.json(result_list);
-  }
-)
+  )
 })
 // 개별로 적립금 금액 가져오기
 // router.post('/getSLreserved', function(req, res){

@@ -12,14 +12,18 @@ module.exports = function(req, res, callback_list) {
   knex.select().from('user_info').where('User_info_id', req.user.User_id)
     .then(function(results) {
       if (results[0] == undefined) {
-        var SL_reserved = '';
-        var SSG_reserved = '';
-        var lt_reserved = '';
-        req.session.lt_reserved = lt_reserved;
-        req.session.SL_reserved = SL_reserved;
-        req.session.SSG_reserved = SSG_reserved;
-
-        res.redirect('/reserve');
+        // var SL_reserved = '';
+        // var SSG_reserved = '';
+        // var lt_reserved = '';
+        // req.session.lt_reserved = lt_reserved;
+        // req.session.SL_reserved = SL_reserved;
+        // req.session.SSG_reserved = SSG_reserved;
+        //
+        // res.redirect('/reserve');
+        reserved_list[0]=false;
+        reserved_list[1]=false;
+        reserved_list[2]=false;
+        callback_list(reserved_list)
       } else {
         var SL_id = results[0].Shilla_id,
           // SL_pw = results[0].Shilla_pw,
