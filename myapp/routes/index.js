@@ -203,7 +203,13 @@ router.post('/getreserved', function(req, res) {
 // })
 
 
-
+router.post('/autocomplete', function(req, res) {
+  console.log("[REQUEST AUTO COMPLETE]");
+  sendrest.getAutocomplete(function(results){
+    var availableTags=results;
+    res.json(availableTags);
+  })
+})
 
 router.get('/shopping_cart', function(req, res) {
   var u_name;

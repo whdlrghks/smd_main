@@ -6,12 +6,14 @@
       <div class="row">
         <div class="col-xs-12">
           <ul>
+            <% if(depth1 != ""){%>
             <li class="home"> <a title="Go to Home Page" href="/product?depth1=<%=depth1%>"><%=depth1%></a></li>
             <%if(depth2==''||depth2!=undefined){%>
             <li class=""> <a title="Go to Home Page" href="/product?depth1=<%=depth1%>&depth2=<%=depth2%>">&raquo; <%=depth2%></a></li>
               <% if(depth3==''||depth3!=undefined){%>
                 <li><strong>&raquo; <%=depth3%></strong></li>
               <%}
+            }
             }%>
 
           </ul>
@@ -260,12 +262,16 @@
 
 
   function moveURL(j) {
+    //검색 결과인지 / 뎁스클릭인지 확인
+
 
     var presentURL = window.location.href;
     if (getQuery("startpage",presentURL) == undefined) {
-      location.href = presentURL + "&startpage=" + j;
+
+        location.href = presentURL + "&startpage=" + j;
     } else {
-      location.href = changeQuery("startpage",j,presentURL);
+
+        location.href = changeQuery("startpage",j,presentURL);
     }
 
 
@@ -333,9 +339,39 @@ function moveDetail(obj){
 
 
 <!--jquery-ui.min js -->
-<script type="text/javascript" src="js/jquery-ui.js"></script>
+<!-- <script type="text/javascript" src="js/jquery-ui.js"></script> -->
 
 <!-- main js -->
 <script type="text/javascript" src="js/main.js"></script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+ $(document).ready(function() {
+    $.ajax({
+      type: "POST",
+      url: "/autocomplete",
+      async: true,
+      dataType: "JSON",
+      success: function(json) {
+        $("#searchbox").autocomplete({
+          source:  function(request, response) {
+                var results = $.ui.autocomplete.filter(json, request.term);
+                response(results.slice(0, 10));
+            },
+          select: function(event, ui) {
+            console.log(ui.item);
+          },
+          focus: function(event, ui) {
+            $("#searchbox").val(ui.item.label);
+            return false;
+            //event.preventDefault();
+          }
+        });
+      }
+    })
+  })
+</script>
 </body>
 </html>
