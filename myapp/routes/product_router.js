@@ -141,6 +141,7 @@ router.post('/single/getinfo', function(req, res) {
       },
       function(callback) {
         var prd_name = req.body.prd_name;
+        //브랜드+상품이름 같이 검색
         sendrest.getPostproduct(prd_name, function(post_info) {
           console.log(post_info);
           result[3] = post_info;
@@ -192,6 +193,77 @@ router.post('/single/getinfo', function(req, res) {
 //   })
 // });
 
+
+router.get('/search/', function(req, res) {
+  //로그인 되어있는지 안되어있는지 구분하기 위한 값
+  var u_name;
+  console.log("req.user is " + req.user);
+  console.log("[SEARCH] SEARCH API IS REQUESTED ABOUT",req.query.searchbox);
+  var depth1 = '';
+  var depth2 = '';
+  var depth3 = '';
+  if (req.query.startpage == undefined) {
+    var start = 0;
+  } else {
+    var start = req.query.startpage;
+  }
+  var limit = 16;
+  sendrest.getSearch(req.query.searchcategory, req.query.searchbox, start, limit, function(productlist) {
+    console.log("totalcount : ", productlist[0]);
+    console.log("startpage : ", productlist[2]);
+    if (req.user == undefined) {
+      u_name = '';
+      if(productlist=="no result"){
+        res.render('index', {
+          username: u_name
+        });
+      }
+      else{
+        res.render('shop_grid_full_width', {
+          username: u_name,
+          totalcount: productlist[0],
+          productlist: productlist[1],
+          startpage: productlist[2],
+          depth1: depth1,
+          depth2: depth2,
+          depth3: depth3
+        });
+      }
+    } else {
+      u_name = req.user.Username
+      if(productlist=="no result"){
+        res.render('index', {
+          username: u_name
+        });
+      }
+      else{
+        res.render('shop_grid_full_width', {
+          username: u_name,
+          totalcount: productlist[0],
+          productlist: productlist[1],
+          startpage: productlist[2],
+          depth1: depth1,
+          depth2: depth2,
+          depth3: depth3
+        });
+      }
+
+    }
+  })
+  //
+  // sendrest.getproductdetail(product_id, function(productlist) {
+  //   console.log(productlist);
+  //   console.log(req.user);
+  //   if (req.user == undefined) {
+  //     u_name = '';
+  //
+  //   } else {
+  //     u_name = req.user.Username
+  //
+  //   }
+  // })
+
+});
 
 
 module.exports = router;

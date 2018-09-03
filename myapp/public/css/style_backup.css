@@ -5666,7 +5666,7 @@ ul.products-list {
 }
 .product-view-area .product-details-area .price {
 	font-size: 22px;
-	color: #f5da81;
+	color: #df3737;
 	font-weight: bold
 }
 .product-view-area .product-details-area .price2 {
@@ -6015,26 +6015,21 @@ p.note {
 	color: #ed1c24
 }
 .reviews-content-right table {
-	margin-top: 2px;
+	margin-top: 15px;
 	text-align: center;
 	width: 100%
 }
 .reviews-content-right table tr td {
-	border: 0 none;
+	border: 1px solid #e5e5e5;
 	padding: 6px 10px;
-	background: #fff;
-	text-align: center;
-	font-weight:bold;
-	font-size:15px;
+	background: #fff
 }
 .reviews-content-right table tr th {
-	background: #fff;
+	background: #333e48;
 	border: 0 none;
-	color: #333e48;
+	color: #fff;
 	padding: 10px;
-	text-align: center;
-	font-size:18px;
-	font-weight:bold;
+	text-align: center
 }
 .product-overview-tab .form-area {
 	margin: 15px 0 0
@@ -6213,11 +6208,9 @@ p.note {
 	background: #fff
 }
 .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
-	text-align:center;
 	border-bottom-width: 0px
 }
 .page-order .cart_navigation a.continue-btn {
-	float:right;
 	padding: 10px 20px;
 	border: 2px solid #eaeaea;
 	border-radius: 50px;
@@ -6279,35 +6272,9 @@ p.note {
 	max-width: 100px
 }
 .cart_summary td.cart_product {
-	width: 110px;
+	width: 120px;
 	padding: 15px
 }
-.cart_summary td.cart_description {
-	width: 300px;
-	padding: 15px
-}
-.cart_summary td.availability {
-	width: 70px;
-	padding: 15px
-}
-
-.cart_summary td.price {
-	width: 100px;
-	padding: 15px
-}
-
-.cart_summary td.qty {
-	width: 90px;
-	padding: 15px
-}
-
-.cart_summary td.move {
-	width: 110px;
-	text-align:center;
-	line-height:0.5;
-	padding: 15px
-}
-
 .cart_summary .price {
 	text-align: center;
 	font-weight: 600;

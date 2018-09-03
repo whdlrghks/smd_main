@@ -243,6 +243,34 @@ const UTIL = (function() {
     );
   }
 
+  var getAutocomplete_REST = function(callback) {
+    request.get({
+        url: 'http://localhost:5050/api/autocomplete',
+        json: true
+      },
+      function(error, response, body) {
+        callback(body);
+      }
+    );
+  }
+
+  var getSearch_REST = function(category, searchbox, startPage, limitPage, callback) {
+    request.post({
+        url: 'http://localhost:5050/api/product/search',
+        body: {
+          category: category,
+          searchbox: searchbox,
+          startPage: startPage,
+          limitPage: limitPage
+        },
+        json: true
+      },
+      function(error, response, body) {
+        callback(body);
+      }
+    );
+  }
+
 
   return {
     getSLreserved: getSLreserved_REST,
@@ -253,7 +281,9 @@ const UTIL = (function() {
     getLTproduct: getLTproduct_REST,
     getSSGproduct: getSSGproduct_REST,
     getproductdetail: getproductdetail_REST,
-    getPostproduct: getPostproduct_REST
+    getPostproduct: getPostproduct_REST,
+    getAutocomplete: getAutocomplete_REST,
+    getSearch: getSearch_REST
   }
 
 })();

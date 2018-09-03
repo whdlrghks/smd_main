@@ -49,6 +49,18 @@
 
 <!-- style CSS -->
 <link rel="stylesheet" type="text/css" href="css/style.css" media="all">
+
+
+<!-- jquery.autocomplete js -->
+
+
+<!-- jquery js -->
+<!-- <script type="text/javascript" src="js/jquery.min.js"></script> -->
+
+
+
+<!--jquery-ui.min js -->
+<!-- <script type="text/javascript" src="js/jquery-ui.js"></script> -->
 </head>
 
 <!-- <body class="cms-index-index cms-home-page"> -->
@@ -146,7 +158,7 @@
 
     <li><a href="#" class="">메이크업</a>
       <ul>
-      <li><a href="shop_grid_full_width.html">페이스</a>
+      <li>페이스
         <ul>
           <li><a href="/product?depth1=메이크업&depth2=페이스&depth3=BB크림/CC크림"><span>BB크림/CC크림</span> </a></li>
           <li><a href="/product?depth1=메이크업&depth2=페이스&depth3=프라이머/베이스"><span>프라이머/베이스</span></a></li>
@@ -628,17 +640,18 @@
           <div class="col-xs-9 col-sm-6 col-md-6">
             <!-- Search -->
 
+
             <div class="top-search">
               <div id="search">
-                <form>
+                <form  method="get" action="/product/search">
                   <div class="input-group">
-                    <select class="cate-dropdown hidden-xs" name="category_id">
+                    <select id="searchcategory" class="cate-dropdown hidden-xs" name="searchcategory">
                       <option>전체</option>
                       <option>브랜드</option>
                       <option>상품 이름</option>
                     </select>
-                    <input type="text" class="form-control" placeholder="Search" name="search">
-                    <button class="btn-search" type="button"><i class="fa fa-search"></i></button>
+                    <input id="searchbox" type="text" class="form-control" placeholder="Search" name="searchbox"></input>
+                    <button class="btn-search" type="submit"><i class="fa fa-search"></i></button>
                   </div>
                 </form>
               </div>
@@ -762,7 +775,7 @@
                       <div class="popup">
                         <div class="row">
                           <div class="col-md-4 col-sm-6">
-                            <h3><a href="shop_grid_full_width.html">페이스</a></h3>
+                            <h3>페이스</h3>
                             <ul class="nav">
                               <li><a href="/product?depth1=메이크업&depth2=페이스&depth3=BB크림/CC크림"><span>BB크림/CC크림</span> </a></li>
                               <li><a href="/product?depth1=메이크업&depth2=페이스&depth3=프라이머/베이스"><span>프라이머/베이스</span></a></li>
