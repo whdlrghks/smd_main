@@ -59,7 +59,7 @@
                             <th>정상가</th>
                             <th>회원가</th>
                             <th>세면대 최저가!</th>
-                            <th>페이지 이동</th>
+                            <th>면세점 이동</th>
                           </tr>
                           <tr>
                             <td style="text-align:left">신라인터넷면세점 :</td>
@@ -67,7 +67,7 @@
                             <td><p class="old-price"><span id='sl_origin_price' class="price"> </span></p></td>
                             <td><p class="special-price"><span id='sl_discount_price' class="price"> </span></p></td>
                             <td><p class="special-price"><span id='sl_final_price' class="price2"></p></td>
-                            <td><a title="<%=product.prd_SLURL%>" href="<%=product.prd_SLURL%>" target="_blank">신라인터넷면세점 연결하기</a></td>
+                            <td><a title="<%=product.prd_SLURL%>" href="<%=product.prd_SLURL%>" target="_blank">연결하기</a></td>
                             <%}else{%>
                               <td><p class="old-price" > <strong>신라인터넷면세점은</strong></p></td>
                               <td><p class="old-price" > <strong>해당 상품이</strong></p></td>
@@ -81,7 +81,7 @@
                             <td><p class="old-price"><span id='lt_origin_price' class="price"> </span></p></td>
                             <td><p class="special-price"><span id='lt_discount_price' class="price"></span></p></td>
                             <td><p class="special-price"><span id='lt_final_price' class="price2"></span></p></td>
-                            <td><a title="<%=product.prd_ProductURL%>" href="<%=product.prd_ProductURL%>" target="_blank">롯데인터넷면세점 연결하기</a></td>
+                            <td><a title="<%=product.prd_ProductURL%>" href="<%=product.prd_ProductURL%>" target="_blank">연결하기</a></td>
                             <%}else{%>
                               <td><p class="old-price" > <strong>롯데인터넷면세점은</strong></p></td>
                               <td><p class="old-price" > <strong>해당 상품이</strong></p></td>
@@ -95,12 +95,10 @@
                             <td><p class="old-price"><span id='ssg_origin_price' class="price"></span></p></td>
                             <td><p class="special-price"><span id='ssg_discount_price' class="price"></span></p></td>
                             <td><p class="special-price"><span id='ssg_final_price' class="price2"></span></p></td>
-                            <td><a title="<%=product.prd_SSGURL%>" href="<%=product.prd_SSGURL%>" target="_blank" >신세계인터넷면세점 연결하기</a></td>
+                            <td><a title="<%=product.prd_SSGURL%>" href="<%=product.prd_SSGURL%>" target="_blank" >연결하기</a></td>
                             <%}else{%>
-                            <td><p class="old-price" > <strong>신세계인터넷</strong></p></td>
-                            <td><p class="old-price" > <strong>면세점은 해당</strong></p></td>
-                            <td><p class="old-price" > <strong>상품이 존재하지</strong></p></td>
-                            <td><p class="old-price" > <strong>않습니다. </strong></p></td>
+                            <td colspan="4"><p class="old-price" > <strong>신세계인터넷면세점은 해당 상품이 존재하지 않습니다. </strong></p></td>
+
                             <%}%>
                           </tr>
 

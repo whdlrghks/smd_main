@@ -5665,12 +5665,12 @@ ul.products-list {
 	margin-left: 10px
 }
 .product-view-area .product-details-area .price {
-	font-size: 22px;
+	font-size: 17px;
 	color: #f5da81;
 	font-weight: bold
 }
 .product-view-area .product-details-area .price2 {
-	font-size: 26px;
+	font-size: 20px;
 	color: #ff4000;
 	font-weight: bold
 }
@@ -6021,19 +6021,19 @@ p.note {
 }
 .reviews-content-right table tr td {
 	border: 0 none;
-	padding: 6px 10px;
+	padding: 4px;
 	background: #fff;
 	text-align: center;
 	font-weight:bold;
-	font-size:15px;
+	font-size:13px;
 }
 .reviews-content-right table tr th {
 	background: #fff;
 	border: 0 none;
 	color: #333e48;
-	padding: 10px;
+	padding: 4px;
 	text-align: center;
-	font-size:18px;
+	font-size:14px;
 	font-weight:bold;
 }
 .product-overview-tab .form-area {
