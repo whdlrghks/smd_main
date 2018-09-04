@@ -91,8 +91,9 @@
                             <td><p class="special-price"><span id='ssg_final_price' class="price2"></span></p></td>
                             <td><a title="<%=product.prd_SSGURL%>" href="<%=product.prd_SSGURL%>" target="_blank" >연결하기</a></td>
                             <%}else{%>
-                            <td colspan="4"><p class="old-price" > <strong>신세계인터넷면세점은 해당 상품이 존재하지 않습니다. </strong></p></td>
+                            <td colspan="4"><p class="old-price"> <strong>신세계인터넷면세점은 해당 상품이 존재하지 않습니다.</strong></p></td>
 
+                            <%}%>
                           </tr>
 
                       </tbody>
@@ -475,7 +476,7 @@ $(function(){
       'SL_reserved' : SL_reserved,
       'LT_reserved' : LT_reserved,
       'SSG_reserved' : SSG_reserved,
-      'prd_name' : '<%=product.prd_Brand%><%=product.prd_Name%>'
+      'prd_name' : '<%=product.prd_Brand%> <%=product.prd_Name%>'
     }
   // }
 
@@ -596,18 +597,21 @@ $(function(){
       $("#post_1_url").attr("href", post_1_url);
       $("#post_1_name").attr("href", post_1_url);
       $("#post_1_name").text(post_1_name);
+      $("#post_1_name").attr('title',post_1_name);
       $("#post_1_msg").text(post_1_msg);
       $("#post_1_img").attr("src", post_1_img);
 
       $("#post_2_url").attr("href", post_2_url);
       $("#post_2_name").attr("href", post_2_url);
       $("#post_2_name").text(post_2_name);
+      $("#post_2_name").attr('title',post_2_name);
       $("#post_2_msg").text(post_2_msg);
       $("#post_2_img").attr("src", post_2_img);
 
       $("#post_3_url").attr("href", post_3_url);
       $("#post_3_name").attr("href", post_3_url);
       $("#post_3_name").text(post_3_name);
+      $("#post_3_name").attr('title',post_3_name);
       $("#post_3_msg").text(post_3_msg);
       $("#post_3_img").attr("src", post_3_img);
       },
