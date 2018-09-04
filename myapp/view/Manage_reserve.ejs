@@ -57,7 +57,7 @@
                       else{
                         %>
                         <td class="availability in-stock"><span id="SL_auth" class="label">연동 완료</span></td>
-                        <td class="price"><span id='SL_reserved'><%=SL_reserved%>원</span></td>
+                        <td class="price"><span id='SL_reserved'>$ <%=SL_reserved%></span></td>
 
                         <%
                       }
@@ -79,7 +79,7 @@
                         else{
                           %>
                           <td class="availability in-stock"><span id="LT_auth" class="label">연동 완료</span></td>
-                          <td class="price"><span id='LT_reserved'><%=lt_reserved%>원</span></td>
+                          <td class="price"><span id='LT_reserved'>$ <%=lt_reserved%></span></td>
 
                           <%
                         }
@@ -101,7 +101,7 @@
                         else{
                           %>
                           <td class="availability in-stock"><span id="SSG_auth" class="label">연동 완료</span></td>
-                          <td class="price"><span id='SSG_reserved'><%=SSG_reserved%>원</span></td>
+                          <td class="price"><span id='SSG_reserved'>$ <%=SSG_reserved%></span></td>
 
                           <%
                         }
@@ -263,13 +263,13 @@ $(function(){
     dataType : "JSON",
     success: function(json) {
       if(SL_check==true){
-        $('#SL_reserved').text(json[0]+"원");
+        $('#SL_reserved').text("$"+json[0]);
       }
       if(LT_check==true){
-        $('#LT_reserved').text(json[1]+"원");
+        $('#LT_reserved').text("$"+json[1]);
       }
         if(SSG_check==true){
-          $('#SSG_reserved').text(json[2]+"원");
+          $('#SSG_reserved').text("$"+json[2]);
         }
 
       },
