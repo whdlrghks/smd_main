@@ -522,9 +522,10 @@ $(function(){
           }
       }
       if(LT_URL){
+        //퍼센트가 같이 넘어온다.
         var lt_origin_price = json[1].split("/")[0];
         var lt_discount_price = json[1].split("/")[1];
-        var lt_final_price = json[1].split("/")[3];
+        var lt_final_price = json[1].split("/")[4];
         var lt_storage = json[1].split("/")[2];
           $('#lt_origin_price').text("$"+lt_origin_price);
           if(lt_discount_price=="로그인 필요"){
@@ -550,9 +551,10 @@ $(function(){
           }
       }
       if(SSG_URL){
+        //현재 퍼센트로 같이 넘어온다.
         var ssg_origin_price = json[2].split("/")[0];
         var ssg_discount_price = json[2].split("/")[1];
-        var ssg_final_price = json[2].split("/")[3];
+        var ssg_final_price = json[2].split("/")[4];
         var ssg_storage = json[2].split("/")[2];
           $('#ssg_origin_price').text("$"+ssg_origin_price);
           if(ssg_discount_price=="로그인 필요"){
@@ -596,18 +598,21 @@ $(function(){
       $("#post_1_url").attr("href", post_1_url);
       $("#post_1_name").attr("href", post_1_url);
       $("#post_1_name").text(post_1_name);
+      $("#post_1_name").attr("title", post_1_name);
       $("#post_1_msg").text(post_1_msg);
       $("#post_1_img").attr("src", post_1_img);
 
       $("#post_2_url").attr("href", post_2_url);
       $("#post_2_name").attr("href", post_2_url);
       $("#post_2_name").text(post_2_name);
+      $("#post_2_name").attr("title", post_2_name);
       $("#post_2_msg").text(post_2_msg);
       $("#post_2_img").attr("src", post_2_img);
 
       $("#post_3_url").attr("href", post_3_url);
       $("#post_3_name").attr("href", post_3_url);
       $("#post_3_name").text(post_3_name);
+      $("#post_3_name").attr("title", post_3_name);
       $("#post_3_msg").text(post_3_msg);
       $("#post_3_img").attr("src", post_3_img);
       },

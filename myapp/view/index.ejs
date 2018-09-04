@@ -34,7 +34,7 @@
         <!-- SLIDE 2 -->
         <li data-transition="slidehorizontal" data-slotamount="5" data-masterspeed="700" >
           <!-- MAIN IMAGE -->
-          <img src="images/main_page_image6.png" alt="slidebg1" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+          <img src="images/main_page_image9.png" alt="slidebg1" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
           <!-- LAYERS -->
           <!-- LAYER NR. 1 -->
 
@@ -53,7 +53,7 @@
                         data-elementdelay="0.01"
                         data-endelementdelay="0.1"
                         data-linktoslide="next"
-                        style="z-index: 12; max-width: auto; max-height: auto; white-space: nowrap;"><a href='http://www.shilladfs.com/estore/kr/ko/event/eventView?eventId=E33163' target="_blank" class='largebtn solid'>자세히 보기</a> </div>
+                        style="z-index: 12; max-width: auto; max-height: auto; white-space: nowrap;"><a href='http://www.shilladfs.com/estore/kr/ko/event/eventView?eventId=E31107' target="_blank" class='largebtn solid'>자세히 보기</a> </div>
         </li>
 
         <!-- SLIDE 3 -->
@@ -98,60 +98,41 @@
     <div class="special-products-pro">
       <div class="slider-items-products">
         <div id="special-products-slider" class="product-flexslider hidden-buttons">
+
           <div class="slider-items slider-width-col4">
+            <%
+
+            for( var i = 0 ; i < productlist.length ; i++){
+
+              %>
             <div class="product-item">
               <div class="item-inner">
                 <div class="product-thumbnail">
-                  <div class="pr-img-area"> <a title="상품명" href="single_product.html">
-                    <figure> <img class="first-img" src="http://image2.shilladfs.com/files/product/2018/04/04/666010000185_20180404_10070215_12_666010000185_1.JPG" alt=""></figure>
+                  <div class="pr-img-area"> <a title="<%=productlist[i].prd_Name%>" href="/product/single?id=<%=productlist[i]._id%>&depth1=<%=productlist[i].depth1%>&depth2=<%=productlist[i].depth2%>&depth3=<%=productlist[i].depth3%>" >
+                    <figure> <img class="first-img" src="<%=productlist[i].prd_IMGURL%>" alt=""></figure>
                     </a>
                   </div>
                   <div class="pr-info-area">
                     <div class="pr-button">
-                      <div class="mt-button quick-view"> <a href="single_product.html"> <i class="fa fa-search"></i> </a> </div>
+                      <div class="mt-button quick-view"> <a href="/product/single?id=<%=productlist[i]._id%>&depth1=<%=productlist[i].depth1%>&depth2=<%=productlist[i].depth2%>&depth3=<%=productlist[i].depth3%>"> <i class="fa fa-search"></i> </a> </div>
                     </div>
                   </div>
                 </div>
                 <div class="item-info">
                   <div class="info-inner">
-                    <div class="item-title"> <a title="더 트루 크림 아쿠아밤 125ml" href="single_product.html">더 트루 크림 아쿠아밤 125ml </a> </div>
+                    <div class="item-title"> <a title="<%=productlist[i].prd_Name%>" href="/product/single?id=<%=productlist[i]._id%>&depth1=<%=productlist[i].depth1%>&depth2=<%=productlist[i].depth2%>&depth3=<%=productlist[i].depth3%>"><%=productlist[i].prd_Name%> </a> </div>
                     <div class="item-content">
-                      <div class="brand"> <a title="빌리프" href="single_product.html">빌리프 </a></div>
+                      <div class="brand"> <a title="<%=productlist[i].prd_Brand%>" href="/product/single?id=<%=productlist[i]._id%>&depth1=<%=productlist[i].depth1%>&depth2=<%=productlist[i].depth2%>&depth3=<%=productlist[i].depth3%>"><%=productlist[i].prd_Brand%></a></div>
                       <div class="item-price">
-                        <div class="price-box"> <span class="regular-price"> <span class="price">$55.8</span> </span> </div>
+                        <div class="price-box"> <span class="regular-price"> <span class="price">$<%=productlist[i].prd_Price%></span> </span> </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="product-item">
-              <div class="item-inner">
-                <div class="product-thumbnail">
-                  <div class="pr-img-area"> <a title="상품명" href="single_product.html">
-                    <figure> <img class="first-img" src="http://image2.shilladfs.com/files/product/2017/07/11/053810000047_20170711_09295709_07_053810000047_3.JPG" alt=""></figure>
-                    </a>
-                  </div>
-                  <div class="pr-info-area">
-                    <div class="pr-button">
-                      <div class="mt-button quick-view"> <a href="single_product.html"> <i class="fa fa-search"></i> </a> </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="item-info">
-                  <div class="info-inner">
-                    <div class="item-title"> <a title="상품명" href="single_product.html">상품명 </a> </div>
-                    <div class="item-content">
-                      <div class="brand"> <a title="브랜드명" href="single_product.html">브랜드명 </a></div>
-                      <div class="item-price">
-                        <div class="price-box"> <span class="regular-price"> <span class="price">$원가</span> </span> </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-item">
+            <% } %>
+            <!-- <div class="product-item">
               <div class="item-inner">
                 <div class="product-thumbnail">
                   <div class="pr-img-area"> <a title="상품명" href="single_product.html">
@@ -255,6 +236,32 @@
                 </div>
               </div>
             </div>
+            <div class="product-item">
+              <div class="item-inner">
+                <div class="product-thumbnail">
+                  <div class="pr-img-area"> <a title="상품명" href="single_product.html">
+                    <figure> <img class="first-img" src="http://image2.shilladfs.com/files/product/2017/07/11/053810000047_20170711_09295709_07_053810000047_3.JPG" alt=""></figure>
+                    </a>
+                  </div>
+                  <div class="pr-info-area">
+                    <div class="pr-button">
+                      <div class="mt-button quick-view"> <a href="single_product.html"> <i class="fa fa-search"></i> </a> </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-info">
+                  <div class="info-inner">
+                    <div class="item-title"> <a title="상품명" href="single_product.html">상품명 </a> </div>
+                    <div class="item-content">
+                      <div class="brand"> <a title="브랜드명" href="single_product.html">브랜드명 </a></div>
+                      <div class="item-price">
+                        <div class="price-box"> <span class="regular-price"> <span class="price">$원가</span> </span> </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
 
           </div>
         </div>
