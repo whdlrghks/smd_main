@@ -23,6 +23,7 @@ module.exports = function(req, res, callback_list) {
         reserved_list[0]=false;
         reserved_list[1]=false;
         reserved_list[2]=false;
+        console.log("RESERVED ",reserved_list);
         callback_list(reserved_list)
       } else {
         var SL_id = results[0].Shilla_id,
@@ -56,8 +57,12 @@ module.exports = function(req, res, callback_list) {
       }
     })
     .catch(function(err) {
-      console.log("Get data from DB by" + req.user.User_id);
-      callback_list("no_list")
+      reserved_list[0]=false;
+      reserved_list[1]=false;
+      reserved_list[2]=false;
+      console.log(err);
+      console.log("Get data from DB by " + req.user.User_id);
+      callback_list(reserved_list)
     })
 
 
