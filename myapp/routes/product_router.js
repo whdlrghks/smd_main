@@ -48,6 +48,7 @@ router.get('/', function(req, res) {
 
 router.get('/single/', function(req, res) {
   //로그인 되어있는지 안되어있는지 구분하기 위한 값
+
   var u_name;
   console.log("req.user is " + req.user);
   console.log(req.session);
@@ -59,6 +60,7 @@ router.get('/single/', function(req, res) {
 
   sendrest.getproductdetail(product_id, function(productlist) {
     console.log(productlist);
+    
     console.log(req.user);
     if (req.user == undefined) {
       u_name = '';
