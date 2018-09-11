@@ -3,10 +3,11 @@ module.exports = (function(){
 
   const knex = require('knex')({
     client: 'mysql',
-    version: '8.0',
+    version: '5.7',
     connection: {
       host: config.getLocalPoolConfig().host,
       user: config.getLocalPoolConfig().user,
+      port: config.getLocalPoolConfig().port,
       password: config.getLocalPoolConfig().password,
       database: config.getLocalPoolConfig().database,
       charset: config.getLocalPoolConfig().charset
