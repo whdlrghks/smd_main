@@ -23,11 +23,14 @@
 
           <div class="shop-inner">
             <div class="page-title">
-              <h2>적립금 관리</h2>
-              <h6>아래에서 회원님의 적립금을 관리할 수 있습니다.</h6>
+              <h2 style="float:left;">적립금 관리</h2>
+              <a href="#" onclick="Refresh();"><p style="float:right; width:95px; padding:8px; border:1px; border-radius: 50px; font-weight:bold; background-color: #fed700;"> &nbsp;새로고침&nbsp;<i class="fa fa-rotate-left"> </i></p></a>
+
+              <br/><br/>
+              <h6 style="float:left;">회원님의 적립금을 관리할 수 있습니다.</h6>
+
             </div>
             <div class="pagination-area "></div>
-
             <div class="order-detail-content">
 
               <h4>적립금 관리</h4>
@@ -39,13 +42,13 @@
                       <th>설명</th>
                       <th>연동여부</th>
                       <th>총 적립금 금액</th>
-                      <th  class="action">상세보기</th>
+
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="cart_product"><a href="#"><img src="images/shilla_logo2.jpg" alt="Product"></a></td>
-                      <td class="cart_description"><p class="product-name"><a href="#">신라인터넷면세점 </a></p>
+                      <td class="cart_product"><img src="images/shilla_logo2.jpg" alt="Product"></td>
+                      <td class="cart_description"><p class="product-name" style="text-align:center; font-weight:bold; margin:0 0 0px;">신라인터넷면세점</p>
                       <%
                       if(SL_reserved==false){
 
@@ -63,13 +66,13 @@
                       }
                         %>
 
-                      <td class="action"><a href="#"><i class="fa fa-plus"></i></a></td>
+
                     </tr>
                     <tr>
-                      <td class="cart_product"><a href="#"><img src="images/lotte_logo2.jpg" alt="Product"></a></td>
-                      <td class="cart_description"><p class="product-name"><a href="#">롯데인터넷면세점 </a></p>
+                      <td class="cart_product"><img src="images/lotte_logo2.jpg" alt="Product"></td>
+                      <td class="cart_description"><p class="product-name" style="text-align:center; font-weight:bold; margin:0 0 0px;">롯데인터넷면세점</p>
                         <%
-                        if(lt_reserved==false){
+                        if(LT_reserved==false){
 
                           %>
                           <td class="availability out-of-stock"><span class="label">연동 미완료</span></td>
@@ -79,17 +82,17 @@
                         else{
                           %>
                           <td class="availability in-stock"><span id="LT_auth" class="label">연동 완료</span></td>
-                          <td class="price"><span id='LT_reserved'>$ <%=lt_reserved%></span></td>
+                          <td class="price"><span id='LT_reserved'>$ <%=LT_reserved%></span></td>
 
                           <%
                         }
                           %>
 
-                      <td class="action"><a href="#"><i class="fa fa-plus"></i></a></td>
+
                     </tr>
                     <tr>
-                      <td class="cart_product"><a href="#"><img src="images/shinsegae_logo2.jpg" alt="Product"></a></td>
-                      <td class="cart_description"><p class="product-name"><a href="#">신세계인터넷면세점 </a></p>
+                      <td class="cart_product"><img src="images/shinsegae_logo2.jpg" alt="Product"></td>
+                      <td class="cart_description"><p class="product-name" style="text-align:center; font-weight:bold; margin:0 0 0px;">신세계인터넷면세점</p>
                         <%
                         if(SSG_reserved==false){
 
@@ -107,7 +110,7 @@
                         }
                           %>
 
-                      <td class="action"><a href="#"><i class="fa fa-plus"></i></a></td>
+
                     </tr>
                   </tbody>
 
@@ -166,7 +169,7 @@
         <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
           <div class="footer-content">
             <div class="email"> <i class="fa fa-envelope"></i>
-              <p><a href="mailto:support@template.com">Saemyundae@google.com</a></p>
+              <p><a href="mailto:support@template.com">smdManager123@gmail.com</a></p>
             </div>
           </div>
         </div>
@@ -186,7 +189,7 @@
         </div>
       </div>
     </div>
-    <div class="footer-coppyright">
+    <!-- <div class="footer-coppyright">
       <div class="container">
         <div class="row">
           <div class="col-sm-6 col-xs-12 coppyright"> Copyright © 2017 <a href="#"> Modern </a>. All Rights Reserved. </div>
@@ -202,7 +205,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </footer>
   <a href="#" class="totop"> </a> </div>
 
@@ -247,7 +250,7 @@
 
 $(function(){
   var SL_check = <%=SL_reserved%>;
-  var LT_check = <%=lt_reserved%>;
+  var LT_check = <%=LT_reserved%>;
   var SSG_check = <%=SSG_reserved%>;
   var body = {
     'user_id' : <%=user_id%>,
@@ -262,6 +265,7 @@ $(function(){
     data : body,
     dataType : "JSON",
     success: function(json) {
+
       if(SL_check==true){
         $('#SL_reserved').text("$"+json[0]);
       }
@@ -357,6 +361,52 @@ $(function(){
   // }
 })
 
+function Refresh(){
+  var SL_check = <%=SL_reserved%>;
+  var LT_check = <%=LT_reserved%>;
+  var SSG_check = <%=SSG_reserved%>;
+  var body = {
+    'user_id' : <%=user_id%>
+  }
+  $.ajax({
+    type: "POST",
+    url: "/reserve/refresh",
+    async : true,
+    data : body,
+    dataType : "JSON",
+    success: function(json) {
+
+      if(SL_check==true){
+        $('#SL_reserved').text("$"+json[0]);
+      }
+      if(LT_check==true){
+        $('#LT_reserved').text("$"+json[1]);
+      }
+        if(SSG_check==true){
+          $('#SSG_reserved').text("$"+json[2]);
+        }
+
+      },
+      beforeSend: function() {
+        if(SL_check==true){
+                  $('#SL_reserved').text("연동중입니다.");
+        }
+        if(LT_check==true){
+            $('#LT_reserved').text("연동중입니다.");
+        }
+          if(SSG_check==true){
+          $('#SSG_reserved').text("연동중입니다.");
+          }
+
+
+      },
+      complete: function() {
+      },
+      error: function(error) {
+        console.log(error);
+      }
+  })
+}
 </script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->

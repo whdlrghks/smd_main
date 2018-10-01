@@ -23,6 +23,7 @@ router.get('/', function(req, res) {
     if (req.user == undefined) {
       u_name = '';
       res.render('shop_grid_full_width', {
+        total : productlist[3],
         username: u_name,
         totalcount: productlist[0],
         productlist: productlist[1],
@@ -34,6 +35,7 @@ router.get('/', function(req, res) {
     } else {
       u_name = req.user.Username
       res.render('shop_grid_full_width', {
+        total : productlist[3],
         username: u_name,
         totalcount: productlist[0],
         productlist: productlist[1],
@@ -48,24 +50,31 @@ router.get('/', function(req, res) {
 
 router.get('/single/', function(req, res) {
   //로그인 되어있는지 안되어있는지 구분하기 위한 값
-
   var u_name;
-  console.log("req.user is " + req.user);
-  console.log(req.session);
-
+  var user_id;
+  // console.log(req.session);
   var product_id = req.query.id;
-  var depth1 = req.query.depth1;
-  var depth2 = req.query.depth2;
-  var depth3 = req.query.depth3;
+  var user_id;
+  if (req.user != undefined) {
+    user_id = req.user.User_id;
+    u_name = req.user.Username;
+  } else {
+    user_id = '';
+    u_name = '';
+  }
 
-  sendrest.getproductdetail(product_id, function(productlist) {
+  var timestamp2 = new Date().getTime();
+
+  sendrest.getproductdetail(product_id, user_id, function(productlist) {
     console.log(productlist);
-    
+    console.log('Finish upload Product data in ', new Date().getTime() - timestamp2, 'ms');
     console.log(req.user);
+    var depth1 = productlist[0][0].prd_1st;
+    var depth2 = productlist[0][0].prd_2nd;
+    var depth3 = productlist[0][0].prd_3rd;
     if (req.user == undefined) {
-      u_name = '';
-
       res.render('single_product', {
+        user_id : user_id,
         username: u_name,
         product: productlist[0][0],
         SL_reserved: '0',
@@ -76,13 +85,13 @@ router.get('/single/', function(req, res) {
         depth3: depth3
       });
     } else {
-      u_name = req.user.Username
       res.render('single_product', {
+        user_id : user_id,
         username: u_name,
         product: productlist[0][0],
-        SL_reserved: req.session.sl_reserved,
-        LT_reserved: req.session.lt_reserved,
-        SSG_reserved: req.session.ssg_reserved,
+        SL_reserved: productlist[1][0].SL_reserved,
+        LT_reserved: productlist[1][0].LT_reserved,
+        SSG_reserved: productlist[1][0].SSG_reserved,
         depth1: depth1,
         depth2: depth2,
         depth3: depth3
@@ -97,7 +106,7 @@ router.post('/single/getinfo', function(req, res) {
   console.log(req.body);
   async.parallel([
       function(callback) {
-        if (req.body.SL_URL!="42") {
+        if (req.body.SL_URL != "42") {
           var prd_sl_url = req.body.SL_URL;
           sendrest.getSLproduct(prd_sl_url, req.body.SL_reserved, function(sl_info) {
             console.log(sl_info);
@@ -112,7 +121,7 @@ router.post('/single/getinfo', function(req, res) {
 
       },
       function(callback) {
-        if (req.body.LT_URL!="42") {
+        if (req.body.LT_URL != "42") {
           var prd_lt_url = req.body.LT_URL;
           sendrest.getLTproduct(prd_lt_url, req.body.LT_reserved, function(lt_info) {
             console.log(lt_info);
@@ -127,7 +136,7 @@ router.post('/single/getinfo', function(req, res) {
 
       },
       function(callback) {
-        if (req.body.SSG_URL!="42") {
+        if (req.body.SSG_URL != "42") {
           var prd_ssg_url = req.body.SSG_URL;
           sendrest.getSSGproduct(prd_ssg_url, req.body.SSG_reserved, function(ssg_info) {
             console.log(ssg_info);
@@ -200,7 +209,7 @@ router.get('/search/', function(req, res) {
   //로그인 되어있는지 안되어있는지 구분하기 위한 값
   var u_name;
   console.log("req.user is " + req.user);
-  console.log("[SEARCH] SEARCH API IS REQUESTED ABOUT",req.query.searchbox);
+  console.log("[SEARCH] SEARCH API IS REQUESTED ABOUT", req.query.searchbox);
   var depth1 = '';
   var depth2 = '';
   var depth3 = '';
@@ -215,12 +224,11 @@ router.get('/search/', function(req, res) {
     console.log("startpage : ", productlist[2]);
     if (req.user == undefined) {
       u_name = '';
-      if(productlist=="no result"){
+      if (productlist == "no result") {
         res.render('index', {
           username: u_name
         });
-      }
-      else{
+      } else {
         res.render('shop_grid_full_width', {
           username: u_name,
           totalcount: productlist[0],
@@ -233,12 +241,11 @@ router.get('/search/', function(req, res) {
       }
     } else {
       u_name = req.user.Username
-      if(productlist=="no result"){
+      if (productlist == "no result") {
         res.render('index', {
           username: u_name
         });
-      }
-      else{
+      } else {
         res.render('shop_grid_full_width', {
           username: u_name,
           totalcount: productlist[0],
@@ -252,20 +259,31 @@ router.get('/search/', function(req, res) {
 
     }
   })
-  //
-  // sendrest.getproductdetail(product_id, function(productlist) {
-  //   console.log(productlist);
-  //   console.log(req.user);
-  //   if (req.user == undefined) {
-  //     u_name = '';
-  //
-  //   } else {
-  //     u_name = req.user.Username
-  //
-  //   }
-  // })
 
 });
+
+router.post('/addCart', function(req, res) {
+  var prd_id = req.body.prd_id;
+  var user_id = req.user.User_id;
+  var duty_category = req.body.duty_category;
+  var storage = req.body.storage; //boolean
+  var percent = req.body.percent;
+  var price = req.body.price;
+  var img_url = req.body.img_url;
+  var prd_url = req.body.prd_url;
+  var prd_name = req.body.prd_name;
+  sendrest.addCart(prd_id, user_id, duty_category, img_url, storage, price, percent, prd_url, prd_name, function(result){
+    res.json(result);
+  })
+});
+
+router.post('/deleteCart', function(req, res) {
+  var prd_id = req.body._id;
+  sendrest.deleteCart(prd_id, function(result){
+    res.json(result);
+  })
+});
+
 
 
 module.exports = router;
