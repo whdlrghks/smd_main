@@ -30,7 +30,8 @@ module.exports = function(passport){
           Username:req.body.displayName,
           Gender:req.body.gender,
           Job:req.body.job,
-          Age:req.body.age,
+          // Age:req.body.age,
+          Age:'0',
           Salt:salt,
           Email:req.body.email
         };
