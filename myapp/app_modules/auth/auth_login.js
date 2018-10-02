@@ -23,6 +23,7 @@ module.exports = function(passport){
 
   route.post('/register', function(req, res){
      hasher({password:req.body.password}, function(err, pass, salt, hash){
+       console.log(req.body);
        var user = {
           ID :'local:'+req.body.username,
           Password:hash,
@@ -154,6 +155,9 @@ module.exports = function(passport){
       })
       .then(
         function(){
+
+            req.user.Email = req.body.email;
+
             res.redirect('/user/mypage');
         }
       )

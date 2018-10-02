@@ -214,7 +214,7 @@ const UTIL = (function() {
 
   }
   var getproductdetail_REST = function(product_id, user_id, callback) {
-    
+
     var options_product = {
       product_id: product_id,
       user_id : user_id
@@ -487,7 +487,8 @@ const UTIL = (function() {
     getListreview : getListreview_REST,
     addCart : addCart_REST,
     getCartlist : getCartlist_REST,
-    deleteCart : deleteCart_REST
+    deleteCart : deleteCart_REST,
+    getReservedRefresh : getReservedRefresh_REST
   }
 
 })();
