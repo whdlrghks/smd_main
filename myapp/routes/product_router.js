@@ -60,7 +60,7 @@ router.get('/single/', function(req, res) {
     username= req.user.User_id.split(":")[1].replace("]","");
     u_name = req.user.Username;
   } else {
-    username= "common";
+    username= "";
     user_id = '';
     u_name = '';
   }
