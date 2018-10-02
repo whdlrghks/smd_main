@@ -795,7 +795,6 @@ select.cate-dropdown {
 	cursor: pointer;
 	color: #333e48;
 }
-
 .cate-dropdown:focus {
 	border: none;
 }
@@ -2812,7 +2811,7 @@ footer .footer-links ul li a:hover {
 	background: #fafafa;
 }
 .footer-content .address {
-	line-height: 1.5em;
+	line-height: 2em;
 }
 .address i {
 	float: left;
@@ -5654,25 +5653,14 @@ ul.products-list {
 	padding: 0
 }
 .product-view-area .product-details-area .old-price .price {
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: normal;
 	color: #ccc;
 	margin-left: 10px
 }
-.product-view-area .product-details-area .old-price .price2 {
-	font-size: 20px;
-	font-weight: normal;
-	color: #190707;
-	margin-left: 10px
-}
 .product-view-area .product-details-area .price {
-	font-size: 22px;
-	color: #f5da81;
-	font-weight: bold
-}
-.product-view-area .product-details-area .price2 {
-	font-size: 26px;
-	color: #ff4000;
+	font-size: 28px;
+	color: #df3737;
 	font-weight: bold
 }
 .cart-plus-minus .qty {
@@ -6016,26 +6004,21 @@ p.note {
 	color: #ed1c24
 }
 .reviews-content-right table {
-	margin-top: 2px;
+	margin-top: 15px;
 	text-align: center;
 	width: 100%
 }
 .reviews-content-right table tr td {
-	border: 0 none;
+	border: 1px solid #e5e5e5;
 	padding: 6px 10px;
-	background: #fff;
-	text-align: center;
-	font-weight:bold;
-	font-size:15px;
+	background: #fff
 }
 .reviews-content-right table tr th {
-	background: #fff;
+	background: #333e48;
 	border: 0 none;
-	color: #333e48;
+	color: #fff;
 	padding: 10px;
-	text-align: center;
-	font-size:18px;
-	font-weight:bold;
+	text-align: center
 }
 .product-overview-tab .form-area {
 	margin: 15px 0 0
@@ -6214,11 +6197,9 @@ p.note {
 	background: #fff
 }
 .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
-	text-align:center;
 	border-bottom-width: 0px
 }
 .page-order .cart_navigation a.continue-btn {
-	float:right;
 	padding: 10px 20px;
 	border: 2px solid #eaeaea;
 	border-radius: 50px;
@@ -6236,7 +6217,6 @@ p.note {
 	margin-bottom: 0px
 }
 .page-order .cart_description {
-	max-width:300px;
 	font-size: 14px
 }
 .page-order .cart_navigation a.checkout-btn {
@@ -6281,43 +6261,9 @@ p.note {
 	max-width: 100px
 }
 .cart_summary td.cart_product {
-	width: 110px;
+	width: 120px;
 	padding: 15px
 }
-.cart_summary td.cart_reserve {
-	max-width: 150px;
-	text-align:center;
-	font-weight: bold;
-	color:#ff0000;
-	padding: 15px
-}
-.cart_summary td.cart_description {
-	max-width: 300px;
-	word-break:break-all;
-	padding: 15px
-}
-.cart_summary td.availability {
-	text-align:center;
-	width: 70px;
-	padding: 15px
-}
-
-.cart_summary td.price {
-	max-width: 100px;
-	padding: 15px
-}
-
-.cart_summary td.qty {
-	width: 90px;
-	padding: 15px
-}
-
-.cart_summary td.move {
-	width: 200px;
-	text-align:center;
-	padding: 15px
-}
-
 .cart_summary .price {
 	text-align: center;
 	font-weight: 600;
@@ -6360,7 +6306,6 @@ p.note {
 .cart_summary tfoot {
 	text-align: right
 }
-
 .cart_navigation {
 	margin-top: 10px;
 	float: left;
@@ -7724,64 +7669,11 @@ ul#cart-sidebar {
 }
 }
 
-.selectbox {
-	width:200px;
-	padding:10px 10;
-	font-size:14px;
-	border:1px solid #fed700;
-	background-color:#fff;
-	appearance:none; /* 기본 스타일 없애기 */
-	-webkit-appearance:none;
-	-moz-appearance:none;
-	-o-appearance:none;
-	border-radius: 2px;
-	background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
-}
-<<<<<<< HEAD
-=======
-
->>>>>>> 17ed704ab275c71777347d03cbfad8b3de9759bd
-.selectbox select::-ms-expand {
-	display:none;
-}
-
-.error_text {
-    display: block;
-    margin: 9px 0 -2px;
-    font-size: 12px;
-    line-height: 14px;
-    color: red;
-}
-
-.sel_box {
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #000;
-		border:1px solid #ccc;
-		border-radius: 4px;
-    -webkit-appearance: none;
-		-webkit-appearance:none;
-		-moz-appearance:none;
-		-o-appearance:none;
-		background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
-}
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 17ed704ab275c71777347d03cbfad8b3de9759bd
 #side-banner {
 	position:fixed;
 	 dispaly:inline-block;
 	 left:48px; /* 창에서 오른쪽 길이 */
-<<<<<<< HEAD
-	 top:33%; /* 창에서 위에서 부터의 높이 */
-=======
-	 top:40%; /* 창에서 위에서 부터의 높이 */
->>>>>>> 17ed704ab275c71777347d03cbfad8b3de9759bd
+	 top:35%; /* 창에서 위에서 부터의 높이 */
 	 z-index:102;
  }
 
