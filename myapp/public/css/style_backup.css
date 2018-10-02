@@ -795,6 +795,7 @@ select.cate-dropdown {
 	cursor: pointer;
 	color: #333e48;
 }
+
 .cate-dropdown:focus {
 	border: none;
 }
@@ -5666,7 +5667,7 @@ ul.products-list {
 }
 .product-view-area .product-details-area .price {
 	font-size: 22px;
-	color: #df3737;
+	color: #f5da81;
 	font-weight: bold
 }
 .product-view-area .product-details-area .price2 {
@@ -6015,21 +6016,26 @@ p.note {
 	color: #ed1c24
 }
 .reviews-content-right table {
-	margin-top: 15px;
+	margin-top: 2px;
 	text-align: center;
 	width: 100%
 }
 .reviews-content-right table tr td {
-	border: 1px solid #e5e5e5;
+	border: 0 none;
 	padding: 6px 10px;
-	background: #fff
+	background: #fff;
+	text-align: center;
+	font-weight:bold;
+	font-size:15px;
 }
 .reviews-content-right table tr th {
-	background: #333e48;
+	background: #fff;
 	border: 0 none;
-	color: #fff;
+	color: #333e48;
 	padding: 10px;
-	text-align: center
+	text-align: center;
+	font-size:18px;
+	font-weight:bold;
 }
 .product-overview-tab .form-area {
 	margin: 15px 0 0
@@ -6208,9 +6214,11 @@ p.note {
 	background: #fff
 }
 .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+	text-align:center;
 	border-bottom-width: 0px
 }
 .page-order .cart_navigation a.continue-btn {
+	float:right;
 	padding: 10px 20px;
 	border: 2px solid #eaeaea;
 	border-radius: 50px;
@@ -6228,6 +6236,7 @@ p.note {
 	margin-bottom: 0px
 }
 .page-order .cart_description {
+	max-width:300px;
 	font-size: 14px
 }
 .page-order .cart_navigation a.checkout-btn {
@@ -6272,9 +6281,42 @@ p.note {
 	max-width: 100px
 }
 .cart_summary td.cart_product {
-	width: 120px;
+	width: 110px;
 	padding: 15px
 }
+.cart_summary td.cart_reserve {
+	max-width: 150px;
+	text-align:center;
+	font-weight: bold;
+	color:#ff0000;
+	padding: 15px
+}
+.cart_summary td.cart_description {
+	max-width: 300px;
+	word-break:break-all;
+	padding: 15px
+}
+.cart_summary td.availability {
+	width: 70px;
+	padding: 15px
+}
+
+.cart_summary td.price {
+	max-width: 100px;
+	padding: 15px
+}
+
+.cart_summary td.qty {
+	width: 90px;
+	padding: 15px
+}
+
+.cart_summary td.move {
+	width: 200px;
+	text-align:center;
+	padding: 15px
+}
+
 .cart_summary .price {
 	text-align: center;
 	font-weight: 600;
@@ -6317,6 +6359,7 @@ p.note {
 .cart_summary tfoot {
 	text-align: right
 }
+
 .cart_navigation {
 	margin-top: 10px;
 	float: left;
@@ -7678,4 +7721,22 @@ ul#cart-sidebar {
 	top: 20%;
 	margin-left: 20%;
 }
+}
+
+.selectbox {
+	width:200px;
+	padding:10px 10;
+	font-size:14px;
+	border:1px solid #fed700;
+	background-color:#fff;
+	appearance:none; /* 기본 스타일 없애기 */
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	-o-appearance:none;
+	border-radius: 0px 0px;
+	background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
+}
+
+.selectbox select::-ms-expand {
+	display:none;
 }

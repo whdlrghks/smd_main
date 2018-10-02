@@ -5,6 +5,10 @@ const knex = require('../db/knex.js');
 const request = require('request');
 module.exports = function(req, res, callback_list) {
 
+  
+
+
+
   // function getDB(req, res){
   var reserved_list = [];
   // var sql ='SELECT Shilla_id, Shilla_pw, Shinsegae_id, Shinsegae_pw, Lotte_id, Lotte_pw FROM user_info WHERE User_info_id =?'
