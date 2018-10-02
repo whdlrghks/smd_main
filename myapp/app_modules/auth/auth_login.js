@@ -23,6 +23,7 @@ module.exports = function(passport){
 
   route.post('/register', function(req, res){
      hasher({password:req.body.password}, function(err, pass, salt, hash){
+       console.log(req.body);
        var user = {
           ID :'local:'+req.body.username,
           Password:hash,
@@ -33,12 +34,26 @@ module.exports = function(passport){
           Salt:salt,
           Email:req.body.email
         };
-       knex('User').insert(user).then(function(){
-         req.login(user, function(err){
-           req.session.save(function(){
-             res.redirect('/user/mypage');
-           });
-         });
+       knex('User').insert(user).then(function(list){
+
+         request.post({
+             url: 'http://localhost:5050/api/register_user',
+             body:{
+               user_id: list
+             },
+             json: true
+           },
+           function(error, response) {
+
+             if(response.body=='success'){
+               req.login(user, function(err){
+                 req.session.save(function(){
+                   res.redirect('/user/mypage');
+                 });
+               });
+             }
+           }
+         );
        }).catch(function(err){
          console.log(err);
          res.status(500);
@@ -140,6 +155,9 @@ module.exports = function(passport){
       })
       .then(
         function(){
+
+            req.user.Email = req.body.email;
+
             res.redirect('/user/mypage');
         }
       )
@@ -158,50 +176,65 @@ module.exports = function(passport){
 
 route.post('/lottemembership', function(req, res){
     //DB관련 문제 해결 필요 User_info_id
-     var user = {
-       User_info_id : req.user.User_id,
-       Shilla_id : null,
-       Shilla_pw: null,
-       Shinsegae_id : null,
-       Shinsegae_pw: null,
-       Lotte_id :req.body.username,
-       Lotte_pw:req.body.password,
-       User_id : req.user.User_id
-     };
+     // var user = {
+     //   User_info_id : req.user.User_id,
+     //   Shilla_id : null,
+     //   Shilla_pw: null,
+     //   Shinsegae_id : null,
+     //   Shinsegae_pw: null,
+     //   Lotte_id :req.body.username,
+     //   Lotte_pw:req.body.password,
+     //   User_id : req.user.User_id
+     // };
      //python에 보낼 사용자 인증정보 설정
-     var options={
+     // var options={
+     //   mode: 'text',
+     //  // pythonPath: '',
+     //  pythonOptions: ['-u'],
+     //  scriptPath: '',
+     //  args: [req.body.username,req.body.password]
+     // }
+     var options_lt = {
        mode: 'text',
-      // pythonPath: '',
-      pythonOptions: ['-u'],
-      scriptPath: '',
-      args: [req.body.username,req.body.password]
+       // pythonPath: '',
+       pythonOptions: ['-u'],
+       scriptPath: '',
+       args: [req.body.username,req.body.password]
+     }
+     var bodys = {
+        user_id : req.user.User_id,
+       options : options_lt
      }
      request.post({
        url: 'http://localhost:5050/api/checklottemembership',
-       body: options,
+       body: bodys,
        json: true
       },
       function(error, response, body) {
         if(body=='lotte success'){
-          knex.from('User_info').insert(user)
-          .then(function(){
-              res.redirect('/popup/success');
-          })
-          .catch(function(err){
-            knex.from('User_info').where("User_info_id",req.user.User_id)
-              .update({
-                'Lotte_id' : req.body.username,
-                'Lotte_pw' : req.body.password,
-                'User_id' : req.user.User_id
-              })
-              .then(function(){
-                res.redirect('/popup/success');
-              })
-              .catch(function(err){
-                console.log("Update error "+ req.user.User_id + "'s" + err);
-                res.redirect('/popup/lotte')
-              })
-          })
+          res.redirect('/popup/success');
+          // rest로 보내는 양식
+
+
+          // knex.from('User_info').insert(user)
+          // .then(function(){
+          //     res.redirect('/popup/success');
+          // })
+          // .catch(function(err){
+          //   knex.from('User_info').where("User_info_id",req.user.User_id)
+          //     .update({
+          //       'Lotte_id' : req.body.username,
+          //       'Lotte_pw' : req.body.password,
+          //       'User_id' : req.user.User_id
+          //     })
+          //     .then(function(){
+          //       res.redirect('/popup/success');
+          //     })
+          //     .catch(function(err){
+          //       console.log("Update error "+ req.user.User_id + "'s" + err);
+          //       res.redirect('/popup/lotte')
+          //     })
+          // })
         }
         else{
           res.redirect('/popup/lotte_error');
@@ -215,50 +248,62 @@ route.post('/lottemembership', function(req, res){
 
 route.post('/shinlamembership', function(req, res){
 
-     var user = {
-       User_info_id : req.user.User_id,
-       Shilla_id : req.body.username,
-       Shilla_pw: req.body.password,
-       Shinsegae_id : null,
-       Shinsegae_pw: null,
-       Lotte_id : null,
-       Lotte_pw: null,
-       User_id : req.user.User_id
-     };
-     //python에 보낼 사용자 인증정보 설정
-     var options={
+     // var user = {
+     //   User_info_id : req.user.User_id,
+     //   Shilla_id : req.body.username,
+     //   Shilla_pw: req.body.password,
+     //   Shinsegae_id : null,
+     //   Shinsegae_pw: null,
+     //   Lotte_id : null,
+     //   Lotte_pw: null,
+     //   User_id : req.user.User_id
+     // };
+     // //python에 보낼 사용자 인증정보 설정
+     // var options={
+     //   mode: 'text',
+     //  pythonOptions: ['-u'],
+     //  scriptPath: '',
+     //  args: [req.body.username,req.body.password]
+     // }
+     var options_sl = {
        mode: 'text',
-      pythonOptions: ['-u'],
-      scriptPath: '',
-      args: [req.body.username,req.body.password]
+       // pythonPath: '',
+       pythonOptions: ['-u'],
+       scriptPath: '',
+       args: [req.body.username,req.body.password]
+     }
+     var bodys = {
+       user_id : req.user.User_id,
+       options : options_sl
      }
      request.post({
        url: 'http://localhost:5050/api/checkshinlamembership',
-       body: options,
+       body: bodys,
        json: true
       },
       function(error, response, body) {
         if(body=='shinla success'){
-          knex.from('User_info').insert(user)
-          .then(function(){
-              res.redirect('/popup/success');
-          })
-          .catch(function(err){
-
-            knex.from('User_info').where("User_info_id",req.user.User_id)
-              .update({
-                'Shilla_id' : req.body.username,
-                'Shilla_pw' : req.body.password,
-                'User_id' : req.user.User_id
-              })
-              .then(function(){
-                res.redirect('/popup/success');
-              })
-              .catch(function(err){
-                console.log("Update error "+ req.user.User_id + "'s" + err);
-                res.redirect('/popup/shilla')
-              })
-          })
+          res.redirect('/popup/success');
+          // knex.from('User_info').insert(user)
+          // .then(function(){
+          //     res.redirect('/popup/success');
+          // })
+          // .catch(function(err){
+          //
+          //   knex.from('User_info').where("User_info_id",req.user.User_id)
+          //     .update({
+          //       'Shilla_id' : req.body.username,
+          //       'Shilla_pw' : req.body.password,
+          //       'User_id' : req.user.User_id
+          //     })
+          //     .then(function(){
+          //       res.redirect('/popup/success');
+          //     })
+          //     .catch(function(err){
+          //       console.log("Update error "+ req.user.User_id + "'s" + err);
+          //       res.redirect('/popup/shilla')
+          //     })
+          // })
         }
         else{
           res.redirect('/popup/shilla_error');
@@ -273,49 +318,61 @@ route.post('/shinlamembership', function(req, res){
 
 route.post('/ssgmembership', function(req, res){
 
-     var user = {
-       User_info_id : req.user.User_id,
-       Shilla_id : null,
-       Shilla_pw: null,
-       Shinsegae_id : req.body.username,
-       Shinsegae_pw: req.body.password,
-       Lotte_id : null,
-       Lotte_pw: null,
-       User_id : req.user.User_id
-     };
-     //python에 보낼 사용자 인증정보 설정
-     var options={
+     // var user = {
+     //   User_info_id : req.user.User_id,
+     //   Shilla_id : null,
+     //   Shilla_pw: null,
+     //   Shinsegae_id : req.body.username,
+     //   Shinsegae_pw: req.body.password,
+     //   Lotte_id : null,
+     //   Lotte_pw: null,
+     //   User_id : req.user.User_id
+     // };
+     // //python에 보낼 사용자 인증정보 설정
+     // var options={
+     //   mode: 'text',
+     //  pythonOptions: ['-u'],
+     //  scriptPath: '',
+     //  args: [req.body.username,req.body.password]
+     // }
+     var options_ssg = {
        mode: 'text',
-      pythonOptions: ['-u'],
-      scriptPath: '',
-      args: [req.body.username,req.body.password]
+       // pythonPath: '',
+       pythonOptions: ['-u'],
+       scriptPath: '',
+       args: [req.body.username,req.body.password]
+     }
+     var bodys = {
+        user_id : req.user.User_id,
+       options : options_ssg
      }
      request.post({
        url: 'http://localhost:5050/api/checkssgmembership',
-       body: options,
+       body: bodys,
        json: true
       },
       function(error, response, body) {
         if(body=='ssg success'){
-          knex.from('User_info').insert(user)
-          .then(function(){
-              res.redirect('/popup/success');
-          })
-          .catch(function(err){
-            knex.from('User_info').where("User_info_id",req.user.User_id)
-              .update({
-                'Shinsegae_id' : req.body.username,
-                'Shinsegae_pw' : req.body.password,
-                'User_id' : req.user.User_id
-              })
-              .then(function(){
-                res.redirect('/popup/success');
-              })
-              .catch(function(err){
-                console.log("Update error "+ req.user.User_id + "'s" + err);
-                res.redirect('/popup/shinsegae')
-              })
-          })
+          res.redirect('/popup/success');
+          // knex.from('User_info').insert(user)
+          // .then(function(){
+          //     res.redirect('/popup/success');
+          // })
+          // .catch(function(err){
+          //   knex.from('User_info').where("User_info_id",req.user.User_id)
+          //     .update({
+          //       'Shinsegae_id' : req.body.username,
+          //       'Shinsegae_pw' : req.body.password,
+          //       'User_id' : req.user.User_id
+          //     })
+          //     .then(function(){
+          //       res.redirect('/popup/success');
+          //     })
+          //     .catch(function(err){
+          //       console.log("Update error "+ req.user.User_id + "'s" + err);
+          //       res.redirect('/popup/shinsegae')
+          //     })
+          // })
         }
         else{
           res.redirect('/popup/shinsegae_error');

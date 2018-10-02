@@ -5,6 +5,7 @@ var pbkfd2Password = require("pbkdf2-password");
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var hasher = pbkfd2Password();
+var sendrest = require('../util/sendrest');
 module.exports = function(app){
 
   // app.use(passport.initialize());
@@ -46,8 +47,11 @@ module.exports = function(app){
              return hasher({password:pwd, salt:user.Salt}, function(err, pass, salt, hash){
                if(hash === user.Password){
                  console.log('[INFO] ' + user.Username + ' IS LOGGED IN');
-                 console.log('LocalStrategy', session);
-                 done(null, session);
+                 //rest
+                 sendrest.getlogin(user.User_id, function(result) {
+                   console.log('LocalStrategy', session);
+                   done(null, session);
+                 })
                } else {
                  done(null, false);
                }

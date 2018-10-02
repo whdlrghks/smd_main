@@ -5,6 +5,10 @@ const knex = require('../db/knex.js');
 const request = require('request');
 module.exports = function(req, res, callback_list) {
 
+  
+
+
+
   // function getDB(req, res){
   var reserved_list = [];
   // var sql ='SELECT Shilla_id, Shilla_pw, Shinsegae_id, Shinsegae_pw, Lotte_id, Lotte_pw FROM user_info WHERE User_info_id =?'
@@ -23,6 +27,7 @@ module.exports = function(req, res, callback_list) {
         reserved_list[0]=false;
         reserved_list[1]=false;
         reserved_list[2]=false;
+        console.log("RESERVED ",reserved_list);
         callback_list(reserved_list)
       } else {
         var SL_id = results[0].Shilla_id,
@@ -56,8 +61,12 @@ module.exports = function(req, res, callback_list) {
       }
     })
     .catch(function(err) {
-      console.log("Get data from DB by" + req.user.User_id);
-      callback_list("no_list")
+      reserved_list[0]=false;
+      reserved_list[1]=false;
+      reserved_list[2]=false;
+      console.log(err);
+      console.log("Get data from DB by " + req.user.User_id);
+      callback_list(reserved_list)
     })
 
 

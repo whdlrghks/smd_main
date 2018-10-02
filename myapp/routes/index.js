@@ -5,6 +5,7 @@ var getEvent = require('../app_modules/util/getEvent');
 var getReserved = require('../app_modules/util/reserve');
 var sendrest = require('../app_modules/util/sendrest');
 const request = require('request');
+var nodemailer = require('nodemailer');
 /* GET home page. */
 router.get('/', function(req, res) {
   //로그인 되어있는지 안되어있는지 구분하기 위한 값
@@ -20,13 +21,13 @@ router.get('/', function(req, res) {
         u_name = '';
         res.render('index', {
           username: u_name,
-          productlist : body
+          productlist: body
         });
       } else {
         u_name = req.user.Username
         res.render('index', {
           username: u_name,
-          productlist : body
+          productlist: body
         });
       }
     }
@@ -105,13 +106,14 @@ router.get('/reserve_shinsegae', function(req, res) {
 router.get('/Dutyfree_linkage', function(req, res) {
   var u_name;
   if (req.user != undefined) {
-    getReserved(req, res, function(list) {
+    sendrest.getReseverdlist(req.user.User_id, function(result) {
       u_name = req.user.Username;
+      console.log(result);
       res.render('Dutyfree_linkage', {
         username: u_name,
-        SL_check: list[0],
-        LT_check: list[1],
-        SSG_check: list[2]
+        SL_check: result.sl_check,
+        LT_check: result.lt_check,
+        SSG_check: result.ssg_check
       })
 
     })
@@ -125,13 +127,14 @@ router.get('/Dutyfree_linkage', function(req, res) {
 router.get('/Manage_reserve', function(req, res) {
   var u_name;
   if (req.user != undefined) {
-    getReserved(req, res, function(list) {
+    //가격만 요청하는 거 따로 또 만들rl.
+    sendrest.getReseverdlist(req.user.User_id, function(result) {
       u_name = req.user.Username;
       res.render('Manage_reserve', {
         username: u_name,
-        lt_reserved: list[0],
-        SL_reserved: list[1],
-        SSG_reserved: list[2],
+        SL_reserved: result.sl_check,
+        LT_reserved: result.lt_check,
+        SSG_reserved: result.ssg_check,
         user_id: req.user.User_id
       })
 
@@ -144,13 +147,14 @@ router.get('/Manage_reserve', function(req, res) {
 
 router.post('/getreserved', function(req, res) {
   var result_list = [];
-  console.log('[SL, LT, SSG] ' + req.user.User_id + 'REQUEST GET ALL _RESERVED');
+
+  console.log('[SL, LT, SSG] ' + req.user.User_id + ' REQUEST GET ALL _RESERVED');
   async.parallel([
       function(callback) {
         if (req.body.SL_check) {
           sendrest.getSLreserved(req.user.User_id, function(results) {
-            req.session.sl_reserved = results[0];
-            result_list[0] = results[0];
+            req.session.sl_reserved = results;
+            result_list[0] = results;
             callback(null, "finish");
           })
         } else {
@@ -161,8 +165,8 @@ router.post('/getreserved', function(req, res) {
       function(callback) {
         if (req.body.LT_check) {
           sendrest.getLTreserved(req.user.User_id, function(results) {
-            req.session.lt_reserved = results[0];
-            result_list[1] = results[0];
+            req.session.lt_reserved = results;
+            result_list[1] = results;
             callback(null, "finish");
           })
         } else {
@@ -173,8 +177,8 @@ router.post('/getreserved', function(req, res) {
       function(callback) {
         if (req.body.SSG_check) {
           sendrest.getSSGreserved(req.user.User_id, function(results) {
-            req.session.ssg_reserved = results[0];
-            result_list[2] = results[0];
+            req.session.ssg_reserved = results;
+            result_list[2] = results;
             callback(null, "finish");
           })
         } else {
@@ -217,25 +221,149 @@ router.post('/getreserved', function(req, res) {
 
 router.post('/autocomplete', function(req, res) {
   console.log("[REQUEST AUTO COMPLETE]");
-  sendrest.getAutocomplete(function(results){
-    var availableTags=results;
+  sendrest.getAutocomplete(function(results) {
+    var availableTags = results;
     res.json(availableTags);
   })
 })
 
+router.post('/Getreviewlist', function(req, res) {
+  console.log("[REQUEST REVIEW LIST]");
+  console.log(req.body);
+  sendrest.getListreview(req.body.prd_id, req.body.startpage, function(results) {
+    console.log("[RESULT REVIEW LIST OK]");
+    res.json(results);
+  })
+})
+
+router.post('/EnrollReview', function(req, res) {
+  console.log("[REQUEST REROLL REVIEW]");
+  // body: {
+  //   prd_id : prd_id,
+  //   user_id: user_id,
+  //   username : username,
+  //   rating : rating,
+  //   content : content
+  // },
+  sendrest.getEnrollreview(req.body.prd_id, req.body.user_id, req.body.username, req.body.rating, req.body.content, function(results) {
+
+    sendrest.getListreview(req.body.prd_id, req.body.startpage, function(results_list) {
+      console.log("[LIST RESULTS OK ]");
+      res.json(results_list);
+    })
+  })
+})
+
+
 router.get('/shopping_cart', function(req, res) {
+
+    var u_name;
+    if (req.user == undefined) {
+      u_name = '';
+      res.render('/', {
+        username: u_name
+      });
+    } else {
+      u_name = req.user.Username;
+      let user_id = req.user.User_id;
+      sendrest.getCartlist(user_id, function(result) {
+        // var result = {
+        //   product_list : product,
+        //   LT_reserved:LT_reserved,
+        //   SL_reserved:SL_reserved,
+        //   SSG_reserved:SSG_reserved
+        // };
+
+
+
+        res.render('shopping_cart', {
+          username: u_name,
+          product_list: result.product_list,
+          LT_reserved: result.LT_reserved,
+          SL_reserved: result.SL_reserved,
+          SSG_reserved: result.SSG_reserved
+        });
+      })
+
+
+    }
+
+  }
+
+)
+
+router.post('/reserve/refresh', function(req, res) {
+  console.log("[REQUEST RESERVED REFRESH]");
+  var user_id = req.body.user_id;
+  sendrest.getReservedRefresh(user_id, function(results) {
+    console.log("[FINISH REQUEST RESERVED REFRESH]");
+    res.json(results)
+  })
+})
+
+// router.post('/inquiry_board', function(req, res) {
+//
+//   console.log("[REQUEST RESERVED REFRESH]");
+//   var user_id = req.body.user_id;
+//   sendrest.getAutocomplete(user_id,function(results){
+//     console.log("[FINISH REQUEST RESERVED REFRESH]");
+//     res.json(results)
+//   })
+// })
+//
+router.get('/inquiry_page', function(req, res) {
   var u_name;
   if (req.user == undefined) {
     u_name = '';
-    res.render('shopping_cart', {
+    res.render('inquiry_page', {
       username: u_name
     });
   } else {
-    u_name = req.user.Username
-    res.render('shopping_cart', {
+    u_name = req.user.Username;
+    res.render('inquiry_page', {
       username: u_name
     });
   }
+})
+router.post('/sendEmail', function(req, res) {
+
+  console.log("[SENDEMAIL]");
+
+
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'smdManager123@gmail.com',
+      pass: 'tpauseo123'
+    }
+  });
+
+  var mailOption = {
+    from: req.body.inquiry_email,
+    to: 'smdManager123@gmail.com',
+    subject: req.body.inquiry_Title,
+    text: req.body.inquiry_email +"\n email from \n" + req.body.inquiry_Content
+  };
+
+  transporter.sendMail(mailOption, function(err, info) {
+    if (err) {
+      console.error('Send Mail error : ', err);
+    } else {
+      console.log('Message sent : ', info);
+      var u_name;
+      if (req.user == undefined) {
+        u_name = '';
+        res.render('inquiry_page', {
+          username: u_name
+        });
+      } else {
+        u_name = req.user.Username;
+        res.render('inquiry_page', {
+          username: u_name
+        });
+      }
+    }
+  });
 
 })
 
