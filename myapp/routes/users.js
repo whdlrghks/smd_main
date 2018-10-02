@@ -74,16 +74,16 @@ router.get('/register_checked', function(req, res) {
 
 router.get('/password_input', function(req, res) {
   var u_name;
-  if (req.user != undefined) {
+  if (req.user == undefined) {
     u_name = '';
-    res.render('password_input', {
-      username: u_name,
-      errormsg: ''
+    res.render('/', {
+      username: u_name
     });
   } else {
     u_name = req.user.Username
-    res.render('/', {
-      username: u_name
+    res.render('password_input', {
+      username: u_name,
+      errormsg: ''
     });
   }
 
@@ -93,16 +93,17 @@ router.get('/password_input', function(req, res) {
 //ajax로 바꾸기
 router.get('/password_input_error', function(req, res) {
   var u_name;
-  if (req.user != undefined) {
+  if (req.user == undefined) {
     u_name = '';
+    res.render('/', {
+      username: u_name
+    });
+
+  } else {
+    u_name = req.user.Username
     res.render('password_input', {
       username: u_name,
       errormsg: '아이디와 비밀번호를 확인하세요'
-    });
-  } else {
-    u_name = req.user.Username
-    res.render('/', {
-      username: u_name
     });
   }
 
@@ -118,7 +119,7 @@ router.get('/mypage', function(req, res) {
       Email: req.user.Email
     });
 
-  } else res.render('index', {
+  } else res.render('/', {
     username: ''
   });
 });
@@ -130,13 +131,13 @@ router.get('/mypage', function(req, res) {
 
 router.get('/User_info_modify', function(req, res) {
   var u_name;
-  if (req.user != undefined) {
+  if (req.user == undefined) {
     u_name = '';
-    res.render('User_info_modify', {
+    res.render('/', {
       username: u_name
     });
   } else {
-    u_name = req.user.Username
+    u_name = req.user.Username;
     res.render('User_info_modify', {
       username: u_name
     });

@@ -295,7 +295,7 @@ router.get('/shopping_cart', function(req, res) {
 router.post('/reserve/refresh', function(req, res) {
   console.log("[REQUEST RESERVED REFRESH]");
   var user_id = req.body.user_id;
-  sendrest.getAutocomplete(user_id, function(results) {
+  sendrest.getReservedRefresh(user_id, function(results) {
     console.log("[FINISH REQUEST RESERVED REFRESH]");
     res.json(results)
   })

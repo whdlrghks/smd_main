@@ -29,7 +29,7 @@
 
               <div class="box-authentication">
                 <h4>로그인</h4>
-               <p class="before-login-text">아이디, 비밀번호를 입력해주세요</p>
+               <p class="before-login-text"  style="margin:0 0;">회원님의 아이디와 비밀번호를 입력해주세요.</p>
                <p style="color:red"><%= errormsg %></p>
                 <form action="/auth/login" method="post">
                   <label for="emmail_login">아이디<span class="required">*</span></label>
@@ -40,12 +40,12 @@
                 </form>
               </div>
               <div class="box-authentication">
-                <h4>회원가입</h4><p>회원가입 후 세면대의 다양한 서비스를 이용해보세요</p>
-                <button class="button" onclick="location.href='/user/register'"><i class="fa fa-user"></i>&nbsp; <span>회원가입</span></button>
+                <h4>회원가입</h4><p style="margin:0 0;">회원가입 후 세면대의 서비스를 이용해보세요</p>
+                <p style="margin:0 0 20px;"><button class="button" onclick="location.href='/user/register'"><i class="fa fa-user"></i>&nbsp; <span>회원가입</span></button></p>
                 <div class="register-benefits">
 												<h5>회원가입 및 유의사항 :</h5>
 												<ul>
-													<li>만 14세 이상부터 회원가입이 가능합니다.</li>
+													<li>만 15세 이상부터 회원가입이 가능합니다.</li>
 													<li>회원가입은 무료입니다.</li>
 												</ul>
 											</div>
