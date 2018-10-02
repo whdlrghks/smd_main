@@ -6022,11 +6022,11 @@ p.note {
 }
 .reviews-content-right table tr td {
 	border: 0 none;
-	padding: 6px 10px;
+	padding: 6px 8px;
 	background: #fff;
 	text-align: center;
 	font-weight:bold;
-	font-size:15px;
+	font-size:13px;
 }
 .reviews-content-right table tr th {
 	background: #fff;
@@ -6034,7 +6034,7 @@ p.note {
 	color: #333e48;
 	padding: 10px;
 	text-align: center;
-	font-size:18px;
+	font-size:16px;
 	font-weight:bold;
 }
 .product-overview-tab .form-area {
@@ -7737,7 +7737,10 @@ ul#cart-sidebar {
 	border-radius: 2px;
 	background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 17ed704ab275c71777347d03cbfad8b3de9759bd
 .selectbox select::-ms-expand {
 	display:none;
 }

@@ -56,9 +56,11 @@ router.get('/single/', function(req, res) {
   var product_id = req.query.id;
   var user_id;
   if (req.user != undefined) {
-    user_id = req.user.User_id;
+    user_id=req.user._id;
+    username= req.user.User_id.split(":")[1].replace("]","");
     u_name = req.user.Username;
   } else {
+    username= "common";
     user_id = '';
     u_name = '';
   }
@@ -69,13 +71,14 @@ router.get('/single/', function(req, res) {
     console.log(productlist);
     console.log('Finish upload Product data in ', new Date().getTime() - timestamp2, 'ms');
     console.log(req.user);
+    console.log("user_id"+user_id);
     var depth1 = productlist[0][0].prd_1st;
     var depth2 = productlist[0][0].prd_2nd;
     var depth3 = productlist[0][0].prd_3rd;
     if (req.user == undefined) {
       res.render('single_product', {
         user_id : user_id,
-        username: u_name,
+        username: username,
         product: productlist[0][0],
         SL_reserved: '0',
         LT_reserved: '0',
@@ -87,7 +90,7 @@ router.get('/single/', function(req, res) {
     } else {
       res.render('single_product', {
         user_id : user_id,
-        username: u_name,
+        username: username,
         product: productlist[0][0],
         SL_reserved: productlist[1][0].SL_reserved,
         LT_reserved: productlist[1][0].LT_reserved,
@@ -231,6 +234,7 @@ router.get('/search/', function(req, res) {
       } else {
         res.render('shop_grid_full_width', {
           username: u_name,
+          total: productlist[3],
           totalcount: productlist[0],
           productlist: productlist[1],
           startpage: productlist[2],
@@ -248,6 +252,7 @@ router.get('/search/', function(req, res) {
       } else {
         res.render('shop_grid_full_width', {
           username: u_name,
+          total: productlist[3],
           totalcount: productlist[0],
           productlist: productlist[1],
           startpage: productlist[2],
@@ -264,7 +269,7 @@ router.get('/search/', function(req, res) {
 
 router.post('/addCart', function(req, res) {
   var prd_id = req.body.prd_id;
-  var user_id = req.user.User_id;
+  var user_id = req.user._id;
   var duty_category = req.body.duty_category;
   var storage = req.body.storage; //boolean
   var percent = req.body.percent;

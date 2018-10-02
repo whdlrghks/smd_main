@@ -22,14 +22,18 @@ module.exports = function(passport){
 
 
   route.post('/register', function(req, res){
+    console.log(req.body);
      hasher({password:req.body.password}, function(err, pass, salt, hash){
+
        console.log(req.body);
        var user = {
           ID :'local:'+req.body.username,
           Password:hash,
           Username:req.body.displayName,
-          Gender:req.body.gender,
-          Job:req.body.job,
+          Gender:"woman",
+          Job:"student",
+          // Gender:req.body.gender,
+          // Job:req.body.job,
           // Age:req.body.age,
           Age:'0',
           Salt:salt,
@@ -47,11 +51,12 @@ module.exports = function(passport){
            function(error, response) {
 
              if(response.body=='success'){
-               req.login(user, function(err){
-                 req.session.save(function(){
-                   res.redirect('/user/mypage');
-                 });
-               });
+               // req.login(user, function(err){
+                 res.redirect("/");
+                 // req.session.save(function(){
+                 //   res.redirect('/user/mypage');
+                 // });
+               // });
              }
            }
          );

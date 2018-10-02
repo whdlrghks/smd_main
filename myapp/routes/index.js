@@ -106,7 +106,7 @@ router.get('/reserve_shinsegae', function(req, res) {
 router.get('/Dutyfree_linkage', function(req, res) {
   var u_name;
   if (req.user != undefined) {
-    sendrest.getReseverdlist(req.user.User_id, function(result) {
+    sendrest.getReseverdlist(req.user._id, function(result) {
       u_name = req.user.Username;
       console.log(result);
       res.render('Dutyfree_linkage', {
@@ -128,14 +128,14 @@ router.get('/Manage_reserve', function(req, res) {
   var u_name;
   if (req.user != undefined) {
     //가격만 요청하는 거 따로 또 만들rl.
-    sendrest.getReseverdlist(req.user.User_id, function(result) {
+    sendrest.getReseverdlist(req.user._id, function(result) {
       u_name = req.user.Username;
       res.render('Manage_reserve', {
         username: u_name,
         SL_reserved: result.sl_check,
         LT_reserved: result.lt_check,
         SSG_reserved: result.ssg_check,
-        user_id: req.user.User_id
+        user_id: req.user._id
       })
 
     })
@@ -148,11 +148,11 @@ router.get('/Manage_reserve', function(req, res) {
 router.post('/getreserved', function(req, res) {
   var result_list = [];
 
-  console.log('[SL, LT, SSG] ' + req.user.User_id + ' REQUEST GET ALL _RESERVED');
+  console.log('[SL, LT, SSG] ' + req.user._id + ' REQUEST GET ALL _RESERVED');
   async.parallel([
       function(callback) {
         if (req.body.SL_check) {
-          sendrest.getSLreserved(req.user.User_id, function(results) {
+          sendrest.getSLreserved(req.user._id, function(results) {
             req.session.sl_reserved = results;
             result_list[0] = results;
             callback(null, "finish");
@@ -164,7 +164,7 @@ router.post('/getreserved', function(req, res) {
       },
       function(callback) {
         if (req.body.LT_check) {
-          sendrest.getLTreserved(req.user.User_id, function(results) {
+          sendrest.getLTreserved(req.user._id, function(results) {
             req.session.lt_reserved = results;
             result_list[1] = results;
             callback(null, "finish");
@@ -176,7 +176,7 @@ router.post('/getreserved', function(req, res) {
       },
       function(callback) {
         if (req.body.SSG_check) {
-          sendrest.getSSGreserved(req.user.User_id, function(results) {
+          sendrest.getSSGreserved(req.user._id, function(results) {
             req.session.ssg_reserved = results;
             result_list[2] = results;
             callback(null, "finish");
@@ -196,23 +196,23 @@ router.post('/getreserved', function(req, res) {
 // 개별로 적립금 금액 가져오기
 // router.post('/getSLreserved', function(req, res){
 //
-//   console.log('[SL] ' + req.user.User_id + ' REQUEST GET SL_RESERVED ');
-//   sendrest.getSLreserved(req.user.User_id, function(results){
+//   console.log('[SL] ' + req.user._id + ' REQUEST GET SL_RESERVED ');
+//   sendrest.getSLreserved(req.user._id, function(results){
 //     req.session.sl_reserved=results[0];
 //     res.json(results);
 //   })
 // })
 //
 // router.post('/getLTreserved', function(req, res){
-//   console.log('[LT] ' + req.user.User_id + ' REQUEST GET LT_RESERVED ');
-//   sendrest.getLTreserved(req.user.User_id, function(results){
+//   console.log('[LT] ' + req.user._id + ' REQUEST GET LT_RESERVED ');
+//   sendrest.getLTreserved(req.user._id, function(results){
 //     req.session.lt_reserved=results[0];
 //     res.json(results);
 //   })
 // })
 // router.post('/getSSGreserved', function(req, res){
-//   console.log('[SSG] ' + req.user.User_id + ' REQUEST GET SSG_RESERVED ');
-//   sendrest.getSSGreserved(req.user.User_id, function(results){
+//   console.log('[SSG] ' + req.user._id + ' REQUEST GET SSG_RESERVED ');
+//   sendrest.getSSGreserved(req.user._id, function(results){
 //     req.session.ssg_reserved=results[0];
 //     res.json(results);
 //   })
@@ -265,7 +265,7 @@ router.get('/shopping_cart', function(req, res) {
       });
     } else {
       u_name = req.user.Username;
-      let user_id = req.user.User_id;
+      let user_id = req.user._id;
       sendrest.getCartlist(user_id, function(result) {
         // var result = {
         //   product_list : product,
@@ -297,6 +297,7 @@ router.post('/reserve/refresh', function(req, res) {
   var user_id = req.body.user_id;
   sendrest.getReservedRefresh(user_id, function(results) {
     console.log("[FINISH REQUEST RESERVED REFRESH]");
+    console.log(results);
     res.json(results)
   })
 })
