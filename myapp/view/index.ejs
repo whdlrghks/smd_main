@@ -435,10 +435,11 @@ var mega_menu = '0';
       async: true,
       dataType: "JSON",
       success: function(json) {
+        var result = json.slice(0,10);
         $("#searchbox").autocomplete({
           source:  function(request, response) {
-                var results = $.ui.autocomplete.filter(json, request.term);
-                response(results.slice(0, 10));
+                // var results = $.ui.autocomplete.filter(json, request.term);
+                response(result);
             },
           select: function(event, ui) {
             console.log(ui.item);
