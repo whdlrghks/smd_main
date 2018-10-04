@@ -103,7 +103,7 @@ router.get('/password_input_error', function(req, res) {
     u_name = req.user.Username
     res.render('password_input', {
       username: u_name,
-      errormsg: '아이디와 비밀번호를 확인하세요'
+      errormsg: '비밀번호를 확인하세요'
     });
   }
 

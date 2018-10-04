@@ -11,7 +11,7 @@ function getdata(dutyfree){
   //날짜
   var date = "1002";
   console.log(path.join(__dirname, '../timesale/'+dutyfree+'_'+date+'.csv'));
-      var inputFile=path.join(__dirname, '../timesale/'+dutyfree+'.csv');
+      var inputFile=path.join(__dirname, '../timesale/'+dutyfree+'_'+date+'.csv');
       var parser = parse({delimiter: ','}, function (err, data) {
         async.eachSeries(data, function (line, callback_list) {
           // do something with the line

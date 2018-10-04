@@ -121,16 +121,16 @@
                   </div>
                   <div class="col-xs-12">
                     <p style="margin:0 0;"><label>성별</label></p>
-                    <select class="sel_box" id="sex">
-                      <option selected> 성별</option>
+                    <select class="sel_box" id="sex" name="gender">
+                      <option > 성별</option>
                       <option value="Man">남자</option>
                       <option value="Woman">여자</option>
                     </select>
                   </div>
                   <div class="col-xs-12">
                     <p style="margin:0 0;"><label>직업</label></p>
-                    <select class="sel_box">
-                      <option selected> 직업</option>
+                    <select class="sel_box" name="job">
+                      <option > 직업</option>
                       <option value="학생">학생</option>
                       <option value="회사원">회사원</option>
                       <option value="주부">주부</option>
@@ -146,7 +146,7 @@
                   </div>
                   <div class="col-xs-12" style="text-align:center;">
                     <div class="submit-text">
-                      <button class="button" onClick="addUser();"><i class="fa fa-user"></i>&nbsp; <span>가입하기</span></button>
+                      <button class="button"  type="button" onClick="addUser();"><i class="fa fa-user"></i>&nbsp; <span>가입하기</span></button>
                     </div>
                   </div>
                 </div>
@@ -254,10 +254,12 @@ function addUser() {
       async: true,
       dataType: "JSON",
       success: function(json) {
+        var result = json.slice(0,10);
         $("#searchbox").autocomplete({
           source:  function(request, response) {
-                var results = $.ui.autocomplete.filter(json, request.term);
-                response(results.slice(0, 10));
+                // var results = $.ui.autocomplete.filter(json, request.term);
+                // var results= json;
+                response(result);
             },
           select: function(event, ui) {
             console.log(ui.item);

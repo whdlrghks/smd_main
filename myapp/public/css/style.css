@@ -6022,11 +6022,11 @@ p.note {
 }
 .reviews-content-right table tr td {
 	border: 0 none;
-	padding: 6px 10px;
+	padding: 6px 8px;
 	background: #fff;
 	text-align: center;
 	font-weight:bold;
-	font-size:15px;
+	font-size:13px;
 }
 .reviews-content-right table tr th {
 	background: #fff;
@@ -6034,7 +6034,7 @@ p.note {
 	color: #333e48;
 	padding: 10px;
 	text-align: center;
-	font-size:18px;
+	font-size:16px;
 	font-weight:bold;
 }
 .product-overview-tab .form-area {
@@ -7769,19 +7769,11 @@ ul#cart-sidebar {
 		background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 17ed704ab275c71777347d03cbfad8b3de9759bd
 #side-banner {
 	position:fixed;
 	 dispaly:inline-block;
 	 left:48px; /* 창에서 오른쪽 길이 */
-<<<<<<< HEAD
 	 top:33%; /* 창에서 위에서 부터의 높이 */
-=======
-	 top:40%; /* 창에서 위에서 부터의 높이 */
->>>>>>> 17ed704ab275c71777347d03cbfad8b3de9759bd
 	 z-index:102;
  }
 

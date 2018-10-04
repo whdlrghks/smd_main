@@ -1,11 +1,9 @@
-
 const knex = require('../db/knex.js');
 // var conn = require('./db')();
 var pbkfd2Password = require("pbkdf2-password");
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var hasher = pbkfd2Password();
-var sendrest = require('../util/sendrest');
 module.exports = function(app){
 
   // app.use(passport.initialize());
@@ -35,8 +33,10 @@ module.exports = function(app){
           else{
             var user = rows[0];
             var session = {
+
+              User_id : user.ID,
               Username : user.Username,
-              User_id : user.User_id,
+              _id : user.User_id,
               Gender : user.Gender,
               Age : user.Age,
               Salt : user.Salt,
@@ -47,11 +47,8 @@ module.exports = function(app){
              return hasher({password:pwd, salt:user.Salt}, function(err, pass, salt, hash){
                if(hash === user.Password){
                  console.log('[INFO] ' + user.Username + ' IS LOGGED IN');
-                 //rest
-                 sendrest.getlogin(user.User_id, function(result) {
-                   console.log('LocalStrategy', session);
-                   done(null, session);
-                 })
+                 console.log('LocalStrategy', session);
+                 done(null, session);
                } else {
                  done(null, false);
                }
@@ -61,7 +58,6 @@ module.exports = function(app){
           }
         })
         .catch(function(err) {
-          console.log("error from ken");
           console.log(err);
           return done(false, null);
         });
