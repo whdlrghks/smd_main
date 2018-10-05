@@ -140,7 +140,7 @@
                         <td style="font-size:13px; font-weight:bold; text-align:center;">신세계인터넷면세점 : -</td>
 
                         <%}%>
-                        
+
                         <td colspan="3" style="text-align:center;"><strong style="color:#0000ff;">총 상품 세면대 최저가</strong></td>
                         <td colspan="2" style="text-align:right;"><strong style="color:#0000ff;">$<%=totalprice
                           *1-total_discount*1%> &nbsp;</strong></td>
@@ -271,7 +271,13 @@
    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
    <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <script src="js/jquery.growl.js" type="text/javascript"></script>
+   <link href="css/jquery.growl.css" rel="stylesheet" type="text/css" />
+   <link href="css/jquery.sweet-modal.min.css" rel="stylesheet">
+   <script src="js/jquery.sweet-modal.min.js"></script>
    <script>
+    $(document).ready(function() {});
+
    function delete_cart(obj){
      var prd_id = $('#delete_id').attr('value');
      var delete_info={
@@ -288,6 +294,11 @@
          //성공시 success
 
          if(json=='success'){
+           $.notify("해당 상품을 장바구니에서 삭제하였습니다.", { verticalAlign:"top", type:"success"});
+           location.reload();
+         }
+         else{
+           $.notify("해당 상품을 장바구니에서 삭제하는데 실패하였습니다.", { verticalAlign:"top", type:"danger"});
            location.reload();
          }
        }

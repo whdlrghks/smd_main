@@ -1,3 +1,4 @@
+<!-- Duty_linkage / index / Manage_Reserve / register / shop_grid_full_width /shopping_cart / single_product -->
 <footer>
   <div class="footer-newsletter">
     <div class="container">
@@ -93,8 +94,17 @@ var mega_menu = '0';
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="js/jquery.growl.js" type="text/javascript"></script>
+<link href="css/jquery.growl.css" rel="stylesheet" type="text/css" />
 <script>
  $(document).ready(function() {
+
+   // $("#etst").click(function () {
+   //
+   //   $.growl({ title: "Growl", message: "The kitten is awake!" });
+   //   $.growl.error({ message: "The kitten is attacking!" });
+   // });
+
     $.ajax({
       type: "POST",
       url: "/autocomplete",

@@ -294,7 +294,7 @@ router.get('/shopping_cart', function(req, res) {
 
 router.post('/reserve/refresh', function(req, res) {
   console.log("[REQUEST RESERVED REFRESH]");
-  var user_id = req.body.user_id;
+  var user_id = req.body._id;
   sendrest.getReservedRefresh(user_id, function(results) {
     console.log("[FINISH REQUEST RESERVED REFRESH]");
     console.log(results);

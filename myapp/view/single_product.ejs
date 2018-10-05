@@ -619,7 +619,7 @@ $(function(){
             $('#sl_final_price').text("$"+sl_final_price);
           }
         }
-
+        console.log(sl_storage);
           if(sl_storage!="No storage"&&sl_storage!="neg"){
             $('#sl_storage').text("신라 : 재고 있음");
             $('#sl_storage').val(true);
@@ -819,7 +819,7 @@ function fnChkByte(obj) {
     }
 
     if (rbyte > maxByte) {
-        alert("한글 " + (maxByte / 2) + "자 / 영문 " + maxByte + "자를 초과 입력할 수 없습니다.");
+        $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:"한글 " + (maxByte / 2) + "자 / 영문 " + maxByte + "자를 초과 입력할 수 없습니다."});
         str2 = str.substr(0, rlen); //문자열 자르기
         obj.value = str2;
         fnChkByte(obj, maxByte);
@@ -834,8 +834,11 @@ function fnChkByte(obj) {
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="js/jquery.growl.js" type="text/javascript"></script>
+<link href="css/jquery.growl.css" rel="stylesheet" type="text/css" />
+<link href="css/jquery.sweet-modal.min.css" rel="stylesheet">
+<script src="js/jquery.sweet-modal.min.js"></script>
 <script>
-
  $(document).ready(function() {
    var prd_id = $('#prd_id').attr('value');
 
@@ -1210,7 +1213,9 @@ function addCart(){
   var prd_name =$('#prd_name').attr('value')
 
   if(duty_category<0){
-    alert("장바구니에 넣으실 면세점을 선택해주세요");
+
+      $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'장바구니에 넣으실 면세점을 선택해주세요'});
+      duty_category.focus();
   }
   else{
 
@@ -1264,7 +1269,7 @@ function addCart(){
         //성공시 success
 
         if(json=='success'){
-          alert("장바구니 등록에 성공하였습니다.")
+          $.sweetModal({icon:$.sweetModal.ICON_SUCCESS, content:'장바구니에 넣으실 면세점을 선택해주세요'});
         }
       }
     })

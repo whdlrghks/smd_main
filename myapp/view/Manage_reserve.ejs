@@ -248,18 +248,29 @@
 
 <!-- main js -->
 <script type="text/javascript" src="js/main.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="js/notify.js"></script>
+<link rel="stylesheet" href="css/notify.css">
+<link href="css/jquery.sweet-modal.min.css" rel="stylesheet">
+<script src="js/jquery.sweet-modal.min.js"></script>
 <script>
+
+
 
 $(function(){
   var SL_check = <%=SL_reserved%>;
   var LT_check = <%=LT_reserved%>;
   var SSG_check = <%=SSG_reserved%>;
+
   var body = {
     'user_id' : <%=user_id%>,
     'SL_check' : SL_check,
     'LT_check' : LT_check,
     'SSG_check' : SSG_check
   }
+
   $.ajax({
     type: "POST",
     url: "/getreserved",
@@ -277,6 +288,7 @@ $(function(){
         if(SSG_check==true){
           $('#SSG_reserved').text("$"+json[2]);
         }
+        $.notify("면세점에서 고객님의 적립금을 가져왔습니다.", {align:"right", verticalAlign:"top"});
 
       },
       beforeSend: function() {
@@ -378,7 +390,7 @@ function Refresh(){
     dataType : "JSON",
     success: function(json) {
       console.log("refresh");
-      console.log(json);
+
       if(SL_check==true){
         $('#SL_reserved').text("$"+json.SL_reserved);
       }
@@ -389,6 +401,7 @@ function Refresh(){
           $('#SSG_reserved').text("$"+json.SSG_reserved);
         }
 
+        $.notify("면세점에서 고객님의 적립금을 가져왔습니다.", {align:"right", verticalAlign:"top"});
       },
       beforeSend: function() {
         if(SL_check==true){

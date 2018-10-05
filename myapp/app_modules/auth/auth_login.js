@@ -129,7 +129,7 @@ module.exports = function(passport){
  route.post('/pw_check', function(req, res){
    hasher({password:req.body.password, salt:req.user.Salt}, function(err, pass, salt, hash){
      // var sql = 'SELECT Password from User where User_id= ? ';
-     knex.select('Password').from('User').where('User_id',req.user.User_id)
+     knex.select('Password').from('User').where('User_id',req.user._id)
      .then(
        function(results){
          if(results[0].Password===hash){
@@ -154,7 +154,7 @@ module.exports = function(passport){
     hasher({password:req.body.password}, function(err, pass, salt, hash){
 
       // var sql = 'UPDATE User SET Password = ?, Salt =? , Email =?  where User_id= ? ';
-      knex.from('User').where('User_id',req.user.User_id).update({
+      knex.from('User').where('User_id',req.user._id).update({
         'Password' : hash,
         'Salt' : salt,
         'Email' : req.body.email
@@ -182,24 +182,7 @@ module.exports = function(passport){
 
 route.post('/lottemembership', function(req, res){
     //DB관련 문제 해결 필요 User_info_id
-     // var user = {
-     //   User_info_id : req.user.User_id,
-     //   Shilla_id : null,
-     //   Shilla_pw: null,
-     //   Shinsegae_id : null,
-     //   Shinsegae_pw: null,
-     //   Lotte_id :req.body.username,
-     //   Lotte_pw:req.body.password,
-     //   User_id : req.user.User_id
-     // };
-     //python에 보낼 사용자 인증정보 설정
-     // var options={
-     //   mode: 'text',
-     //  // pythonPath: '',
-     //  pythonOptions: ['-u'],
-     //  scriptPath: '',
-     //  args: [req.body.username,req.body.password]
-     // }
+
      var options_lt = {
        mode: 'text',
        // pythonPath: '',
@@ -208,7 +191,7 @@ route.post('/lottemembership', function(req, res){
        args: [req.body.username,req.body.password]
      }
      var bodys = {
-        user_id : req.user.User_id,
+        user_id : req.user._id,
        options : options_lt
      }
      request.post({
@@ -218,32 +201,12 @@ route.post('/lottemembership', function(req, res){
       },
       function(error, response, body) {
         if(body=='lotte success'){
-          res.redirect('/popup/success');
-          // rest로 보내는 양식
-
-
-          // knex.from('User_info').insert(user)
-          // .then(function(){
-          //     res.redirect('/popup/success');
-          // })
-          // .catch(function(err){
-          //   knex.from('User_info').where("User_info_id",req.user.User_id)
-          //     .update({
-          //       'Lotte_id' : req.body.username,
-          //       'Lotte_pw' : req.body.password,
-          //       'User_id' : req.user.User_id
-          //     })
-          //     .then(function(){
-          //       res.redirect('/popup/success');
-          //     })
-          //     .catch(function(err){
-          //       console.log("Update error "+ req.user.User_id + "'s" + err);
-          //       res.redirect('/popup/lotte')
-          //     })
-          // })
+          res.json("success");
+          // res.redirect('/popup/success');
         }
         else{
-          res.redirect('/popup/lotte_error');
+          res.json("fail");
+          // res.redirect('/popup/lotte_error');
         }
       });
  }
@@ -253,24 +216,6 @@ route.post('/lottemembership', function(req, res){
 
 
 route.post('/shinlamembership', function(req, res){
-
-     // var user = {
-     //   User_info_id : req.user.User_id,
-     //   Shilla_id : req.body.username,
-     //   Shilla_pw: req.body.password,
-     //   Shinsegae_id : null,
-     //   Shinsegae_pw: null,
-     //   Lotte_id : null,
-     //   Lotte_pw: null,
-     //   User_id : req.user.User_id
-     // };
-     // //python에 보낼 사용자 인증정보 설정
-     // var options={
-     //   mode: 'text',
-     //  pythonOptions: ['-u'],
-     //  scriptPath: '',
-     //  args: [req.body.username,req.body.password]
-     // }
      var options_sl = {
        mode: 'text',
        // pythonPath: '',
@@ -279,7 +224,7 @@ route.post('/shinlamembership', function(req, res){
        args: [req.body.username,req.body.password]
      }
      var bodys = {
-       user_id : req.user.User_id,
+       user_id : req.user._id,
        options : options_sl
      }
      request.post({
@@ -289,30 +234,12 @@ route.post('/shinlamembership', function(req, res){
       },
       function(error, response, body) {
         if(body=='shinla success'){
-          res.redirect('/popup/success');
-          // knex.from('User_info').insert(user)
-          // .then(function(){
-          //     res.redirect('/popup/success');
-          // })
-          // .catch(function(err){
-          //
-          //   knex.from('User_info').where("User_info_id",req.user.User_id)
-          //     .update({
-          //       'Shilla_id' : req.body.username,
-          //       'Shilla_pw' : req.body.password,
-          //       'User_id' : req.user.User_id
-          //     })
-          //     .then(function(){
-          //       res.redirect('/popup/success');
-          //     })
-          //     .catch(function(err){
-          //       console.log("Update error "+ req.user.User_id + "'s" + err);
-          //       res.redirect('/popup/shilla')
-          //     })
-          // })
+          // res.redirect('/popup/success');
+          res.json("success");
         }
         else{
-          res.redirect('/popup/shilla_error');
+          // res.redirect('/popup/shilla_error');
+          res.json("fail");
         }
       });
  }
@@ -323,24 +250,6 @@ route.post('/shinlamembership', function(req, res){
 
 
 route.post('/ssgmembership', function(req, res){
-
-     // var user = {
-     //   User_info_id : req.user.User_id,
-     //   Shilla_id : null,
-     //   Shilla_pw: null,
-     //   Shinsegae_id : req.body.username,
-     //   Shinsegae_pw: req.body.password,
-     //   Lotte_id : null,
-     //   Lotte_pw: null,
-     //   User_id : req.user.User_id
-     // };
-     // //python에 보낼 사용자 인증정보 설정
-     // var options={
-     //   mode: 'text',
-     //  pythonOptions: ['-u'],
-     //  scriptPath: '',
-     //  args: [req.body.username,req.body.password]
-     // }
      var options_ssg = {
        mode: 'text',
        // pythonPath: '',
@@ -349,7 +258,7 @@ route.post('/ssgmembership', function(req, res){
        args: [req.body.username,req.body.password]
      }
      var bodys = {
-        user_id : req.user.User_id,
+        user_id : req.user._id,
        options : options_ssg
      }
      request.post({
@@ -359,29 +268,12 @@ route.post('/ssgmembership', function(req, res){
       },
       function(error, response, body) {
         if(body=='ssg success'){
-          res.redirect('/popup/success');
-          // knex.from('User_info').insert(user)
-          // .then(function(){
-          //     res.redirect('/popup/success');
-          // })
-          // .catch(function(err){
-          //   knex.from('User_info').where("User_info_id",req.user.User_id)
-          //     .update({
-          //       'Shinsegae_id' : req.body.username,
-          //       'Shinsegae_pw' : req.body.password,
-          //       'User_id' : req.user.User_id
-          //     })
-          //     .then(function(){
-          //       res.redirect('/popup/success');
-          //     })
-          //     .catch(function(err){
-          //       console.log("Update error "+ req.user.User_id + "'s" + err);
-          //       res.redirect('/popup/shinsegae')
-          //     })
-          // })
+          // res.redirect('/popup/success');
+          res.json("success");
         }
         else{
-          res.redirect('/popup/shinsegae_error');
+          // res.redirect('/popup/shilla_error');
+          res.json("fail");
         }
       });
  }
