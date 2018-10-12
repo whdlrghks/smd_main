@@ -382,7 +382,7 @@ function Refresh(){
   var body = {
     'user_id' : <%=user_id%>
   }
-  if(SL_check||LT_check||SSG_check){
+  if(SL_check==true||LT_check==true||SSG_check==true){
     $.ajax({
       type: "POST",
       url: "/reserve/refresh",
