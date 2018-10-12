@@ -221,7 +221,7 @@ function addUser() {
             var repw = $('#passwordcheck').val();
             var name = $('#displayName').val();
             var mail = $('#email').val();
-            var pwchk = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{4,12}$/; //비번 체크
+            var pwchk = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/; //비번 체크
             if(id == ''||  pw == '' || repw == '' || name == '' || mail == '') {
                 $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'모든 칸을 채워주세요'});
 
@@ -229,7 +229,7 @@ function addUser() {
             } else {
                 if(pwchk.test(pw) == false) {
 
-                    $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'비번은 4~12자리 영어와 숫자, 특수문자가 모두 포함되어야 합니다'});
+                    $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'비번은 8~16자리 영어와 숫자, 특수문자가 모두 포함되어야 합니다'});
                     pw.focus();
                     // return false;
                 } else {

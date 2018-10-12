@@ -108,7 +108,7 @@ router.get('/Dutyfree_linkage', function(req, res) {
   if (req.user != undefined) {
     sendrest.getReseverdlist(req.user._id, function(result) {
       u_name = req.user.Username;
-      console.log(result);
+
       res.render('Dutyfree_linkage', {
         username: u_name,
         SL_check: result.sl_check,
@@ -130,11 +130,23 @@ router.get('/Manage_reserve', function(req, res) {
     //가격만 요청하는 거 따로 또 만들rl.
     sendrest.getReseverdlist(req.user._id, function(result) {
       u_name = req.user.Username;
+      var sl_check;
+      var lt_check;
+      var ssg_check;
+      if(result.sl_check){
+        sl_check = result.sl_check;
+      }
+      if(result.lt_check){
+        lt_check = result.lt_check;
+      }
+      if(result.ssg_check){
+        ssg_check = result.ssg_check;
+      }
       res.render('Manage_reserve', {
         username: u_name,
-        SL_reserved: result.sl_check,
-        LT_reserved: result.lt_check,
-        SSG_reserved: result.ssg_check,
+        SL_reserved: sl_check,
+        LT_reserved: lt_check,
+        SSG_reserved: ssg_check,
         user_id: req.user._id
       })
 
@@ -294,7 +306,7 @@ router.get('/shopping_cart', function(req, res) {
 
 router.post('/reserve/refresh', function(req, res) {
   console.log("[REQUEST RESERVED REFRESH]");
-  var user_id = req.body._id;
+  var user_id = req.user._id;
   sendrest.getReservedRefresh(user_id, function(results) {
     console.log("[FINISH REQUEST RESERVED REFRESH]");
     console.log(results);

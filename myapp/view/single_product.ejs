@@ -785,10 +785,20 @@ $(function(){
   })
 })
 function compare_price(origin, discount){
+
+
   if(discount=="로그인 필요"){
     return origin;
   }
   else{
+    if(discount.match(/,/)){
+      discount = discount.replace(",","");
+    }
+    discount= Number(discount);
+    if(origin.match(/,/)){
+      origin = origin.replace(",","");
+    }
+    origin= Number(origin);
     if(origin*1>=discount*1){
       return discount;
     }

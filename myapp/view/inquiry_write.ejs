@@ -39,17 +39,17 @@
                       <tr>
                       <td style="background-color:#fff"><input type="text" id="addContentwriter" class="form-control" placeholder="아이디" maxlength="25" name="bbsTitle"></td>
                       </tr>
-                      <tr>
+                      <!-- <tr>
                       <td style="background-color:#fff"><input type="password" id="addContentpassword" class="form-control" placeholder="비밀번호" maxlength="25" name="bbsTitle"></td>
-                      </tr>
+                      </tr> -->
                     <%}else{%>
 
                     <tr>
                       <td style="background-color:#fff"><input type="text" readonly id="addContentwriter" class="form-control" value="<%=username%>" maxlength="25" name="bbsTitle"></td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                       <td style="background-color:#fff"><input type="password" id="addContentpassword" class="form-control" placeholder="비밀번호" maxlength="25" name="bbsTitle"></td>
-                    </tr>
+                    </tr> -->
                       <%}%>
                     <tr>
                       <td><textarea class="form-control" id="addContent" placeholder="글 내용 (최대 512자)" name="bbsContent" maxlength="512" style="height:250px"></textarea> </td>
@@ -159,7 +159,8 @@ function submitContent(){
 
     var title = $('#addContenttitle').val();
     var writer = $('#addContentwriter').val();
-    var password = $('#addContentpassword').val();
+    // var password = $('#addContentpassword').val();
+    var password ='123';
     var content = $('#addContent').val();
     if(title == '' || content == '' || writer == '' || password == '') {
               $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'제목과 내용, 작성자 비밀번호 모두 있어야합니다.'});

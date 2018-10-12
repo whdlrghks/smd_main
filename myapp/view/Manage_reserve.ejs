@@ -382,46 +382,52 @@ function Refresh(){
   var body = {
     'user_id' : <%=user_id%>
   }
-  $.ajax({
-    type: "POST",
-    url: "/reserve/refresh",
-    async : true,
-    data : body,
-    dataType : "JSON",
-    success: function(json) {
-      console.log("refresh");
+  if(SL_check||LT_check||SSG_check){
+    $.ajax({
+      type: "POST",
+      url: "/reserve/refresh",
+      async : true,
+      data : body,
+      dataType : "JSON",
+      success: function(json) {
+        console.log("refresh");
 
-      if(SL_check==true){
-        $('#SL_reserved').text("$"+json.SL_reserved);
-      }
-      if(LT_check==true){
-        $('#LT_reserved').text("$"+json.LT_reserved);
-      }
-        if(SSG_check==true){
-          $('#SSG_reserved').text("$"+json.SSG_reserved);
-        }
-
-        $.notify("면세점에서 고객님의 적립금을 가져왔습니다.", {align:"right", verticalAlign:"top"});
-      },
-      beforeSend: function() {
         if(SL_check==true){
-                  $('#SL_reserved').text("연동중입니다.");
+          $('#SL_reserved').text("$"+json.SL_reserved);
         }
         if(LT_check==true){
-            $('#LT_reserved').text("연동중입니다.");
+          $('#LT_reserved').text("$"+json.LT_reserved);
         }
           if(SSG_check==true){
-          $('#SSG_reserved').text("연동중입니다.");
+            $('#SSG_reserved').text("$"+json.SSG_reserved);
           }
 
+          $.notify("면세점에서 고객님의 적립금을 가져왔습니다.", {align:"right", verticalAlign:"top"});
+        },
+        beforeSend: function() {
+          if(SL_check==true){
+                    $('#SL_reserved').text("연동중입니다.");
+          }
+          if(LT_check==true){
+              $('#LT_reserved').text("연동중입니다.");
+          }
+            if(SSG_check==true){
+            $('#SSG_reserved').text("연동중입니다.");
+            }
 
-      },
-      complete: function() {
-      },
-      error: function(error) {
-        console.log(error);
-      }
-  })
+
+        },
+        complete: function() {
+        },
+        error: function(error) {
+          console.log(error);
+        }
+    })
+  }
+  else{
+    $.notify("가져올 면세점의 정보가 없습니다.", {align:"right", verticalAlign:"top"});
+  }
+
 }
 </script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

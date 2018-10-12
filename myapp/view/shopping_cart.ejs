@@ -294,11 +294,13 @@
          //성공시 success
 
          if(json=='success'){
-           $.notify("해당 상품을 장바구니에서 삭제하였습니다.", { verticalAlign:"top", type:"success"});
+
+           $.notify("해당 상품을 장바구니에서 삭제하였습니다.", {align:"right", verticalAlign:"top"});
            location.reload();
          }
          else{
-           $.notify("해당 상품을 장바구니에서 삭제하는데 실패하였습니다.", { verticalAlign:"top", type:"danger"});
+
+           $.notify("해당 상품을 장바구니에서 삭제하는데 실패하였습니다.", {align:"right", verticalAlign:"top", type:"danger"});
            location.reload();
          }
        }
