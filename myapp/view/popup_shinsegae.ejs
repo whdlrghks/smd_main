@@ -257,7 +257,7 @@
          }
          $.ajax({
            type: "POST",
-           url: "/auth/shinlamembership",
+           url: "/auth/ssgmembership",
            async : true,
            data : body,
            dataType : "JSON",
@@ -265,6 +265,7 @@
              $('body').oLoader('hide');
              if(json=='success'){
                $.sweetModal.confirm('면세점 연동을 완료하였습니다. 확인을 눌러 창을 종료해주세요.', function() {
+                 opener.parent.location.reload();
                   window.close();
                 });
              }
