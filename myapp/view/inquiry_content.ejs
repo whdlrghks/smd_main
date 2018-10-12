@@ -23,7 +23,7 @@
 
           <div class="page-content page-order">
             <div style="font-family:'Arimo', sans-serif; font-size:17px;">
-              <form method="post" action="updateAction.jsp?bbsID=<%= bbsID %>" style="align:center;">
+              <form method="post" style="align:center;">
                 <table class="table table-hover" style="text-align:center; border:1px solid #dddddd;">
                   <thead>
                     <tr>
@@ -34,21 +34,29 @@
 
                     <tr>
                       <td style="width:110px; text-align:center;">글 제목</td>
-                      <td>제가 원하는 상품이 없어요</td>
+                      <td><%=content.title%></td>
                     </tr>
                     <tr>
                       <td style="text-align:center;">작성자</td>
-                      <td>hansr09</td>
+                      <td><%=content.writer%></td>
                     </tr>
                     <tr>
                       <td style="text-align:center;">작성일</td>
-                      <td>2018-09-05 14:11</td>
+                      <td><%=content.date%></td>
                     </tr>
                     <tr>
                       <td style="text-align:center;">내용</td>
-                      <td>몽블랑 지갑을 사고 싶어서 검색했는데 안나와요. 왜 상품이 없는거죠? 추가시켜주세요. 몽블랑 지갑을 사고 싶어서 검색했는데 안나와요. 왜 상품이 없는거죠? 추가시켜주세요.몽블랑 지갑을 사고 싶어서 검색했는데 안나와요. 왜 상품이 없는거죠? 추가시켜주세요.</td>
+                      <td><%=content.contents%></td>
                     </tr>
-
+                    <%
+function dateFormatChange(date) {
+    var options = {
+        weekday: "short", year: "numeric", month: "short",
+        day: "numeric", hour: "2-digit", minute: "2-digit"
+    };
+    return date.toLocaleTimeString("ko-KR", options);
+}
+%>
                   </tbody>
                 </table>
 
@@ -59,10 +67,27 @@
                     </tr>
                   </thead>
                   <tbody>
+                    <%if(content.comments.length>0){
+                    var commentsList = content.comments;
+                    for(var i=0; i < commentsList.length; i++){%>
                     <tr>
                       <td style="width:110px; text-align:center;">답변내용</td>
-                      <td>고객님이 문의한 상품을 확인해보았습니다. 곧 추가될 예정입니다. 감사합니다.</td>
+                      <td><%=commentsList[i].memo%></td>
                     </tr>
+                    <%}
+                      } else {%>
+                    <tr>
+                      <td style="width:110px; text-align:center;"colspan="2">댓글이 없습니다</td>
+                    </tr>
+                  <%}%>
+                    <!-- 관리자만 댓글 달수 있게 실시  -->
+                    <%if(username=="admin_smd"){%>
+                      <tr>
+                        <td style="width:110px; text-align:center;">답변내용</td>
+                        <td><textarea class="form-control" id="addComment" placeholder="댓글" maxlength="512"></textarea>
+                        <a class="btn btn-default pull-right" onclick="sendcomment();" style="background:#fed700"><strong>댓글남기기</strong></a></td>
+                      </tr>
+                      <%}%>
                   </tbody>
                 </table>
                 <a class="btn btn-default pull-right" href="/inquiry_wirte" style="background:#fed700"><strong>확인</strong></a>
@@ -75,66 +100,66 @@
       </div>
     </div>
   </section>
-   <!-- Footer -->
+  <!-- Footer -->
 
-   <footer>
-     <div class="footer-newsletter">
-       <div class="container">
-         <div class="row">
-           <div class="col-md-8 col-sm-7">
-           </div>
-         </div>
-       </div>
-     </div>
-     <div class="container">
-       <div class="row">
-         <div class="col-sm-6 col-md-4 col-xs-12 col-lg-3">
-           <div class="footer-logo"><a href="/"><img src="images/saemyundae_logo2.png" alt="fotter logo"></a> </div>
-           <p>세면대는 인터넷 면세점을 이용하거나 관련 정보를 얻고 싶을 때 도움을 주는 최고의 ‘도우미’입니다.</p>
+  <footer>
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-7">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-md-4 col-xs-12 col-lg-3">
+          <div class="footer-logo"><a href="/"><img src="images/saemyundae_logo2.png" alt="fotter logo"></a> </div>
+          <p>세면대는 인터넷 면세점을 이용하거나 관련 정보를 얻고 싶을 때 도움을 주는 최고의 ‘도우미’입니다.</p>
 
-         </div>
-         <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
-           <div class="footer-content">
-             <div class="email"> <i class="fa fa-envelope"></i>
-               <p><a href="mailto:support@template.com">Saemyundae@google.com</a></p>
-             </div>
-           </div>
-         </div>
-         <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
-           <div class="footer-content">
-             <div class="phone"> <i class="fa fa-phone"></i>
-               <p>(02) 712-5233</p>
-             </div>
-           </div>
-         </div>
-         <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
-           <div class="footer-content">
-             <div class="address"> <i class="fa fa-map-marker"></i>
-               <p> 서울시 노원구 공릉동 232-2 3층</p>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-     <div class="footer-coppyright">
-       <div class="container">
-         <div class="row">
-           <div class="col-sm-6 col-xs-12 coppyright"> Copyright © 2017 <a href="#"> Modern </a>. All Rights Reserved. </div>
-           <div class="col-sm-6 col-xs-12">
-             <div class="payment">
-               <ul>
-                 <li><a href="#"><img title="Visa" alt="Visa" src="images/visa.png"></a></li>
-                 <li><a href="#"><img title="Paypal" alt="Paypal" src="images/paypal.png"></a></li>
-                 <li><a href="#"><img title="Discover" alt="Discover" src="images/discover.png"></a></li>
-                 <li><a href="#"><img title="Master Card" alt="Master Card" src="images/master-card.png"></a></li>
-               </ul>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-   </footer>
-  <a href="#" class="totop"> </a>  </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
+          <div class="footer-content">
+            <div class="email"> <i class="fa fa-envelope"></i>
+              <p><a href="mailto:support@template.com">Saemyundae@google.com</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
+          <div class="footer-content">
+            <div class="phone"> <i class="fa fa-phone"></i>
+              <p>(02) 712-5233</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
+          <div class="footer-content">
+            <div class="address"> <i class="fa fa-map-marker"></i>
+              <p> 서울시 노원구 공릉동 232-2 3층</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-coppyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-xs-12 coppyright"> Copyright © 2017 <a href="#"> Modern </a>. All Rights Reserved. </div>
+          <div class="col-sm-6 col-xs-12">
+            <div class="payment">
+              <ul>
+                <li><a href="#"><img title="Visa" alt="Visa" src="images/visa.png"></a></li>
+                <li><a href="#"><img title="Paypal" alt="Paypal" src="images/paypal.png"></a></li>
+                <li><a href="#"><img title="Discover" alt="Discover" src="images/discover.png"></a></li>
+                <li><a href="#"><img title="Master Card" alt="Master Card" src="images/master-card.png"></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+ <a href="#" class="totop"> </a>  </div>
 
 <!-- End Footer -->
 <!-- JS -->
@@ -157,15 +182,52 @@
 <!-- megamenu js -->
 <script type="text/javascript" src="js/megamenu.js"></script>
 <script type="text/javascript">
-        /* <![CDATA[ */
-        var mega_menu = '0';
+       /* <![CDATA[ */
+       var mega_menu = '0';
 
-        /* ]]> */
-        </script>
+       /* ]]> */
+       </script>
 
 <!-- jquery.mobile-menu js -->
 <script type="text/javascript" src="js/mobile-menu.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="js/notify.js"></script>
+<link rel="stylesheet" href="css/notify.css">
+<link href="css/jquery.sweet-modal.min.css" rel="stylesheet">
+<script src="js/jquery.sweet-modal.min.js"></script>
+<script type="text/javascript">
+function sendcomment(){
+  var comment= $('#addComment').val();
+  var id = "<%=content._id%>";
+  var data = {
+    board_id : id,
+    writer : '<%=username%>',
+    comment : comment
+  }
+  if(comment != '') {
+    $.ajax({
+      type: "POST",
+      url: "/inquiry_enroll_comment",
+      async: false,
+      data : data,
+      dataType: "JSON",
+      success: function(json) {
+        if(json=="success"){
+          $.sweetModal({icon:$.sweetModal.ICON_SUCCESS, content:'댓글이 등록되었습니다.'});
+          location.reload();
+        }
+        else{
+          $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'다시 시도하여 주십시오.'});
+        }
+      }
+    })
+  }
 
+}
+
+</script>
 
 
 <!--jquery-ui.min js -->

@@ -34,33 +34,58 @@
                       <th style="width:600px;">제목</th>
                       <th>작성자</th>
                       <th>작성일</th>
-                      <th>답변상태</th>
+                      <th>조회수</th>
                     </tr>
                   </thead>
 
                   <tbody>
-                    <% %>
-                    <tr>
-                      <td>133</td>
-                      <td><a href="file:///C:/Users/sr092/Desktop/18-4-1/%EC%BA%A1%EC%8A%A4%ED%86%A4/wesite%20template/modern-responsive-multipurpose-e-commerce-html-template/htmlmodern/inquiry_content.html">제가 원하는 상품이 없어요</a></td>
-                      <td>hansr09</td>
-                      <td>2018-09-05 14:11</td>
-                      <td>답변완료</td>
-                    </tr>
-                    <% %>
+                    <%if(board.length>0){
+                      var i =0;
+                      board.forEach(function(item){
+                        i++;%>
+                        <tr>
+                          <td><%=i%></td>
+                          <td><a href="/inquiry_content?id=<%=item._id%>"><%=item.title%> [<%=item.comments.length%>]</a></td>
+                          <td><%=item.writer%></td>
+                          <td><%=item.date%></td>
+                          <td><%=item.count%></td>
+                        </tr>
+                        <%
+                      })
+
+                    }else{ %>
+                      <tr>
+                       <td colspan="5">게시물이 없습니다.</td>
+                     </tr>
+                    <%} %>
+                    <%
+  function dateFormatChange(date) {
+      var options = {
+          weekday: "short", year: "numeric", month: "short",
+          day: "numeric", hour: "2-digit", minute: "2-digit"
+      };
+
+      return date.toLocaleTimeString("ko-KR", options);
+  }
+  %>
                   </tbody>
                 </table>
 
                 <hr style="margin-top:0px; margin-bottom:15px"></hr>
-              <a class="btn btn-default pull-right" href="file:///C:/Users/sr092/Desktop/18-4-1/%EC%BA%A1%EC%8A%A4%ED%86%A4/wesite%20template/modern-responsive-multipurpose-e-commerce-html-template/htmlmodern/inquiry_write.html" style="background:#fed700"><strong>문의하기</strong></a>
+              <a class="btn btn-default pull-right" href="/inquiry_enroll" style="background:#fed700"><strong>문의하기</strong></a>
 
                 <div class="text-center">
                   <ul class="pagination">
-                    <li><a href="#">1</a></li>
+                    <%
+                     for(var i=1; i<=pagination; i++){
+                      %>
+                    <a href="/boards?page=<%=i%>"><%=i%></a>
+                    <%}%>
+                    <!-- <li><a href="#">1</a></li>
                     <li><a href="#">2</a></li>
                     <li><a href="#">3</a></li>
                     <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
+                    <li><a href="#">5</a></li> -->
                   </ul>
                 </div>
               </div>

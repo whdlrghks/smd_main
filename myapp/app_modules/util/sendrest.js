@@ -302,7 +302,7 @@ const UTIL = (function() {
         json: true
       },
       function(error, response, body) {
-        
+
         callback(body);
       }
     );
@@ -470,6 +470,78 @@ const UTIL = (function() {
     );
   }
 
+  var getboardlist_REST = function(skipSize,limitSize, callback) {
+    var data = {
+      skipSize: skipSize,
+      limitSize : limitSize
+    }
+    request.post({
+        url: 'http://localhost:5050/api/getboardlist',
+        body : data,
+        json: true
+      },
+      function(error, response, body) {
+        // return type is JSON
+        // result == success or fail
+
+        callback(body);
+      }
+    );
+  }
+
+  var enrollboard_REST = function(title, content, writer, password, callback) {
+    var data = {
+      addContentSubject : title,
+      addContentWriter : writer,
+      addContents : content,
+      addContentPassword : password
+    }
+    request.post({
+        url: 'http://localhost:5050/api/enrollboardlist',
+        body : data,
+        json: true
+      },
+      function(error, response, body) {
+
+        callback(body);
+      }
+    );
+  }
+
+  var getdetailboard_REST = function(id, callback) {
+    var data = {
+      board_id : id
+    }
+    request.post({
+        url: 'http://localhost:5050/api/getboardcontent',
+        body : data,
+        json: true
+      },
+      function(error, response, body) {
+
+        callback(body);
+      }
+    );
+  }
+
+  var enrollcomment_REST = function(id, writer, comment, callback) {
+    var data = {
+      board_id : id,
+      writer : writer,
+      comment : comment
+    }
+    request.post({
+        url: 'http://localhost:5050/api/addboardcomment',
+        body : data,
+        json: true
+      },
+      function(error, response, body) {
+
+        callback(body);
+      }
+    );
+  }
+
   return {
     getSLreserved: getSLreserved_REST,
     getLTreserved: getLTreserved_REST,
@@ -489,7 +561,11 @@ const UTIL = (function() {
     addCart : addCart_REST,
     getCartlist : getCartlist_REST,
     deleteCart : deleteCart_REST,
-    getReservedRefresh : getReservedRefresh_REST
+    getReservedRefresh : getReservedRefresh_REST,
+    getboardlist : getboardlist_REST,
+    enrollboard : enrollboard_REST,
+    getdetailboard : getdetailboard_REST,
+    enrollcomment : enrollcomment_REST
   }
 
 })();

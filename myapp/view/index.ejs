@@ -436,12 +436,13 @@ var mega_menu = '0';
       dataType: "JSON",
       success: function(json) {
         // var result = json.slice(0,10);
-        // console.log(json);
+
         $("#searchbox").autocomplete({
           source:  function(request, response) {
+                json=json.filter(function(n){ return n != undefined });
                 var results = $.ui.autocomplete.filter(json, request.term);
                 // console.log(results);
-                response(results);
+                response(results.slice(0,10));
             },
           select: function(event, ui) {
             console.log(ui.item);

@@ -312,20 +312,91 @@ router.post('/reserve/refresh', function(req, res) {
 //   })
 // })
 //
-router.get('/inquiry_page', function(req, res) {
+router.get('/inquiry_board', function(req, res) {
   var u_name;
-  if (req.user == undefined) {
-    u_name = '';
-    res.render('inquiry_page', {
-      username: u_name
-    });
-  } else {
-    u_name = req.user.Username;
-    res.render('inquiry_page', {
-      username: u_name
-    });
-  }
+  var page = req.param('page');
+   if(page == null) {page = 1;}
+   var skipSize = (page-1)*10;
+   var limitSize = 10;
+
+
+
+  sendrest.getboardlist(skipSize,limitSize, function(result){
+
+    if (req.user == undefined) {
+      u_name = '';
+      res.render('inquiry_board', {
+        username: u_name,
+        board : result.content,
+        pagination : result.pagination
+      });
+    } else {
+      u_name = req.user.Username;
+      res.render('inquiry_board', {
+        username: u_name,
+        board : result.content,
+        pagination : result.pagination
+      });
+    }
+  })
 })
+
+router.get('/inquiry_enroll', function(req, res) {
+  var u_name;
+    if (req.user == undefined) {
+      u_name = '';
+      res.render('inquiry_write', {
+        username: u_name
+      });
+    } else {
+      u_name = req.user.Username;
+      res.render('inquiry_write', {
+        username: u_name
+      });
+    }
+})
+router.post('/inquiry_enroll', function(req, res) {
+    var addNewTitle = req.body.title;
+    var addNewWriter = req.body.writer;
+    var addNewContent = req.body.content;
+    var addNewPassword = req.body.password;
+    sendrest.enrollboard(addNewTitle, addNewContent, addNewWriter, addNewPassword, function(result){
+      res.json(result);
+    })
+})
+
+router.get('/inquiry_content', function(req, res) {
+  var board_id = req.query.id;
+  var u_name;
+  sendrest.getdetailboard(board_id, function(board){
+    if (req.user == undefined) {
+      u_name = '';
+      res.render('inquiry_content', {
+        username: u_name,
+        content : board
+      });
+    } else {
+      u_name = req.user.Username;
+      res.render('inquiry_content', {
+        username: u_name,
+        content : board
+      });
+    }
+  })
+
+})
+
+router.post('/inquiry_enroll_comment', function(req, res) {
+    var board_id = req.body.board_id;
+    var addNewWriter = req.body.writer;
+    var addNewComment = req.body.comment;
+    console.log("INQUIRY_ENROLL COMMENT");
+    sendrest.enrollcomment(board_id, addNewWriter,addNewComment, function(result){
+      res.json(result);
+    })
+})
+
+
 router.post('/sendEmail', function(req, res) {
 
   console.log("[SENDEMAIL]");

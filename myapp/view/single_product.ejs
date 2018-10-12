@@ -856,9 +856,10 @@ function fnChkByte(obj) {
            var result = json.slice(0,10);
            $("#searchbox").autocomplete({
              source:  function(request, response) {
-                   // var results = $.ui.autocomplete.filter(json, request.term);
-                   // var results= json;
-                   response(result);
+                   json=json.filter(function(n){ return n != undefined });
+                   var results = $.ui.autocomplete.filter(json, request.term);
+                   // console.log(results);
+                   response(results.slice(0,10));
                },
              select: function(event, ui) {
                console.log(ui.item);
@@ -1269,7 +1270,7 @@ function addCart(){
         //성공시 success
 
         if(json=='success'){
-          $.sweetModal({icon:$.sweetModal.ICON_SUCCESS, content:'장바구니에 넣으실 면세점을 선택해주세요'});
+          $.sweetModal({icon:$.sweetModal.ICON_SUCCESS, content:'장바구니에 담겼습니다.'});
         }
       }
     })

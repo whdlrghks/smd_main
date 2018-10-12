@@ -229,13 +229,13 @@ function addUser() {
             } else {
                 if(pwchk.test(pw) == false) {
 
-                    $.sweetModal(icon:$.sweetModal.ICON_ERROR, content:'비번은 4~12자리 영어와 숫자, 특수문자가 모두 포함되어야 합니다');
+                    $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'비번은 4~12자리 영어와 숫자, 특수문자가 모두 포함되어야 합니다'});
                     pw.focus();
                     // return false;
                 } else {
                     if(pw != repw) {
                         // alert ("");
-                        $.sweetModal('비밀번호는 똑같아야 합니다 ');
+                        $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'비밀번호는 똑같아야 합니다 '});
                     } else {
                       $.sweetModal.confirm('회원가입 하시겠습니까?.', function() {
                          $('#joinAction').submit();
@@ -267,33 +267,6 @@ function addUser() {
   });
 </script>
 
-<script>
- $(document).ready(function() {
-    $.ajax({
-      type: "POST",
-      url: "/autocomplete",
-      async: true,
-      dataType: "JSON",
-      success: function(json) {
-        var result = json.slice(0,10);
-        $("#searchbox").autocomplete({
-          source:  function(request, response) {
-                // var results = $.ui.autocomplete.filter(json, request.term);
-                // var results= json;
-                response(result);
-            },
-          select: function(event, ui) {
-            console.log(ui.item);
-          },
-          focus: function(event, ui) {
-            $("#searchbox").val(ui.item.label);
-            return false;
-            //event.preventDefault();
-          }
-        });
-      }
-    })
-  })
-</script>
+
 </body>
 </html>

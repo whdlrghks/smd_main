@@ -24,7 +24,7 @@
 
           <div class="page-content page-order">
             <div style="font-family:'Arimo', sans-serif; font-size:17px;">
-              <form method="post" action="writeAction.jsp">
+              <form method="post">
                 <table class="table table-striped" style="text-align:center; border:1px; solid #dddddd">
                   <thead>
                     <tr>
@@ -33,14 +33,21 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td style="background-color:#fff"><input type="text" class="form-control" placeholder="글 제목 (최대 30자)" maxlength="25" name="bbsTitle"></td>
+                      <td style="background-color:#fff"><input type="text" id="addContenttitle" class="form-control" placeholder="글 제목 (최대 30자)" maxlength="25" name="bbsTitle"></td>
                     </tr>
+                    <%if(username==""){%>
+                      <td style="background-color:#fff"><input type="text" id="addContentwriter" class="form-control" placeholder="아이디" maxlength="25" name="bbsTitle"></td>
+                      <td style="background-color:#fff"><input type="password" id="addContentpassword" class="form-control" placeholder="비밀번호" maxlength="25" name="bbsTitle"></td>
+                    <%}else{%>
+                      <td style="background-color:#fff"><input type="text" id="addContentwriter" class="form-control" value="<%=username%>" maxlength="25" name="bbsTitle"><%=username%></td>
+                      <td style="background-color:#fff"><input type="password" id="addContentpassword" class="form-control" placeholder="비밀번호" maxlength="25" name="bbsTitle"></td>
+                      <%}%>
                     <tr>
-                      <td><textarea class="form-control" placeholder="글 내용 (최대 512자)" name="bbsContent" maxlength="512" style="height:250px"></textarea> </td>
+                      <td><textarea class="form-control" id="addContent" placeholder="글 내용 (최대 512자)" name="bbsContent" maxlength="512" style="height:250px"></textarea> </td>
                     </tr>
                   </tbody>
                 </table>
-                <a class="btn btn pull-right" href="/inquiry_wirte" style="background:#fed700"><strong>글쓰기</strong></a>
+                <a class="btn btn pull-right" style="background:#fed700" onclick="submitContent();"><strong>글쓰기</strong></a>
               </form>
             </div>
           </div>
@@ -129,10 +136,50 @@
 
 <!-- megamenu js -->
 <script type="text/javascript" src="js/megamenu.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="js/notify.js"></script>
+<link rel="stylesheet" href="css/notify.css">
+<link href="css/jquery.sweet-modal.min.css" rel="stylesheet">
+<script src="js/jquery.sweet-modal.min.js"></script>
 <script type="text/javascript">
         /* <![CDATA[ */
         var mega_menu = '0';
+function submitContent(){
 
+    var title = $('#addContenttitle').val();
+    var writer = $('#addContentwriter').val();
+    var password = $('#addContentpassword').val();
+    var content = $('#addContent').val();
+    if(title == '' || content == '' || writer == '' || password == '') {
+              $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'제목과 내용, 작성자 비밀번호 모두 있어야합니다.'});
+                  return;
+              } else {
+                var data = {
+                  title : title,
+                  writer : writer,
+                  password : password,
+                  content : content
+                }
+                $.ajax({
+                  type: "POST",
+                  url: "/inquiry_enroll",
+                  async: true,
+                  data : data,
+                  dataType: "JSON",
+                  success: function(json) {
+                    if(json=="success"){
+                      $.sweetModal({icon:$.sweetModal.ICON_SUCCESS, content:'문의사항이 등록되었습니다.'});
+                      location.href = '/inquiry_board';
+                    }
+                    else{
+                      $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'다시 시도하여 주십시오.'});
+                    }
+                  }
+                })
+              }
+}
         /* ]]> */
         </script>
 

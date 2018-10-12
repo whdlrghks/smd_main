@@ -363,9 +363,10 @@ function moveDetail(obj){
         var result = json.slice(0,10);
         $("#searchbox").autocomplete({
           source:  function(request, response) {
-                // var results = $.ui.autocomplete.filter(json, request.term);
-                // var results= json;
-                response(result);
+                json=json.filter(function(n){ return n != undefined });
+                var results = $.ui.autocomplete.filter(json, request.term);
+                // console.log(results);
+                response(results.slice(0,10));
             },
           select: function(event, ui) {
             console.log(ui.item);
