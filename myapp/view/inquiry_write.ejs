@@ -36,11 +36,20 @@
                       <td style="background-color:#fff"><input type="text" id="addContenttitle" class="form-control" placeholder="글 제목 (최대 30자)" maxlength="25" name="bbsTitle"></td>
                     </tr>
                     <%if(username==""){%>
+                      <tr>
                       <td style="background-color:#fff"><input type="text" id="addContentwriter" class="form-control" placeholder="아이디" maxlength="25" name="bbsTitle"></td>
+                      </tr>
+                      <tr>
                       <td style="background-color:#fff"><input type="password" id="addContentpassword" class="form-control" placeholder="비밀번호" maxlength="25" name="bbsTitle"></td>
+                      </tr>
                     <%}else{%>
-                      <td style="background-color:#fff"><input type="text" id="addContentwriter" class="form-control" value="<%=username%>" maxlength="25" name="bbsTitle"><%=username%></td>
+
+                    <tr>
+                      <td style="background-color:#fff"><input type="text" readonly id="addContentwriter" class="form-control" value="<%=username%>" maxlength="25" name="bbsTitle"></td>
+                    </tr>
+                    <tr>
                       <td style="background-color:#fff"><input type="password" id="addContentpassword" class="form-control" placeholder="비밀번호" maxlength="25" name="bbsTitle"></td>
+                    </tr>
                       <%}%>
                     <tr>
                       <td><textarea class="form-control" id="addContent" placeholder="글 내용 (최대 512자)" name="bbsContent" maxlength="512" style="height:250px"></textarea> </td>
