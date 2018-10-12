@@ -28,7 +28,7 @@ module.exports = function(app){
        knex.select().from('User').where('ID',['local:'+id])
         .then(function(rows){
           if(rows.length===0){
-            return done('There is no user.');
+            return done(null, false);
           }
           else{
             var user = rows[0];
