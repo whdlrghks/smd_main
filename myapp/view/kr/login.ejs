@@ -7,8 +7,8 @@
       <div class="row">
         <div class="col-xs-12">
           <ul>
-            <li class="home"> <a title="Go to Home Page" href="/">Home</a><span>&raquo;</span></li>
-            <li><strong>Log In</strong></li>
+            <li class="home"> <a title="Go to Home Page" href="/">홈</a><span>&raquo;</span></li>
+            <li><strong>로그인</strong></li>
           </ul>
         </div>
       </div>
@@ -28,25 +28,25 @@
 
 
               <div class="box-authentication">
-                <h4>Log In</h4>
-               <p class="before-login-text"  style="margin:0 0;">Please enter your ID and Password.</p>
+                <h4>로그인</h4>
+               <p class="before-login-text"  style="margin:0 0;">회원님의 아이디와 비밀번호를 입력해주세요.</p>
                <p style="color:red"><%= errormsg %></p>
                 <form action="/auth/login" method="post">
-                  <label for="emmail_login">ID<span class="required">*</span></label>
+                  <label for="emmail_login">아이디<span class="required">*</span></label>
                   <input type="text" name="username" placeholder="ID" class="form-control" style="width:80%">
-                  <label for="password_login">Password<span class="required">*</span></label>
+                  <label for="password_login">비밀번호<span class="required">*</span></label>
                   <input type="password" name="password" placeholder="password"class="form-control" style="width:80%">
-                  <button class="button" type="submit"><i class="fa fa-lock"></i>&nbsp; <span>Log In</span></button>
+                  <button class="button" type="submit"><i class="fa fa-lock"></i>&nbsp; <span>로그인</span></button>
                 </form>
               </div>
               <div class="box-authentication">
-                <h4>Sign Up</h4><p style="margin:0 0;">After Sign Up, enjoy the service of the Semyeondae.</p>
-                <p style="margin:0 0 70px;"><button class="button" onclick="location.href='/user/register'"><i class="fa fa-user"></i>&nbsp; <span>Sign Up</span></button></p>
+                <h4>회원가입</h4><p style="margin:0 0;">회원가입 후 세면대의 서비스를 이용해보세요</p>
+                <p style="margin:0 0 70px;"><button class="button" onclick="location.href='/user/register'"><i class="fa fa-user"></i>&nbsp; <span>회원가입</span></button></p>
                 <div class="register-benefits">
-												<h5>Sign Up Notice</h5>
+												<h5>회원가입 및 유의사항 :</h5>
 												<ul>
-													<li>To sign up, you must be 15 or older.</li>
-													<li>Sign up is free.</li>
+													<li>만 15세 이상부터 회원가입이 가능합니다.</li>
+													<li>회원가입은 무료입니다.</li>
 												</ul>
 											</div>
               </div>

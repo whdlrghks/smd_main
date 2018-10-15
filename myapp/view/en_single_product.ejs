@@ -613,7 +613,7 @@ $(function(){
           //   $('#sl_discount_price').text("$"+sl_discount_price);
           // }
           if(name==''){
-            $('#sl_final_price').text("No auth");
+            $('#sl_final_price').text("연동 필요");
           }
           else{
             $('#sl_final_price').text("$"+sl_final_price);
@@ -621,12 +621,12 @@ $(function(){
         }
         console.log(sl_storage);
           if(sl_storage!="No storage"&&sl_storage!="neg"){
-            $('#sl_storage').text("SL : In stock");
+            $('#sl_storage').text("신라 : 재고 있음");
             $('#sl_storage').val(true);
           }
           else{
             $("#sl_storage").css("background-color","red");
-            $('#sl_storage').text("SL : No stock");
+            $('#sl_storage').text("신라 : 재고 없음");
             $('#sl_storage').val(false);
             $('#select_sl').css('display','none');
             flag=flag+1;
@@ -657,19 +657,19 @@ $(function(){
           //   $('#lt_discount_price').text("$"+lt_discount_price);
           // }
           if(name==''){
-              $('#lt_final_price').text("No auth");
+              $('#lt_final_price').text("연동 필요");
           }
           else{
               $('#lt_final_price').text("$"+lt_final_price);
           }
 
           if(lt_storage!="No storage"&&lt_storage!="neg"){
-            $('#lt_storage').text("LT : In stock");
+            $('#lt_storage').text("롯데 : 재고 있음");
             $('#lt_storage').val(true);
           }
           else{
             $("#lt_storage").css("background-color","red");
-            $('#lt_storage').text("LT : No stock");
+            $('#lt_storage').text("롯데 : 재고 없음");
             $('#lt_storage').val(false);
             $('#select_lt').css('display','none');
             flag=flag+1;
@@ -699,18 +699,18 @@ $(function(){
           // }
           if(name==''){
             //글씨 css 변경 필요
-            $('#ssg_final_price').text("No auth");
+            $('#ssg_final_price').text("연동 필요");
           }
           else{
             $('#ssg_final_price').text("$"+ssg_final_price);
           }
           if(ssg_storage!="No storage"&&ssg_storage!="neg"){
-            $('#ssg_storage').text("SSG : In stock");
+            $('#ssg_storage').text("신세계 : 재고 있음");
             $('#ssg_storage').val( true);
           }
           else{
             $("#ssg_storage").css("background-color","red");
-            $('#ssg_storage').text("SSG : No stock");
+            $('#ssg_storage').text("신세계 : 재고 없음");
             $('#ssg_storage').val(false);
             $('#select_ssg').css('display','none');
             flag=flag+1;
@@ -819,7 +819,7 @@ function fnChkByte(obj) {
     }
 
     if (rbyte > maxByte) {
-        $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:" The max article is " + maxByte + "."});
+        $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:"한글 " + (maxByte / 2) + "자 / 영문 " + maxByte + "자를 초과 입력할 수 없습니다."});
         str2 = str.substr(0, rlen); //문자열 자르기
         obj.value = str2;
         fnChkByte(obj, maxByte);
@@ -916,7 +916,7 @@ function fnChkByte(obj) {
         else{
           $('#review_1').css('display','none');
           $('#review_0').css('display','inline');
-          $('#review_0').text('There is no review.');
+          $('#review_0').text('등록된 후기가 없습니다.');
         }
         if(json.list[1]){
           $('#review_2').css('display','block');
@@ -1008,7 +1008,7 @@ function fnChkByte(obj) {
           else{
             $('#review_1').css('display','none');
             $('#review_0').css('display','inline');
-            $('#review_0').text('There is no review.');
+            $('#review_0').text('등록된 후기가 없습니다.');
           }
           if(json.list[1]){
             $('#review_2').css('display','block');
@@ -1076,7 +1076,7 @@ function moveBefore(){
       else{
         $('#review_1').css('display','none');
         $('#review_0').css('display','inline');
-        $('#review_0').text('There is no review.');
+        $('#review_0').text('등록된 후기가 없습니다.');
       }
       if(json.list[1]){
         $('#review_2').css('display','block');
@@ -1148,7 +1148,7 @@ function moveAfter(){
       else{
         $('#review_1').css('display','none');
         $('#review_0').css('display','inline');
-        $('#review_0').text('There is no review.');
+        $('#review_0').text('등록된 후기가 없습니다.');
       }
       if(json.list[1]){
         $('#review_2').css('display','block');

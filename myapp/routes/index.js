@@ -133,15 +133,16 @@ router.get('/Manage_reserve', function(req, res) {
       var sl_check;
       var lt_check;
       var ssg_check;
-      if(result.sl_check){
+      // if(result.sl_check){
         sl_check = result.sl_check;
-      }
-      if(result.lt_check){
+      // }
+      // if(result.lt_check){
         lt_check = result.lt_check;
-      }
-      if(result.ssg_check){
+      // }
+      // if(result.ssg_check){
         ssg_check = result.ssg_check;
-      }
+      // }
+
       res.render('Manage_reserve', {
         username: u_name,
         SL_reserved: sl_check,
@@ -201,6 +202,7 @@ router.post('/getreserved', function(req, res) {
     ],
     function(err, finish) {
       if (err) console.log(err);
+      
       res.json(result_list);
     }
   )

@@ -68,28 +68,28 @@
                   </div>
                   <div class="pagination-area "></div>
                   <div class="col-xs-12">
-                    <label>ID</label>
+                    <label>아이디</label>
                     <div class="input-text">
                       <input type="text" class="form-control" id="username" name="username" placeholder="ID" autofocus>
                     </div>
                     <p><span  class="error_text" id="email_dup_check" style=""></span><p>
                   </div>
                   <div class="col-xs-12">
-                    <label>Password</label>
+                    <label>비밀번호</label>
                     <div class="input-text">
                       <input ID = 'password' type="password" name="password" placeholder="Password" class="form-control">
                     </div>
-                    <p><span class="error_text" id="pswd1Msg" style="color:blue">Use 4~12 characters with English, numbers, and special characters.</span></p>
+                    <p><span class="error_text" id="pswd1Msg" style="color:blue">8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.</span></p>
                   </div>
                   <div class="col-xs-12">
-                    <label>Password Check</label>
+                    <label>비밀번호 재확인</label>
                     <div class="input-text">
                       <input ID = 'passwordcheck' type="password" name="passwordcheck" placeholder="Password Check" class="form-control">
                     </div>
                     <!-- <p><span class="error_text" id="pswd2Msg" style="">비밀번호가 일치하지 않습니다.</span></p> -->
                   </div>
                   <div class="col-xs-12">
-                    <label>Name</label>
+                    <label>이름</label>
                     <div class="input-text">
                         <input ID = 'displayName' type="text" name="displayName" placeholder="Name" class="form-control">
                     </div>
@@ -120,25 +120,25 @@
                     <!-- <p><span class="error_text" id="nickname" style="">중복된 닉네임입니다.</span></p> -->
                   </div>
                   <div class="col-xs-12">
-                    <p style="margin:0 0;"><label>Gender</label></p>
+                    <p style="margin:0 0;"><label>성별</label></p>
                     <select class="sel_box" id="sex" name="gender">
-                      <option >Gender</option>
-                      <option value="Man">Man</option>
-                      <option value="Woman">Woman</option>
+                      <option > 성별</option>
+                      <option value="Man">남자</option>
+                      <option value="Woman">여자</option>
                     </select>
                   </div>
                   <div class="col-xs-12">
-                    <p style="margin:0 0;"><label>Job</label></p>
+                    <p style="margin:0 0;"><label>직업</label></p>
                     <select class="sel_box" name="job">
-                      <option >Job</option>
-                      <option value="학생">student</option>
-                      <option value="회사원">Employee</option>
-                      <option value="주부">Housewife</option>
-                      <option value="기타">Other</option>
+                      <option > 직업</option>
+                      <option value="학생">학생</option>
+                      <option value="회사원">회사원</option>
+                      <option value="주부">주부</option>
+                      <option value="기타">기타</option>
                     </select>
                   </div>
                   <div class="col-xs-12" style="margin-bottom:15px;">
-                    <label>Email</label>
+                    <label>이메일</label>
                     <div class="input-text">
                       <input ID = 'email' type="text" name="email" class="form-control">
                     </div>
@@ -146,7 +146,7 @@
                   </div>
                   <div class="col-xs-12" style="text-align:center;">
                     <div class="submit-text">
-                      <button class="button"  type="button" onClick="addUser();"><i class="fa fa-user"></i>&nbsp; <span>Sign Up</span></button>
+                      <button class="button"  type="button" onClick="addUser();"><i class="fa fa-user"></i>&nbsp; <span>가입하기</span></button>
                     </div>
                   </div>
                 </div>
@@ -221,23 +221,23 @@ function addUser() {
             var repw = $('#passwordcheck').val();
             var name = $('#displayName').val();
             var mail = $('#email').val();
-            var pwchk = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{4,12}$/; //비번 체크
+            var pwchk = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/; //비번 체크
             if(id == ''||  pw == '' || repw == '' || name == '' || mail == '') {
-                $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'Please fill all forms.'});
+                $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'모든 칸을 채워주세요'});
 
                 // return false;
             } else {
                 if(pwchk.test(pw) == false) {
 
-                    $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'Passwords must contain 4~12 characters with English, numbers, and special characters.'});
+                    $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'비번은 8~16자리 영어와 숫자, 특수문자가 모두 포함되어야 합니다'});
                     pw.focus();
                     // return false;
                 } else {
                     if(pw != repw) {
                         // alert ("");
-                        $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'The Password Check should be the same with Password.'});
+                        $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'비밀번호는 똑같아야 합니다 '});
                     } else {
-                      $.sweetModal.confirm('Would you like to Sign Up?', function() {
+                      $.sweetModal.confirm('회원가입 하시겠습니까?.', function() {
                          $('#joinAction').submit();
                        });
 
@@ -256,9 +256,9 @@ function addUser() {
         // } else {
           $.get('/auth/check_id?id=' + $('#username').val(), function(result) {
             if (result.result == 1) {
-              $('#email_dup_check').html("This ID already exists.").css('color', 'red');
+              $('#email_dup_check').html("해당 아이디는 이미 존재합니다.").css('color', 'red');
             } else {
-              $('#email_dup_check').html("It's possible to use.").css('color', 'blue');
+              $('#email_dup_check').html("사용 가능합니다.").css('color', 'blue');
             }
           });
         // }

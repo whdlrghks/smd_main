@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- Basic page needs -->
@@ -84,7 +84,7 @@
         <div class="col-xs-12">
           <ul>
             <li class="home"> <a title="Go to Home Page" href="/">Home</a><span>&raquo;</span></li>
-            <li><strong>LOTTE Internet Duty-free Shop Intrelock</strong></li>
+            <li><strong>SHINSEGAE Internet Duty-free Shop Intrelock</strong></li>
           </ul>
         </div>
       </div>
@@ -100,13 +100,13 @@
           <div class="col-md-3 col-sm-2"></div>
           <div class="col-md-6 col-sm-8">
 
-              <form action="/auth/lottemembership" method="post" id="form_lotte">
+              <form action="/auth/ssgmembership"  method="post">
                 <div class="row">
                   <div class="col-xs-12">
                     <div class="check-title">
-                      <h4>Please enter the ID and Password of "Lotte Internet Duty-Free Shop".</h4>
+                      <h4>Please enter the ID and Password of "SHINSEGAE Internet Duty-Free Shop".</h4>
                     </div>
-                          <div><%= errormsg %></div>
+                    <div><%= errormsg %></div>
                   </div>
                   <div class="col-xs-12">
                     <label>ID:</label>
@@ -123,7 +123,7 @@
                   <div class="pagination-area "></div>
                   <div class="col-xs-12">
                     <div class="submit-text">
-                      <button class="button" type="button" id ="lotte_send"><i class="fa fa-user"></i>&nbsp; <span>Interlock</span></button>
+                      <button class="button" type="button" onclick="send_ssg();"><i class="fa fa-user"></i>&nbsp; <span>Interlock</span></button>
                     </div>
                   </div>
                 </div>
@@ -135,6 +135,7 @@
     </div>
   </section>
   <!-- Main Container End -->
+  <!-- Footer -->
   <!-- Footer -->
   <footer>
     <div class="footer-newsletter">
@@ -239,10 +240,10 @@
   <script src="js/jquery.sweet-modal.min.js"></script>
   <script>
    // $(document).ready(function() {
-     $("#lotte_send").click(function(){
+    function send_ssg(){
+
        var username = $("input[name=username]").val();
        var password = $("input[name=password]").val();
-
        if(username == ""){
          $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'Please enter your ID.'});
        }
@@ -256,7 +257,7 @@
          }
          $.ajax({
            type: "POST",
-           url: "/auth/lottemembership",
+           url: "/auth/shinlamembership",
            async : true,
            data : body,
            dataType : "JSON",
@@ -264,7 +265,6 @@
              $('body').oLoader('hide');
              if(json=='success'){
                $.sweetModal.confirm('Interlocking with internet duty-free shop is completed. Click 'Confirm' to close the window.', function() {
-                 opener.parent.location.reload();
                   window.close();
                 });
              }
@@ -293,7 +293,7 @@
          })
        }
 
-     })
+     }
     // })
   </script>
 

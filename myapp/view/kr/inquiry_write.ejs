@@ -6,9 +6,9 @@
       <div class="row">
         <div class="col-xs-12">
           <ul>
-            <li class="home"> <a href="/">Home</a><span>&raquo;</span></li>
-            <li class=""> <a href="#">Inquiry</a><span>&raquo;</span></li>
-            <li><strong>Inquiry</strong></li>
+            <li class="home"> <a href="/">홈</a><span>&raquo;</span></li>
+            <li class=""> <a href="shop_grid.html">문의사항</a><span>&raquo;</span></li>
+            <li><strong>문의하기</strong></li>
           </ul>
         </div>
       </div>
@@ -28,16 +28,16 @@
                 <table class="table table-striped" style="text-align:center; border:1px; solid #dddddd">
                   <thead>
                     <tr>
-                      <th colspan="1" style="background-color:#eeeeee; text-align: center; font-size:16px;">Inquiry</th>
+                      <th colspan="1" style="background-color:#eeeeee; text-align: center; font-size:16px;">문의하기</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td style="background-color:#fff"><input type="text" id="addContenttitle" class="form-control" placeholder="Title" maxlength="25" name="bbsTitle"></td>
+                      <td style="background-color:#fff"><input type="text" id="addContenttitle" class="form-control" placeholder="글 제목 (최대 30자)" maxlength="25" name="bbsTitle"></td>
                     </tr>
                     <%if(username==""){%>
                       <tr>
-                      <td style="background-color:#fff"><input type="text" id="addContentwriter" class="form-control" placeholder="ID" maxlength="25" name="bbsTitle"></td>
+                      <td style="background-color:#fff"><input type="text" id="addContentwriter" class="form-control" placeholder="아이디" maxlength="25" name="bbsTitle"></td>
                       </tr>
                       <!-- <tr>
                       <td style="background-color:#fff"><input type="password" id="addContentpassword" class="form-control" placeholder="비밀번호" maxlength="25" name="bbsTitle"></td>
@@ -52,11 +52,11 @@
                     </tr> -->
                       <%}%>
                     <tr>
-                      <td><textarea class="form-control" id="addContent" placeholder="Content" name="bbsContent" maxlength="512" style="height:250px"></textarea> </td>
+                      <td><textarea class="form-control" id="addContent" placeholder="글 내용 (최대 512자)" name="bbsContent" maxlength="512" style="height:250px"></textarea> </td>
                     </tr>
                   </tbody>
                 </table>
-                <a class="btn btn pull-right" style="background:#fed700" onclick="submitContent();"><strong>Enroll</strong></a>
+                <a class="btn btn pull-right" style="background:#fed700" onclick="submitContent();"><strong>글쓰기</strong></a>
               </form>
             </div>
           </div>
@@ -79,9 +79,8 @@
        <div class="row">
          <div class="col-sm-6 col-md-4 col-xs-12 col-lg-3">
            <div class="footer-logo"><a href="/"><img src="images/saemyundae_logo2.png" alt="fotter logo"></a> </div>
-           <p style="text-align:center; margin:0 0 0px">The Semyeondae is the best internet</p>
-           <p style="text-align:center;  margin:0 0 0px">duty-free shop 'helper' to help you use</p>
-           <p style="text-align:center;  margin:0 0 15px">the internet duty-free shop or get relevant information.</p>
+           <p>세면대는 인터넷 면세점을 이용하거나 관련 정보를 얻고 싶을 때 도움을 주는 최고의 ‘도우미’입니다.</p>
+
          </div>
          <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
            <div class="footer-content">
@@ -100,7 +99,7 @@
          <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
            <div class="footer-content">
              <div class="address"> <i class="fa fa-map-marker"></i>
-               <p>232-2, Gongneung-dong, NohWon-Koo, Seoul, Republic of Korea</p>
+               <p> 서울시 노원구 공릉동 232-2 3층</p>
              </div>
            </div>
          </div>
@@ -164,8 +163,7 @@ function submitContent(){
     var password ='123';
     var content = $('#addContent').val();
     if(title == '' || content == '' || writer == '' || password == '') {
-
-              $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'Please, put title, content and writer.'});
+              $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'제목과 내용, 작성자 비밀번호 모두 있어야합니다.'});
                   return;
               } else {
                 var data = {
@@ -182,11 +180,11 @@ function submitContent(){
                   dataType: "JSON",
                   success: function(json) {
                     if(json=="success"){
-                      $.sweetModal({icon:$.sweetModal.ICON_SUCCESS, content:'Complete enroll inquiry.'});
+                      $.sweetModal({icon:$.sweetModal.ICON_SUCCESS, content:'문의사항이 등록되었습니다.'});
                       location.href = '/inquiry_board';
                     }
                     else{
-                      $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'Please, try again.'});
+                      $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'다시 시도하여 주십시오.'});
                     }
                   }
                 })

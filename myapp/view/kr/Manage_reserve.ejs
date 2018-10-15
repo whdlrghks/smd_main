@@ -6,9 +6,9 @@
       <div class="row">
         <div class="col-xs-12">
           <ul>
-            <li class="home"> <a title="Go to Home Page" href="/">Home</a><span>&raquo;</span></li>
-            <li class=""> <a title="Go to MyPage" href="Mypage.html">My Page</a><span>&raquo;</span></li>
-            <li><strong>Reserve Management</strong></li>
+            <li class="home"> <a title="Go to Home Page" href="/">홈</a><span>&raquo;</span></li>
+            <li class=""> <a title="Go to MyPage" href="Mypage.html">마이페이지</a><span>&raquo;</span></li>
+            <li><strong>적립금 관리</strong></li>
           </ul>
         </div>
       </div>
@@ -23,43 +23,43 @@
 
           <div class="shop-inner">
             <div class="page-title">
-              <h2 style="float:left;">Reserve Management</h2>
-              <a href="#" onclick="Refresh();"><p style="float:right; width:95px; padding:8px; border:1px; border-radius: 50px; font-weight:bold; background-color: #fed700;"> &nbsp;Refresh&nbsp;<i class="fa fa-rotate-left"> </i></p></a>
+              <h2 style="float:left;">적립금 관리</h2>
+              <a onclick="Refresh();"><p style="float:right; width:95px; padding:8px; border:1px; border-radius: 50px; font-weight:bold; background-color: #fed700;"> &nbsp;새로고침&nbsp;<i class="fa fa-rotate-left"> </i></p></a>
 
               <br/><br/>
-              <h6 style="float:left;">You can manage your reserves.</h6>
+              <h6 style="float:left;">회원님의 적립금을 관리할 수 있습니다.</h6>
 
             </div>
             <div class="pagination-area "></div>
             <div class="order-detail-content">
 
-              <h4>Reserve Management</h4>
+              <h4>적립금 관리</h4>
               <div class="table-responsive">
                 <table class="table table-bordered cart_summary">
                   <thead>
                     <tr>
-                      <th class="cart_product">Duty-free Shop</th>
-                      <th>Description</th>
-                      <th>Interlock Status</th>
-                      <th>Total Reserve Amount</th>
+                      <th class="cart_product">면세점</th>
+                      <th>설명</th>
+                      <th>연동여부</th>
+                      <th>총 적립금 금액</th>
 
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td class="cart_product"  id="shilla_check" value="<%=SL_reserved%>"><img src="images/shilla_logo2.jpg" alt="Product"></td>
-                      <td class="cart_description"><p class="product-name" style="text-align:center; font-weight:bold; margin:0 0 0px;">SHILLA Internet Duty-free Shop</p>
+                      <td class="cart_description"><p class="product-name" style="text-align:center; font-weight:bold; margin:0 0 0px;">신라인터넷면세점</p>
                       <%
                       if(SL_reserved==false){
 
                         %>
-                        <td class="availability out-of-stock"><span class="label">Not Interlocked</span></td>
+                        <td class="availability out-of-stock"><span class="label">연동 미완료</span></td>
                         <td class="price"><span>-</span></td>
                         <%
                       }
                       else{
                         %>
-                        <td class="availability in-stock"><span id="SL_auth" class="label">Interlocked</span></td>
+                        <td class="availability in-stock"><span id="SL_auth" class="label">연동 완료</span></td>
                         <td class="price"><span id='SL_reserved'>$ <%=SL_reserved%></span></td>
 
                         <%
@@ -70,18 +70,18 @@
                     </tr>
                     <tr>
                       <td class="cart_product" id="lotte_check" value="<%=LT_reserved%>"><img src="images/lotte_logo2.jpg" alt="Product" ></td>
-                      <td class="cart_description"><p class="product-name" style="text-align:center; font-weight:bold; margin:0 0 0px;">LOTTE Internet Duty-free Shop</p>
+                      <td class="cart_description"><p class="product-name" style="text-align:center; font-weight:bold; margin:0 0 0px;">롯데인터넷면세점</p>
                         <%
                         if(LT_reserved==false){
 
                           %>
-                          <td class="availability out-of-stock"><span class="label">Not Interlocked</span></td>
+                          <td class="availability out-of-stock"><span class="label">연동 미완료</span></td>
                           <td class="price"><span>-</span></td>
                           <%
                         }
                         else{
                           %>
-                          <td class="availability in-stock"><span id="LT_auth" class="label">Interlocked</span></td>
+                          <td class="availability in-stock"><span id="LT_auth" class="label">연동 완료</span></td>
                           <td class="price"><span id='LT_reserved'>$ <%=LT_reserved%></span></td>
 
                           <%
@@ -92,18 +92,18 @@
                     </tr>
                     <tr>
                       <td class="cart_product"  id="ssg_check" value="<%=SSG_reserved%>"><img src="images/shinsegae_logo2.jpg" alt="Product"></td>
-                      <td class="cart_description"><p class="product-name" style="text-align:center; font-weight:bold; margin:0 0 0px;">SHINSEGAE Internet Duty-free Shop</p>
+                      <td class="cart_description"><p class="product-name" style="text-align:center; font-weight:bold; margin:0 0 0px;">신세계인터넷면세점</p>
                         <%
                         if(SSG_reserved==false){
 
                           %>
-                          <td class="availability out-of-stock"><span class="label">Not Interlocked</span></td>
+                          <td class="availability out-of-stock"><span class="label">연동 미완료</span></td>
                           <td class="price"><span>-</span></td>
                           <%
                         }
                         else{
                           %>
-                          <td class="availability in-stock"><span id="SSG_auth" class="label">Interlocked</span></td>
+                          <td class="availability in-stock"><span id="SSG_auth" class="label">연동 완료</span></td>
                           <td class="price"><span id='SSG_reserved'>$ <%=SSG_reserved%></span></td>
 
                           <%
@@ -123,20 +123,20 @@
         <aside class="sidebar col-sm-3 col-xs-12 col-sm-pull-9">
           <div class="block shop-by-side">
             <div class="sidebar-bar-title">
-              <h3>My Page</h3>
+              <h3>마이페이지</h3>
             </div>
             <div class="block-content">
               <div class="layered-Category">
                 <div class="layered-content">
                   <ul class="check-box-list">
                     <li>
-                      <label for="jtv2"> <a href="/user/mypage"><span class="button">My Acoount</span> </a> </label>
+                      <label for="jtv2"> <a href="/user/mypage"><span class="button">내 계정</span> </a> </label>
                     </li>
                     <li>
-                      <label for="jtv2"> <a href="/Dutyfree_linkage"><span class="button">Duty-free Shop Interlock</span></a> </label>
+                      <label for="jtv2"> <a href="/Dutyfree_linkage"><span class="button"> 면세점 연동</span></a> </label>
                     </li>
                     <li>
-                      <label for="jtv2"> <a href="/Manage_reserve"><span class="button">Reserve Management</span></a> </label>
+                      <label for="jtv2"> <a href="/Manage_reserve"><span class="button"> 적립금 관리</span></a> </label>
                     </li>
                   </ul>
                 </div>
@@ -150,65 +150,65 @@
   <!-- Main Container End -->
   <!-- Footer -->
 
-    <footer>
-      <div class="footer-newsletter">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-8 col-sm-7">
-            </div>
-          </div>
-        </div>
-      </div>
+  <footer>
+    <div class="footer-newsletter">
       <div class="container">
         <div class="row">
-          <div class="col-sm-6 col-md-4 col-xs-12 col-lg-3">
-            <div class="footer-logo"><a href="/index"><img src="images/saemyundae.PNG" style="max-width:50%" alt="fotter logo"></a> </div>
-            <p style="text-align:center; margin:0 0 0px">The Semyeondae is the best internet</p>
-            <p style="text-align:center;  margin:0 0 0px">duty-free shop 'helper' to help you use</p>
-            <p style="text-align:center;  margin:0 0 15px">the internet duty-free shop or get relevant information.</p>
+          <div class="col-md-8 col-sm-7">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-md-4 col-xs-12 col-lg-3">
+          <div class="footer-logo"><a href="/index"><img src="images/saemyundae.PNG" style="max-width:50%" alt="fotter logo"></a> </div>
+          <p style="text-align:center; margin:0 0 0px">세면대는 인터넷 면세점을 이용하거나</p>
+          <p style="text-align:center;  margin:0 0 0px">관련 정보를 얻고 싶을 때 도움을 주는</p>
+          <p style="text-align:center;  margin:0 0 15px">최고의 인터넷면세점 ‘도우미’입니다.</p>
 
-          </div>
-          <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
-            <div class="footer-content">
-              <div class="email"> <i class="fa fa-envelope"></i>
-                <p>smdManager123@gmail.com</p>
-              </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
+          <div class="footer-content">
+            <div class="email"> <i class="fa fa-envelope"></i>
+              <p>smdManager123@gmail.com</p>
             </div>
           </div>
-          <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
-            <div class="footer-content">
-              <div class="phone"> <i class="fa fa-phone"></i>
-                <p>(02) 712-5233</p>
-              </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
+          <div class="footer-content">
+            <div class="phone"> <i class="fa fa-phone"></i>
+              <p>(02) 712-5233</p>
             </div>
           </div>
-          <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
-            <div class="footer-content">
-              <div class="address"> <i class="fa fa-map-marker"></i>
-                <p>232-2, Gongneung-dong, NohWon-Koo, Seoul, Republic of Korea</p>
-              </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
+          <div class="footer-content">
+            <div class="address"> <i class="fa fa-map-marker"></i>
+              <p>서울시 노원구 공릉동 232-2 3층</p>
             </div>
           </div>
         </div>
       </div>
-      <!-- <div class="footer-coppyright">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-6 col-xs-12 coppyright"> Copyright © 2017 <a href="#"> Modern </a>. All Rights Reserved. </div>
-            <div class="col-sm-6 col-xs-12">
-              <div class="payment">
-                <ul>
-                  <li><a href="#"><img title="Visa" alt="Visa" src="images/visa.png"></a></li>
-                  <li><a href="#"><img title="Paypal" alt="Paypal" src="images/paypal.png"></a></li>
-                  <li><a href="#"><img title="Discover" alt="Discover" src="images/discover.png"></a></li>
-                  <li><a href="#"><img title="Master Card" alt="Master Card" src="images/master-card.png"></a></li>
-                </ul>
-              </div>
+    </div>
+    <!-- <div class="footer-coppyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-xs-12 coppyright"> Copyright © 2017 <a href="#"> Modern </a>. All Rights Reserved. </div>
+          <div class="col-sm-6 col-xs-12">
+            <div class="payment">
+              <ul>
+                <li><a href="#"><img title="Visa" alt="Visa" src="images/visa.png"></a></li>
+                <li><a href="#"><img title="Paypal" alt="Paypal" src="images/paypal.png"></a></li>
+                <li><a href="#"><img title="Discover" alt="Discover" src="images/discover.png"></a></li>
+                <li><a href="#"><img title="Master Card" alt="Master Card" src="images/master-card.png"></a></li>
+              </ul>
             </div>
           </div>
         </div>
-      </div> -->
-    </footer>
+      </div>
+    </div> -->
+  </footer>
   <a href="#" class="totop"> </a> </div>
 
 <!-- End Footer -->
@@ -288,17 +288,17 @@ function Refresh(){
             $('#SSG_reserved').text("$"+json.SSG_reserved);
           }
 
-          $.notify("Colletcing your reserves from internet duty-free shop.", {align:"right", verticalAlign:"top"});
+          $.notify("면세점에서 고객님의 적립금을 가져왔습니다.", {align:"right", verticalAlign:"top"});
         },
         beforeSend: function() {
           if(SL_check=="true"){
-                    $('#SL_reserved').text("Interlocking....");
+                    $('#SL_reserved').text("연동중입니다.");
           }
           if(LT_check=="true"){
-              $('#LT_reserved').text("Interlocking....");
+              $('#LT_reserved').text("연동중입니다.");
           }
             if(SSG_check=="true"){
-            $('#SSG_reserved').text("Interlocking....");
+            $('#SSG_reserved').text("연동중입니다.");
             }
 
 
@@ -311,7 +311,7 @@ function Refresh(){
     })
   }
   else{
-    $.notify("There is no information about your membership.", {align:"right", verticalAlign:"top"});
+    $.notify("가져올 면세점의 정보가 없습니다.", {align:"right", verticalAlign:"top"});
   }
 
 }
@@ -349,18 +349,18 @@ $(function(){
         if(SSG_check=="true"){
           $('#SSG_reserved').text("$"+json[2]);
         }
-        $.notify("Colletcing your reserves from internet duty-free shop.", {align:"right", verticalAlign:"top"});
+        $.notify("면세점에서 고객님의 적립금을 가져왔습니다.", {align:"right", verticalAlign:"top"});
 
       },
       beforeSend: function() {
         if(SL_check=="true"){
-                  $('#SL_reserved').text("Interlocking...");
+                  $('#SL_reserved').text("연동중입니다.");
         }
         if(LT_check=="true"){
-            $('#LT_reserved').text("Interlocking...");
+            $('#LT_reserved').text("연동중입니다.");
         }
           if(SSG_check=="true"){
-          $('#SSG_reserved').text("Interlocking...");
+          $('#SSG_reserved').text("연동중입니다.");
           }
 
 

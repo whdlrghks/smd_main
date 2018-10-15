@@ -49,7 +49,7 @@
                 <p> 스쿠알란, 살구씨 오일, 스위트 아몬드 오일, 아보카도 오일 등 식물성 보습 성분이 피부 본래의 수분 장벽을 강화해주어 진정 및 보습에 도움을 줍니다.</p>
                 <h1></h1> -->
               </div>
-              <h4>Price of Product</h4>
+              <h4>상품 가격</h4>
               <div class="col-sm-7 col-lg-12 col-md-7">
                 <div class="reviews-content-right">
                   <div class="table-responsive reviews-table">
@@ -58,44 +58,44 @@
 
                           <tr>
                             <th style="width:160px;"></th>
-                            <th colspan="2">Duty-Free Price</th>
-                            <th>Semyeondae Lowest Price!</th>
-                            <th>Go to Shop</th>
+                            <th colspan="2">면세가</th>
+                            <th>세면대 최저가!</th>
+                            <th>면세점 이동</th>
                           </tr>
                           <tr>
-                            <td style="text-align:left" id="SL_reserved" value = "<%=SL_reserved%>">SHILLA Internet Duty-free Shop :</td>
+                            <td style="text-align:left" id="SL_reserved" value = "<%=SL_reserved%>">신라인터넷면세점 :</td>
                             <%if(product.prd_SLURL!="42"){%>
                             <!-- <td><p class="old-price"><span id='sl_origin_price' value = 0 class="price"> </span></p></td>
                             <td><p class="special-price"><span id='sl_discount_price' class="price" > </span></p></td> -->
                             <td colspan="2"><p class="special-price"><span id='sl_duty_price' class="price" > </span></p></td>
                             <td><p class="special-price"><span id='sl_final_price' value = 0 class="price2"></p></td>
-                            <td><a title="<%=product.prd_SLURL%>" id="prd_sl_url" href="<%=product.prd_SLURL%>" value="<%=product.prd_SLURL%>" target="_blank">Move</a></td>
+                            <td><a title="<%=product.prd_SLURL%>" id="prd_sl_url" href="<%=product.prd_SLURL%>" value="<%=product.prd_SLURL%>" target="_blank">이동</a></td>
                             <%}else{%>
-                              <td colspan="4"><p class="old-price"> <strong>This item does not exist in SHILLA Internet Duty-free Shop.</strong></p></td>
+                              <td colspan="4"><p class="old-price"> <strong>신라인터넷면세점은 해당 상품이 존재하지 않습니다.</strong></p></td>
                             <%}%>
                           </tr>
                           <tr>
-                            <td style="text-align:left" id="LT_reserved" value = "<%=LT_reserved%>">LOTTE Internet Duty-free Shop :</td>
+                            <td style="text-align:left" id="LT_reserved" value = "<%=LT_reserved%>">롯데인터넷면세점 :</td>
                             <%if(product.prd_ProductURL!="42"){%>
                             <!-- <td><p class="old-price"><span id='lt_origin_price' value = 0 class="price"> </span></p></td>
                             <td><p class="special-price"><span id='lt_discount_price' class="price"></span></p></td> -->
                             <td colspan="2"><p class="special-price"><span id='lt_duty_price' class="price" > </span></p></td>
                             <td><p class="special-price"><span id='lt_final_price' value = 0 class="price2"></span></p></td>
-                            <td><a title="<%=product.prd_ProductURL%>"id="prd_lt_url" href="<%=product.prd_ProductURL%>" value="<%=product.prd_ProductURL%>" target="_blank">Move</a></td>
+                            <td><a title="<%=product.prd_ProductURL%>"id="prd_lt_url" href="<%=product.prd_ProductURL%>" value="<%=product.prd_ProductURL%>" target="_blank">이동</a></td>
                             <%}else{%>
-                              <td colspan="4"><p class="old-price"> <strong>This item does not exist in LOTTE Internet Duty-free Shop.</strong></p></td>
+                              <td colspan="4"><p class="old-price"> <strong>롯데인터넷면세점은 해당 상품이 존재하지 않습니다.</strong></p></td>
                             <%}%>
                           </tr>
                           <tr>
-                            <td style="text-align:left" id="SSG_reserved" value = "<%=SSG_reserved%>">SHINSEGAE Internet Duty-free Shop :</td>
+                            <td style="text-align:left" id="SSG_reserved" value = "<%=SSG_reserved%>">신세계인터넷면세점 :</td>
                             <%if(product.prd_SSGURL!="42"){%>
                             <!-- <td><p class="old-price"><span id='ssg_origin_price' value = 0 class="price"></span></p></td>
                             <td><p class="special-price"><span id='ssg_discount_price' class="price"></span></p></td> -->
                             <td colspan="2"><p class="special-price"><span id='ssg_duty_price' class="price" > </span></p></td>
                             <td><p class="special-price"><span id='ssg_final_price' value = 0 class="price2"></span></p></td>
-                            <td><a title="<%=product.prd_SSGURL%>" id="prd_ssg_url" href="<%=product.prd_SSGURL%>" value="<%=product.prd_SSGURL%>" target="_blank" >Move</a></td>
+                            <td><a title="<%=product.prd_SSGURL%>" id="prd_ssg_url" href="<%=product.prd_SSGURL%>" value="<%=product.prd_SSGURL%>" target="_blank" >이동</a></td>
                             <%}else{%>
-                            <td colspan="4"><p class="old-price"> <strong>This item does not exist in SHINSEGAE Internet Duty-free Shop.</strong></p></td>
+                            <td colspan="4"><p class="old-price"> <strong>신세계인터넷면세점은 해당 상품이 존재하지 않습니다.</strong></p></td>
                             <%}%>
                           </tr>
 
@@ -106,37 +106,37 @@
                 <div class="product-name" style="float:bottom">
                   <h6><br/></h6>
 
-                  <h6 style="border-radius:15px; padding:5px 5px;background-color:#ffffcc; color:black; font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ※ 'Semyeondae Lowest Price' is the amount that you can check during the final calculation process.<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You can apply any other discount method you have.</h6>
+                  <h6 style="border-radius:15px; padding:5px 5px;background-color:#ffffcc; color:black; font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ※ '세면대 최저가' 는 고객님의 적립금이 적용되며, 최종 계산 과정에서 확인할 수 있는 금액입니다.<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 고객님이 가지고 계신 다른 할인 방식을 추가적으로 적용할 수 있습니다. </h6>
                   <h6><br/></h6>
                 </div>
                 <div class="ratings">
 
-                  <p class="availability in-stock pull-left">Availability:
+                  <p class="availability in-stock pull-left">재고 상태:
                     <%if(product.prd_SLURL!="42"){%>
-                      <span id='sl_storage' value=false>Shilla : No Stock</span>
+                      <span id='sl_storage' value=false>신라 : 재고 없음</span>
                     <%}
                     if(product.prd_ProductURL!="42"){%>
-                      <span id='lt_storage' value=false>Lotte : No Stock</span>
+                      <span id='lt_storage' value=false>롯데 : 재고 없음</span>
                     <%
                   }if(product.prd_SSGURL!="42"){%>
-                      <span id='ssg_storage' value=false>Shinsegye : No Stock</span>
+                      <span id='ssg_storage' value=false>신세계 : 재고 없음</span>
                       <%}%>
                     </p>
                 </div>
                 <div class="product-variation">
                     <div class="cart-plus-minus">
-                      Select Duty Free Shop :
+                      면세점 선택 :
                           <select class="selectbox" name="duty_category" id="duty_category">
-                            <option selected="selected" value = -1>----- Select Duty Free Shop -----</option>
-                            <option value = 0 id="select_sl">SHILLA Internet Duty-free Shop</option>
-                            <option value = 1 id="select_lt">LOTTE Internet Duty-free Shop</option>
-                            <option value = 2 id="select_ssg">SHINSEGAE Internet Duty-free Shop</option>
+                            <option selected="selected" value = -1>----- 면세점 선택 -----</option>
+                            <option value = 0 id="select_sl">신라인터넷면세점</option>
+                            <option value = 1 id="select_lt">롯데인터넷면세점</option>
+                            <option value = 2 id="select_ssg">신세계인터넷면세점</option>
                           </select>
 
                     </div>
                     <br/><br/><br/>
-                    <button class="button pro-add-to-cart" title="" type="button" onclick="addCart()" id="add_Cart"><span><i class="fa fa-shopping-cart"></i> Add to Cart</span></button>
-                    <button class="button pro-add-to-cart" id="add_Cart_None"><span><i class="fa fa-shopping-cart"></i>Shopping Cart</span></button>
+                    <button class="button pro-add-to-cart" title="" type="button" onclick="addCart()" id="add_Cart"><span><i class="fa fa-shopping-cart"></i> 장바구니에 담기</span></button>
+                    <button class="button pro-add-to-cart" onclick="addCart()" id="add_Cart_None"><span><i class="fa fa-shopping-cart"></i>장바구니</span></button>
                 </div>
               </div>
           </div>
@@ -147,8 +147,8 @@
           <div class="row">
             <div class="col-xs-12"><div class="product-tab-inner">
               <ul id="product-detail-tab" class="nav nav-tabs product-tabs">
-                <li class="active"> <a href="#Post" data-toggle="tab"> Professional post </a> </li>
-                <li> <a href="#reviews" data-toggle="tab">Customer Reviews</a> </li>
+                <li class="active"> <a href="#Post" data-toggle="tab"> 전문 포스트 </a> </li>
+                <li> <a href="#reviews" data-toggle="tab">고객 후기</a> </li>
               </ul>
               <div id="productTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="Post">
@@ -244,9 +244,9 @@
 
                     <!-- 고객들 후기 리스트 -->
                     <div class="reviews-content-left">
-                      <h2>Customer Reviews</h2>
+                      <h2>고객 후기</h2>
                       <!-- <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div> -->
-                      <p class="rating-links"> <a id='total_review'></a> <span class="separator">|</span> <a>Leave Your Review</a> </p>
+                      <p class="rating-links"> <a id='total_review'></a> <span class="separator">|</span> <a>후기를 남겨보세요</a> </p>
                       <div class="review-ratting" id='review_0' display="none">
 
                       </div>
@@ -254,12 +254,12 @@
                       <div class="review-ratting" id='review_1'>
                         <!-- 후기 내용 + 고객 ID -->
 
-                        <a href="#" id='review_content1'>Contents</a>
-                        <p id='review_user_id1'> (Nickname)</p>
+                        <a href="#" id='review_content1'>내용</a>
+                        <p id='review_user_id1'> (고객닉네임)</p>
                         <table>
                           <tbody><tr>
                             <!-- 별점 부분 -->
-                            <th>Scope</th>
+                            <th>별점</th>
                             <td>
                               <div class="rating" id='review_rating1'>
                                 <i class="fa fa-star"></i>
@@ -281,12 +281,12 @@
 
                     <div class="review-ratting" id='review_2'>
                       <!-- 후기 내용 + 고객 ID -->
-                      <a href="#" id='review_content2'>Contents</a>
-                      <p id='review_user_id2'> (Nickname)</p>
+                      <a href="#" id='review_content2'>내용</a>
+                      <p id='review_user_id2'> (고객닉네임)</p>
                       <table>
                         <tbody><tr>
                           <!-- 별점 부분 -->
-                          <th>Scope</th>
+                          <th>별점</th>
                           <td>
                             <div class="rating" id='review_rating2'>
                               <i class="fa fa-star"></i>
@@ -308,12 +308,12 @@
 
                   <div class="review-ratting" id='review_3'>
                     <!-- 후기 내용 + 고객 ID -->
-                    <a href="#" id='review_content3'>Contents</a>
-                    <p id='review_user_id3'> (Nickname)</p>
+                    <a href="#" id='review_content3'>내용</a>
+                    <p id='review_user_id3'> (고객닉네임)</p>
                     <table>
                       <tbody><tr>
                         <!-- 별점 부분 -->
-                        <th>Scope</th>
+                        <th>별점</th>
                         <td>
                           <div class="rating" id='review_rating3'>
                             <i class="fa fa-star"></i>
@@ -351,21 +351,21 @@
                 <!-- 사용자가 후기 남기기 -->
                 <div class="col-sm-7 col-lg-7 col-md-7">
                   <div class="reviews-content-right">
-                    <h2>Leave Your Review!</h2>
+                    <h2>후기를 남겨보세요!</h2>
                     <form>
-                      <h4>How satisfied are you with this product?<em>*</em></h4>
+                      <h4>이 제품에 대한 만족도는 어떠신가요?<em>*</em></h4>
                       <div class="table-responsive reviews-table">
                         <table>
                           <tbody><tr>
                             <th></th>
-                            <th>1point</th>
-                            <th>2point</th>
-                            <th>3point</th>
-                            <th>4point</th>
-                            <th>5point</th>
+                            <th>1점</th>
+                            <th>2점</th>
+                            <th>3점</th>
+                            <th>4점</th>
+                            <th>5점</th>
                           </tr>
                           <tr>
-                            <td>Scope</td>
+                            <td>별점</td>
                             <td><input type="radio" name="rating" value="1"></input></td>
                             <td><input type="radio" name="rating" value="2"></input></td>
                             <td><input type="radio" name="rating" value="3"></input></td>
@@ -376,21 +376,21 @@
                         <div class="form-area">
                           <%if(username==""){%>
                             <div class="form-element">
-                              <label>Reviews <em>*</em></label>
+                              <label>후기 <em>*</em></label>
                               <textarea readonly id="byteInfo" onkeyup="fnChkByte(this);"></textarea>
                             </div>
                             <div class="buttons-set">
-                              <button disabled class="button submit" title="Submit Review" type="button" id="SendReview"><span><i class="fa fa-thumbs-up"></i> &nbsp;Leave a review</span></button>
+                              <button disabled class="button submit" title="Submit Review" type="button" id="SendReview"><span><i class="fa fa-thumbs-up"></i> &nbsp;후기 남기기</span></button>
                             </div>
 
                             <%
                           }else{%>
                           <div class="form-element">
-                            <label>Reviews <em>*</em></label>
+                            <label>후기 <em>*</em></label>
                             <textarea id="byteInfo" onkeyup="fnChkByte(this);"></textarea>
                           </div>
                           <div class="buttons-set">
-                            <button class="button submit" title="Submit Review" type="button" id="SendReview"><span><i class="fa fa-thumbs-up"></i> &nbsp;Leave a review</span></button>
+                            <button class="button submit" title="Submit Review" type="button" id="SendReview"><span><i class="fa fa-thumbs-up"></i> &nbsp;후기 남기기</span></button>
                           </div>
                           <%}%>
                         </div>
@@ -432,9 +432,9 @@
      <div class="row">
        <div class="col-sm-6 col-md-4 col-xs-12 col-lg-3">
          <div class="footer-logo"><a href="/index"><img src="images/saemyundae.PNG" style="max-width:50%" alt="fotter logo"></a> </div>
-         <p style="text-align:center; margin:0 0 0px">The Semyeondae is the best internet</p>
-         <p style="text-align:center;  margin:0 0 0px">duty-free shop 'helper' to help you use</p>
-         <p style="text-align:center;  margin:0 0 15px">the internet duty-free shop or get relevant information.</p>
+         <p style="text-align:center; margin:0 0 0px">세면대는 인터넷 면세점을 이용하거나</p>
+         <p style="text-align:center;  margin:0 0 0px">관련 정보를 얻고 싶을 때 도움을 주는</p>
+         <p style="text-align:center;  margin:0 0 15px">최고의 인터넷면세점 ‘도우미’입니다.</p>
 
        </div>
        <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
@@ -454,7 +454,7 @@
        <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
          <div class="footer-content">
            <div class="address"> <i class="fa fa-map-marker"></i>
-             <p>232-2, Gongneung-dong, NohWon-Koo, Seoul, Republic of Korea</p>
+             <p>서울시 노원구 공릉동 232-2 3층</p>
            </div>
          </div>
        </div>
@@ -613,7 +613,7 @@ $(function(){
           //   $('#sl_discount_price').text("$"+sl_discount_price);
           // }
           if(name==''){
-            $('#sl_final_price').text("No auth");
+            $('#sl_final_price').text("연동 필요");
           }
           else{
             $('#sl_final_price').text("$"+sl_final_price);
@@ -621,12 +621,12 @@ $(function(){
         }
         console.log(sl_storage);
           if(sl_storage!="No storage"&&sl_storage!="neg"){
-            $('#sl_storage').text("SL : In stock");
+            $('#sl_storage').text("신라 : 재고 있음");
             $('#sl_storage').val(true);
           }
           else{
             $("#sl_storage").css("background-color","red");
-            $('#sl_storage').text("SL : No stock");
+            $('#sl_storage').text("신라 : 재고 없음");
             $('#sl_storage').val(false);
             $('#select_sl').css('display','none');
             flag=flag+1;
@@ -657,19 +657,19 @@ $(function(){
           //   $('#lt_discount_price').text("$"+lt_discount_price);
           // }
           if(name==''){
-              $('#lt_final_price').text("No auth");
+              $('#lt_final_price').text("연동 필요");
           }
           else{
               $('#lt_final_price').text("$"+lt_final_price);
           }
 
           if(lt_storage!="No storage"&&lt_storage!="neg"){
-            $('#lt_storage').text("LT : In stock");
+            $('#lt_storage').text("롯데 : 재고 있음");
             $('#lt_storage').val(true);
           }
           else{
             $("#lt_storage").css("background-color","red");
-            $('#lt_storage').text("LT : No stock");
+            $('#lt_storage').text("롯데 : 재고 없음");
             $('#lt_storage').val(false);
             $('#select_lt').css('display','none');
             flag=flag+1;
@@ -699,18 +699,18 @@ $(function(){
           // }
           if(name==''){
             //글씨 css 변경 필요
-            $('#ssg_final_price').text("No auth");
+            $('#ssg_final_price').text("연동 필요");
           }
           else{
             $('#ssg_final_price').text("$"+ssg_final_price);
           }
           if(ssg_storage!="No storage"&&ssg_storage!="neg"){
-            $('#ssg_storage').text("SSG : In stock");
+            $('#ssg_storage').text("신세계 : 재고 있음");
             $('#ssg_storage').val( true);
           }
           else{
             $("#ssg_storage").css("background-color","red");
-            $('#ssg_storage').text("SSG : No stock");
+            $('#ssg_storage').text("신세계 : 재고 없음");
             $('#ssg_storage').val(false);
             $('#select_ssg').css('display','none');
             flag=flag+1;
@@ -785,10 +785,20 @@ $(function(){
   })
 })
 function compare_price(origin, discount){
+
+
   if(discount=="로그인 필요"){
     return origin;
   }
   else{
+    if(discount.match(/,/)){
+      discount = discount.replace(",","");
+    }
+    discount= Number(discount);
+    if(origin.match(/,/)){
+      origin = origin.replace(",","");
+    }
+    origin= Number(origin);
     if(origin*1>=discount*1){
       return discount;
     }
@@ -819,7 +829,7 @@ function fnChkByte(obj) {
     }
 
     if (rbyte > maxByte) {
-        $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:" The max article is " + maxByte + "."});
+        $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:"한글 " + (maxByte / 2) + "자 / 영문 " + maxByte + "자를 초과 입력할 수 없습니다."});
         str2 = str.substr(0, rlen); //문자열 자르기
         obj.value = str2;
         fnChkByte(obj, maxByte);
@@ -916,7 +926,7 @@ function fnChkByte(obj) {
         else{
           $('#review_1').css('display','none');
           $('#review_0').css('display','inline');
-          $('#review_0').text('There is no review.');
+          $('#review_0').text('등록된 후기가 없습니다.');
         }
         if(json.list[1]){
           $('#review_2').css('display','block');
@@ -1008,7 +1018,7 @@ function fnChkByte(obj) {
           else{
             $('#review_1').css('display','none');
             $('#review_0').css('display','inline');
-            $('#review_0').text('There is no review.');
+            $('#review_0').text('등록된 후기가 없습니다.');
           }
           if(json.list[1]){
             $('#review_2').css('display','block');
@@ -1076,7 +1086,7 @@ function moveBefore(){
       else{
         $('#review_1').css('display','none');
         $('#review_0').css('display','inline');
-        $('#review_0').text('There is no review.');
+        $('#review_0').text('등록된 후기가 없습니다.');
       }
       if(json.list[1]){
         $('#review_2').css('display','block');
@@ -1148,7 +1158,7 @@ function moveAfter(){
       else{
         $('#review_1').css('display','none');
         $('#review_0').css('display','inline');
-        $('#review_0').text('There is no review.');
+        $('#review_0').text('등록된 후기가 없습니다.');
       }
       if(json.list[1]){
         $('#review_2').css('display','block');
@@ -1202,6 +1212,10 @@ function ratingcheck(num, rating_seq){
 }
 
 function addCart(){
+  var username = "<%=username%>"
+
+  if(username!=""){
+
   var prd_id = $("#prd_id").attr('value')
 
 
@@ -1215,7 +1229,7 @@ function addCart(){
 
   if(duty_category<0){
 
-      $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'Please select the duty free shop to put in your shopping cart'});
+      $.sweetModal({icon:$.sweetModal.ICON_ERROR, content:'장바구니에 넣으실 면세점을 선택해주세요'});
       duty_category.focus();
   }
   else{
@@ -1270,12 +1284,19 @@ function addCart(){
         //성공시 success
 
         if(json=='success'){
-          $.sweetModal({icon:$.sweetModal.ICON_SUCCESS, content:'The item is in the shopping cart..'});
+          $.sweetModal({icon:$.sweetModal.ICON_SUCCESS, content:'장바구니에 담겼습니다.'});
         }
       }
     })
 
   }
+
+}
+else {
+  $.sweetModal.confirm('로그인 후 이용할 수 있습니다. 이용하시겠습니까?', function() {
+    location.href="/user/login";
+   });
+}
 
 }
 
