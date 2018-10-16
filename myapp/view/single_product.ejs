@@ -136,7 +136,7 @@
                     </div>
                     <br/><br/><br/>
                     <button class="button pro-add-to-cart" title="" type="button" onclick="addCart()" id="add_Cart"><span><i class="fa fa-shopping-cart"></i> Add to Cart</span></button>
-                    <button class="button pro-add-to-cart" id="add_Cart_None"><span><i class="fa fa-shopping-cart"></i>Shopping Cart</span></button>
+                    <button class="button pro-add-to-cart" onclic="cart_nologin()" id="add_Cart_None"><span><i class="fa fa-shopping-cart"></i>Shopping Cart</span></button>
                 </div>
               </div>
           </div>
@@ -982,6 +982,7 @@ function fnChkByte(obj) {
           //   list : review
           // };
 
+          $("#byteInfo").val('');
           if(startpage==0){
             $('#review_left').css('display','none');
           }
@@ -1279,7 +1280,12 @@ function addCart(){
 
 }
 
+function cart_nologin(){
+  $.sweetModal.confirm('If you want to use cart function, you need login. Do you login our site?', function() {
+     location.href='/user/login';
+   });
 
+}
 </script>
 
 </body>
